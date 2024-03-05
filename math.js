@@ -4,17 +4,29 @@ const btnLm = document.querySelector('button');
 
 function fibonacci(n) {
   const fibonacciSequence = [0, 1];
-  
   for (let i = 2; i < n; i++) {
     fibonacciSequence[i] = fibonacciSequence[i - 2] + fibonacciSequence[i - 1];
   }
-
-  console.log(fibonacciSequence);
+  return fibonacciSequence;
 }
 
 // O(n)
-/* END OF FIBONACCI SEQUENCE*/
+/* END OF FIBONACCI SEQUENCE */
+
+/* FACTORIAL */
+ 
+function factorial(n) {
+  let result = 1;
+  while(n > 0) {
+    result *= n;
+    n--;
+  }
+  return result;
+} 
+
+// O(n)
+/* END OF FACTORIAL */ 
 
 btnLm.addEventListener('click', () => {
-  fibonacci(7)
+  console.log(factorial(5));
 });
