@@ -4,11 +4,19 @@ const btnLm = document.querySelector('button');
 
 // O(n)
 function fibonacci(n) {
-  const fibonacciSequence = [0, 1];
+  const fib = [0, 1];
   for (let i = 2; i < n; i++) {
-    fibonacciSequence[i] = fibonacciSequence[i - 2] + fibonacciSequence[i - 1];
+    fib[i] = fib[i - 2] + fib[i - 1];
   }
-  return fibonacciSequence;
+  return fib[n];
+}
+
+// O(2^n)
+function recursiveFibonacci(n) {
+  if (n < 2) {
+    return n;
+  }
+  return recursiveFibonacci(n - 2) + recursiveFibonacci(n - 1);
 }
 
 /* END OF FIBONACCI SEQUENCE */
@@ -47,7 +55,7 @@ function isPrime(n) {
 
 /* POWER OF TWO*/
 
-// O(logN)
+// O(log n)
 function isPowerOfTwo(n) {
   if (n < 1) {
     return false;
@@ -63,7 +71,7 @@ function isPowerOfTwo(n) {
 
 // O(1)
 function isPowerOfTwoBitWise(n) {
-  if (n <= 0) {
+  if (n < 1) {
     return false;
   }
   return (n & (n - 1)) === 0; 
@@ -78,11 +86,9 @@ function isPowerOfTwoBitWise(n) {
 /* END OF POWER OF TWO */
 
 btnLm.addEventListener('click', () => {
-  console.log(isPowerOfTwoBitWise(0));
-  console.log(isPowerOfTwoBitWise(1));
-  console.log(isPowerOfTwoBitWise(2));
-  console.log(isPowerOfTwoBitWise(2)); //true
-  console.log(isPowerOfTwoBitWise(5)); //false
-  console.log(isPowerOfTwoBitWise(8));
-  console.log(isPowerOfTwoBitWise(100)); //false
+  console.log(recursiveFibonacci(1));
+  console.log(recursiveFibonacci(2));
+  console.log(recursiveFibonacci(3));
+  console.log(recursiveFibonacci(6));
+  console.log(recursiveFibonacci(7));
 });
