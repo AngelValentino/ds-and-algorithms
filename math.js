@@ -33,6 +33,14 @@ function factorial(n) {
   return result;
 } 
 
+// O(n)
+function recursiveFactorial(n) {
+  if (n === 0) {
+    return 1;
+  }
+  return n * recursiveFactorial(n - 1);
+}
+
 /* END OF FACTORIAL */ 
 
 /* PRIME NUMBER */
@@ -86,9 +94,10 @@ function isPowerOfTwoBitWise(n) {
 /* END OF POWER OF TWO */
 
 btnLm.addEventListener('click', () => {
-  console.log(recursiveFibonacci(1));
-  console.log(recursiveFibonacci(2));
-  console.log(recursiveFibonacci(3));
-  console.log(recursiveFibonacci(6));
-  console.log(recursiveFibonacci(7));
+  console.log(recursiveFactorial(0));
+  console.log(recursiveFactorial(1));
+  console.log(recursiveFactorial(2));
+  console.log(recursiveFactorial(3));
+  console.log(recursiveFactorial(5));
+  console.log(recursiveFactorial(10));
 });
