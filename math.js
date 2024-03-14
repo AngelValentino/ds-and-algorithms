@@ -92,12 +92,3 @@ function isPowerOfTwoBitWise(n) {
 
 
 /* END OF POWER OF TWO */
-
-btnLm.addEventListener('click', () => {
-  console.log(recursiveFactorial(0));
-  console.log(recursiveFactorial(1));
-  console.log(recursiveFactorial(2));
-  console.log(recursiveFactorial(3));
-  console.log(recursiveFactorial(5));
-  console.log(recursiveFactorial(10));
-});
