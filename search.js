@@ -1,6 +1,6 @@
-// O(n)
 /* LINEAR SEARCH */
 
+// O(n)
 function linearSearch(arr, target) {
   for (let i = 0; i < arr.length; i++) {
     if (arr[i] === target) {
@@ -12,10 +12,10 @@ function linearSearch(arr, target) {
 
 /* END OF LINEAR SEARCH */
 
-// The array needs to be sorted in order to use binary search.
-// O(log n)
 /* BINARY SEARCH */
 
+// The array needs to be sorted in order to use binary search.
+// O(log n)
 function binarySearch(arr, target) {
   let start = 0;
   let end = arr.length - 1;
@@ -36,6 +36,17 @@ function binarySearch(arr, target) {
   return -1;
 }
 
+// binarySearchRecursive([0, 2, 5, 9, 10, 11, 28, 65, 85, 99], 85);
+// start = 0;
+// end = 9;
+// mid = 4
+//   return binarySearchRecursive(arr, target, 5, 9)
+//   mid = 7;
+//     return binarySearchRecursive(arr, target, 8, 9);
+//     mid = 8; 
+//     return 8;
+
+// O(log n)
 function binarySearchRecursive(arr, target, start = 0, end = arr.length - 1) {
   if (start > end) {
     return -1;
@@ -53,16 +64,6 @@ function binarySearchRecursive(arr, target, start = 0, end = arr.length - 1) {
     return binarySearchRecursive(arr, target, start, mid - 1);
   }
 }
-
-// binarySearchRecursive([0, 2, 5, 9, 10, 11, 28, 65, 85, 99], 85);
-// start = 0;
-// end = 9;
-// mid = 4
-//   return binarySearchRecursive(arr, target, 5, 9)
-//   mid = 7;
-//     return binarySearchRecursive(arr, target, 8, 9);
-//     mid = 8; 
-//     return 8;
 
 /* END OF BINARY SEARCH */
 
