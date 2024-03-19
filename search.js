@@ -68,8 +68,3 @@ function binarySearchRecursive(arr, target, start = 0, end = arr.length - 1) {
 /* END OF BINARY SEARCH */
 
 
-btnLm.addEventListener('click', () => {
-  console.log(binarySearchRecursive([0, 2, 5, 9, 10, 11, 28, 65, 85, 99], 85));
-});
-
-
