@@ -54,33 +54,37 @@ function insertionSort(arr) {
 
 // Best case - Ω(n log(n))
 // Average case - Θ(n log(n))
-// Worst case - O(n^2)
+// Worst case - O(n^2) If the array is already sorted.
+
+/* Move smaller elements to the left, bigger to the right*/
 
 function pivot(arr, start, end) {
   /* We pick the first element of the partition as our pivot. It could also be the last, the median
   or a random one. */
-  let pivot = arr[start];
+  const pivot = arr[start];
   let swapIndex = start;
   for (let i = start + 1; i <= end; i++) {
     if (pivot > arr[i]) {
       swapIndex++;
       //Swapping elements without array destructuring
-        /*let temp = arr[i];
-          arr[i] = arr[swapIndex];
-          arr[swapIndex] = temp; */
-      
-      [arr[swapIndex], arr[i]] = [arr[i], arr[swapIndex]];
+        const temp = arr[i];
+        arr[i] = arr[swapIndex];
+        arr[swapIndex] = temp; 
+      //[arr[swapIndex], arr[i]] = [arr[i], arr[swapIndex]];
     }
   }
   // Swap the pivot element with the element at the swap index
-  [arr[start], arr[swapIndex]] = [arr[swapIndex], arr[start]];
+  // [arr[start], arr[swapIndex]] = [arr[swapIndex], arr[start]];
+  const temp = arr[swapIndex];
+  arr[swapIndex] = arr[start];
+  arr[start] = temp;
   return swapIndex;
 }
 
 function quickSort(arr, start = 0, end = arr.length - 1) {
   if (start < end) {
     // Where did our pivot move after being swapped?
-    let pivotIndex = pivot(arr, start, end);
+    const pivotIndex = pivot(arr, start, end);
     // Search left segment of pivot.
       quickSort(arr, start, pivotIndex - 1);
     // Search right segment of pivot.
@@ -91,5 +95,5 @@ function quickSort(arr, start = 0, end = arr.length - 1) {
 
 /* END OF QUICK SORT*/
 btnLm.addEventListener('click', () => {
-  console.log(quickSort([44, 33, 99, 147, 4]));
+  console.log(quickSort([44, 33, 99, 147, 4, 34, 42, 89, 21, 188]));
 });
