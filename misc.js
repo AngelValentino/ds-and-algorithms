@@ -3,7 +3,7 @@
 //O(n)
 function reverseString(str) {
   let reversedStr = '';
-  for (char of str) {
+  for (const char of str) {
     reversedStr = char + reversedStr;
   }
   return reversedStr;
@@ -21,7 +21,7 @@ function isPalindrome(str) {
   const formatedStr = str.replace(/\s+/g, '');
   let reversedStr = '';
 
-  for (char of formatedStr) {
+  for (const char of formatedStr) {
     reversedStr = char + reversedStr; 
   }
 
@@ -33,11 +33,11 @@ function isPalindrome(str) {
 /* COUNT THE CHARACTERS OF A STRING */
 
 //O(n);
-function stringBreakdown(str) {
+function getStringBreakdown(str) {
   const formatedStr = str.toLowerCase();
   const breakdown = {};
 
-  for (char of formatedStr) {
+  for (const char of formatedStr) {
     if (char === ' ') {
       continue;
     }
@@ -53,11 +53,11 @@ function stringBreakdown(str) {
 
 //O(n)
 function maxCharCount(str) {
-  const breakdown = stringBreakdown(str);
+  const breakdown = getStringBreakdown(str);
   let currMaxChar = '';
   let currMaxVal = 0;
 
-  for (key in breakdown) {
+  for (const key in breakdown) {
     if (breakdown[key] > currMaxVal) {
       currMaxChar = key;
       currMaxVal = breakdown[key];
@@ -69,6 +69,23 @@ function maxCharCount(str) {
 
 /* END RETURN THE HIGHEST REPEATING CHARACTER IN A STRING */
 
+/* ANAGRAM */
+
+function isAnagram(str, str2) { 
+  const firstCharMap = getStringBreakdown(str);
+  const secondCharMap = getStringBreakdown(str2);
+
+  for (const key in firstCharMap) {
+    if (!secondCharMap[key] || secondCharMap[key] !== firstCharMap[key]) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+/* END OF ANAGRAM */
+
 btnLm.addEventListener('click', () => {
-  console.log(maxCharCount('race car'));
+  console.log(isAnagram('players', 'parsley'));
 });
