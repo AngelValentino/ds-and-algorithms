@@ -94,6 +94,3 @@ function quickSort(arr, start = 0, end = arr.length - 1) {
 }
 
 /* END OF QUICK SORT*/
-btnLm.addEventListener('click', () => {
-  console.log(quickSort([44, 33, 99, 147, 4, 34, 42, 89, 21, 188]));
-});
