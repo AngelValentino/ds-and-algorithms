@@ -19,7 +19,7 @@ const reverseString2 = (str) => str.split('').reverse().join('');
 //O(n)
 function isPalindrome(str) {
   const formatedStr = str.replace(/\s+/g, '');
-  let reversedStr = '';
+  let reversedStr = ''; 
   for (char of formatedStr) {
     reversedStr = char + reversedStr; 
   }
@@ -28,6 +28,30 @@ function isPalindrome(str) {
 
 /* END OF PALINDROME */
 
+/* COUNT THE CHARACTERS OF A STRING */
+
+//O(n);
+function stringBreakdown(str) {
+  const formatedStr = str.toLowerCase();
+  const breakdown = {};
+  
+  for (char of formatedStr) {
+    if (char === ' ') {
+      continue;
+    }
+    if (breakdown[char]) {
+      breakdown[char]++;
+    } 
+    else {
+      breakdown[char] = 1;
+    }
+  }
+
+  return breakdown;
+}
+
+/* END OF COUNT THE CHARACTERS OF A STRING */
+
 btnLm.addEventListener('click', () => {
-  console.log(isPalindrome('race car'));
+  console.log(stringBreakdown('race car'));
 });
