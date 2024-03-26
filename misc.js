@@ -19,10 +19,12 @@ const reverseString2 = (str) => str.split('').reverse().join('');
 //O(n)
 function isPalindrome(str) {
   const formatedStr = str.replace(/\s+/g, '');
-  let reversedStr = ''; 
+  let reversedStr = '';
+
   for (char of formatedStr) {
     reversedStr = char + reversedStr; 
   }
+
   return reversedStr === formatedStr;
 }
 
@@ -34,17 +36,12 @@ function isPalindrome(str) {
 function stringBreakdown(str) {
   const formatedStr = str.toLowerCase();
   const breakdown = {};
-  
+
   for (char of formatedStr) {
     if (char === ' ') {
       continue;
     }
-    if (breakdown[char]) {
-      breakdown[char]++;
-    } 
-    else {
-      breakdown[char] = 1;
-    }
+    breakdown[char] ? breakdown[char]++ : breakdown[char] = 1;
   }
 
   return breakdown;
@@ -52,6 +49,26 @@ function stringBreakdown(str) {
 
 /* END OF COUNT THE CHARACTERS OF A STRING */
 
+/* RETURN THE HIGHEST REPEATING CHARACTER IN A STRING */
+
+//O(n)
+function maxCharCount(str) {
+  const breakdown = stringBreakdown(str);
+  let currMaxChar = '';
+  let currMaxVal = 0;
+
+  for (key in breakdown) {
+    if (breakdown[key] > currMaxVal) {
+      currMaxChar = key;
+      currMaxVal = breakdown[key];
+    }
+  }
+
+  return currMaxChar;
+}
+
+/* END RETURN THE HIGHEST REPEATING CHARACTER IN A STRING */
+
 btnLm.addEventListener('click', () => {
-  console.log(stringBreakdown('race car'));
+  console.log(maxCharCount('race car'));
 });
