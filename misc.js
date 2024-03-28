@@ -141,6 +141,21 @@ function fizzBuzz2(n) {
 
 /* END OF FIZZBUZ */
 
+/* CAPITALIZE WORDS */
+
+function capitalizeWords(str) {
+  let result = str[0].toUpperCase();
+  const regex = /[\s,.;:'"-]+/;
+
+  for (let i = 1; i < str.length; i++) {
+    result += str[i - 1].match(regex) ? str[i].toUpperCase() : str[i];
+  }
+
+  return result;
+}
+
+/* END OF CAPITALIZE WORDS*/
+
 btnLm.addEventListener('click', () => {
-  fizzBuzz2(150);
+  console.log(capitalizeWords('the fox jumps over the fence.'))
 });
