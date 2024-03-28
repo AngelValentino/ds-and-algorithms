@@ -71,6 +71,7 @@ function maxCharCount(str) {
 
 /* ANAGRAM */
 
+//O(n)
 function isAnagram(str, str2) { 
   const firstCharMap = getStringBreakdown(str);
   const secondCharMap = getStringBreakdown(str2);
@@ -86,6 +87,22 @@ function isAnagram(str, str2) {
 
 /* END OF ANAGRAM */
 
+/* REVERSE AN NUMBER */
+
+//O(n)
+function reverseNum(num) {
+  const numStr = num + '';
+  let reversedNum = '';
+
+  for (const char of numStr) {
+    reversedNum = char + reversedNum;
+  }
+
+  return parseFloat(reversedNum) * Math.sign(num);
+}
+
+/* END OF REVERSE AN NUMBER */
+
 btnLm.addEventListener('click', () => {
-  console.log(isAnagram('players', 'parsley'));
+  console.log(reverseNum(2.587));
 });
