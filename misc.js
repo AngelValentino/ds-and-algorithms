@@ -141,6 +141,7 @@ function fizzBuzz2(n) {
 
 /* END OF FIZZBUZ */
 
+//O(n)
 /* CAPITALIZE WORDS */
 
 function capitalizeWords(str) {
@@ -156,6 +157,29 @@ function capitalizeWords(str) {
 
 /* END OF CAPITALIZE WORDS*/
 
+/* COUNT VOWELS */
+
+//O(n)
+function countVowels(str) {
+  return str.match(/[aeiou]/gi).length;
+}
+
+//O(n)
+function countVowels2(str) {
+  const vowels = ['a', 'e', 'i', 'o', 'u'];
+  let matches = 0;
+
+  for (const char of str.toLowerCase()) {
+    if (vowels.includes(char)) {
+      matches++;
+    }
+  }
+
+  return matches;
+}
+
+/* END OF COUNT VOWELS*/
+
 btnLm.addEventListener('click', () => {
-  console.log(capitalizeWords('the fox jumps over the fence.'))
+  console.log(countVowels('Critical Role'))
 });
