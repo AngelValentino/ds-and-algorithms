@@ -180,6 +180,40 @@ function countVowels2(str) {
 
 /* END OF COUNT VOWELS*/
 
+/* ARRAY CHUNK */
+
+// O(n)
+function chunkArr(arr, n) {
+  const chunkedArr = [];
+
+  for (const element of arr) {
+    const previousChunk = chunkedArr[chunkedArr.length - 1];
+
+    if (!previousChunk || previousChunk.length === n) {
+      chunkedArr.push([element]);
+    } 
+    else {
+      previousChunk.push(element);
+    }
+  }
+
+  return chunkedArr;
+}
+
+function chunkArr2(arr, n) {
+  const chunkedArr = [];
+  let i = 0;
+
+  while(i < arr.length) {
+    chunkedArr.push(arr.slice(i, i + n));
+    i += n;
+  }
+
+  return chunkedArr;
+}
+
+/* END OF ARRAY CHUNK*/
+
 btnLm.addEventListener('click', () => {
-  console.log(countVowels('Critical Role'))
+  console.log(chunkArr([1, 23, 32, 12, 23, 43, 12, 89], 3));
 });
