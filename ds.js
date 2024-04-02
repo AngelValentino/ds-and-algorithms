@@ -11,7 +11,7 @@ class Stack {
     this.storage[this.size] = element;
   }
   pop() {
-    if (!this.size) return;
+    if (!this.size) return undefined;
     let removed = this.storage[this.size];
     delete this.storage[this.size];
     this.size--;
@@ -42,6 +42,46 @@ class Stack2 {
   }
   printStack() {
     console.log(this.items);
+  }
+}
+
+// It doesn't use length or array methods.
+class Stack3 {
+  constructor() {
+    this.items = [];
+    this.count = 0;
+  }
+
+  push(element) {
+    this.items[this.count] = element;
+    this.count++;
+    return this.count;
+  }
+  pop() {
+    if (!this.count) return undefined;
+    const deletedItem = this.items[this.count - 1];
+    this.count--;
+    return deletedItem;
+  }
+  peek() {
+    return this.items[this.count - 1];
+  }
+  isEmpty() {
+    return !this.count;
+  }
+  printStack() {
+    let items = [];
+    for (let i = 0; i < this.count; i++) {
+      items[i] = this.items[i];
+    }
+    console.log(items);
+  }
+  size() {
+    return this.count;
+  }
+  clear() {
+    this.items = [];
+    this.count = 0;
   }
 }
 
