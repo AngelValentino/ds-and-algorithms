@@ -164,7 +164,6 @@ function countVowels(str) {
   return str.match(/[aeiou]/gi).length;
 }
 
-//O(n)
 function countVowels2(str) {
   const vowels = ['a', 'e', 'i', 'o', 'u'];
   let matches = 0;
@@ -215,5 +214,5 @@ function chunkArr2(arr, n) {
 /* END OF ARRAY CHUNK*/
 
 btnLm.addEventListener('click', () => {
-  console.log(chunkArr([1, 23, 32, 12, 23, 43, 12, 89], 3));
+  console.log();
 });
