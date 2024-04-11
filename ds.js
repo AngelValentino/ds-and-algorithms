@@ -107,3 +107,118 @@ class Queue {
 const queue = new Queue();
 
 /* END OF QUEUE */
+
+/* LINKED LIST */
+// Compared to an array it's slower to find an element, as it has to search all nodes in order(no random access like an array). But is much faster to add or remove elements as there's no need to move the other elements location in memory like an array, that'a allocated in a contiguous block of memory, we just have to point the node to the desired one.
+// The singly linked list nodes point to the next one, the last one points to null.
+// The double linked list nodes point to the previous one and the next none, the tail and head(previous) point to null.
+// the circular linked list works like the dobule one, but the head and the tail point at each other instead of null.
+
+class ListNode {
+  constructor(val) {
+    this.val = val;
+    this.next = null;
+  }
+}
+
+class SinglyLinkedList {
+  constructor() {
+    this.head = null;
+  }
+  insert(val) {
+    if (!this.head) {
+      this.head = new ListNode(val);
+    } 
+    else {
+      this.insertEnd(val);
+    }
+  }
+  insertHead(val) {
+    const newNode = new ListNode(val);
+    newNode.next = this.head;
+    this.head = newNode;
+  }
+  insertEnd(val) {
+    const newNode = new ListNode(val);
+    let tempNode = this.head;
+    while (tempNode.next) {
+      tempNode = tempNode.next;
+    }
+    tempNode.next = newNode;
+  }
+  insertAtIndex(val, index) {
+    let previousNode;
+    let currentNode = this.head;
+    let indexCounter = 1;
+    let newNode = new ListNode(val);
+
+    while (indexCounter <= index) {
+      previousNode = currentNode;
+      currentNode = previousNode.next;
+      indexCounter++;
+    }
+    previousNode.next = newNode;
+    newNode.next = currentNode;
+  }
+  print() {
+    let tempNode = this.head;
+    let result = '';
+    while (tempNode) {
+      if (!tempNode.next) {
+        result += tempNode.val + ' --> Null';
+      } 
+      else {
+        result += tempNode.val + ' --> ';
+      }
+      tempNode = tempNode.next;
+    }
+    return result;
+  }
+  exists(val) {
+    let tempNode = this.head;
+    while (tempNode) {
+      if (tempNode.val === val) return true;
+      tempNode = tempNode.next;
+    }
+    return false;
+  }
+  removeFirst() {
+    let tempNode = this.head;
+    this.head = tempNode.next;
+  }
+  removeLast(prevNode) {
+    prevNode.next = null;
+  }
+  removeBetween(prevNode, node) {
+    prevNode.next = node.next
+  }
+  remove(val) {
+    let currentNode = this.head;
+    let previousNode = this.head;
+
+    if (this.head) {
+      while(currentNode) {
+        if (currentNode.val === val) {
+          if (currentNode === this.head) {
+            this.removeFirst();
+            return;
+          } 
+          else if (currentNode.next === null) {
+            this.removeLast(previousNode);
+            return;
+          }
+          else {
+            this.removeBetween(previousNode, currentNode);
+            return;
+          }
+        }
+        previousNode = currentNode;
+        currentNode = currentNode.next;
+      }
+    }
+  }
+}
+
+const list = new SinglyLinkedList();
+
+/* END OF LINKED LIST */
