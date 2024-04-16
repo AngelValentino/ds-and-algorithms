@@ -213,22 +213,52 @@ function chunkArr2(arr, n) {
 
 /* END OF ARRAY CHUNK*/
 
-/* PRINT STEPS */
+/* PRINT PYRAMID */
 
 // O(n)
 function printSteps(n) {
   if (n <= 0) return;
-  let steps = '';
+  let col = '';
   let i = 1;
   while (i <= n) {
-    steps += '#';
-    console.log(steps);
+    col += '#';
+    console.log(col);
     i++;
   }
 }
 
-/* END OF PRINT STEPS */
+// O(n^2)
+function printInvertedSteps(n) {
+  for (let i = 1; i <= n; i++) {
+    let col = '';
+    for (let j = 1; j <= n - i; j++) {
+      col += ' ';
+    }
+    for (let k = 1; k <= i; k++) {
+      col += '#';
+    }
+    console.log(col);
+  }
+}
+
+// O(n^2)
+function printPyramid(n) {
+  for (let i = 1; i <= n; i++) {
+    let col = '';
+    for (let j = 1; j <= n - i; j++) {
+      col += ' ';
+    }
+    for (let k = 1; k <= i * 2 - 1; k++) {
+      col += '#';
+    }
+    console.log(col);
+  }
+}
+
+/* END OF PRINT PYRAMID */
 
 btnLm.addEventListener('click', () => {
-  printSteps(5);
+  printSteps(3);
+  printInvertedSteps(3);
+  printPyramid(3);
 });
