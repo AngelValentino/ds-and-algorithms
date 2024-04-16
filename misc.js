@@ -213,6 +213,22 @@ function chunkArr2(arr, n) {
 
 /* END OF ARRAY CHUNK*/
 
+/* PRINT STEPS */
+
+// O(n)
+function printSteps(n) {
+  if (n <= 0) return;
+  let steps = '';
+  let i = 1;
+  while (i <= n) {
+    steps += '#';
+    console.log(steps);
+    i++;
+  }
+}
+
+/* END OF PRINT STEPS */
+
 btnLm.addEventListener('click', () => {
-  console.log();
+  printSteps(5);
 });

@@ -109,10 +109,10 @@ const queue = new Queue();
 /* END OF QUEUE */
 
 /* LINKED LIST */
-// Compared to an array it's slower to find an element, as it has to search all nodes in order(no random access like an array). But is much faster to add or remove elements as there's no need to move the other elements location in memory like an array, that'a allocated in a contiguous block of memory, we just have to point the node to the desired one.
+// It's slower to find an element compared to an array, as it has to search all nodes in order(no random access like an array). But is much faster to add or remove elements as there's no need to move the other elements location in memory like an array, that'a allocated in a contiguous block of memory, we just have to point the node to the desired one.
 // The singly linked list nodes point to the next one, the last one points to null.
 // The double linked list nodes point to the previous one and the next none, the tail and head(previous) point to null.
-// the circular linked list works like the dobule one, but the head and the tail point at each other instead of null.
+// The circular linked list works like the dobule one, but the head and the tail point at each other instead of null.
 
 class ListNode {
   constructor(val) {
