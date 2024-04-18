@@ -257,8 +257,25 @@ function printPyramid(n) {
 
 /* END OF PRINT PYRAMID */
 
+/* REMOVE ARRAY DUPLICATES */
+
+// O(n)
+function removeArrDup(arr) {
+  if (arr.length === 1) return arr;
+  const arrDupes = {};
+  let newArr = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (!arrDupes[arr[i]]) {
+      arrDupes[arr[i]] = true;
+      newArr.push(arr[i]);
+    } 
+  }
+  return newArr; 
+
+}
+
+/* END OF REMOVE ARRAY DUPLICATES */
+
 btnLm.addEventListener('click', () => {
-  printSteps(3);
-  printInvertedSteps(3);
-  printPyramid(3);
+  console.log(removeArrDup([1, 2, 2, 3, 6, 7, 2, 1]));
 });
