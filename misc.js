@@ -276,6 +276,61 @@ function removeArrDup(arr) {
 
 /* END OF REMOVE ARRAY DUPLICATES */
 
+/* ARRAY SUM FINDER*/
+
+// O(n^2)
+function arrSumFinder(arr, sum) {
+  if (arr.length < 2) return false;
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[i] + arr[j] === sum) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+// O(n)
+// If we already have a number that's the same as the difference between our the total sum and our current number, it means that the numbers can be added to form the sum argument. 
+function arrSumFinder2(arr, sum) {
+  if (arr.length < 2) return false;
+  const seen = {};
+
+  for (let i = 0; i < arr.length; i++) {
+    const num = arr[i];
+    if (seen[sum - num]) {
+      return true;
+    }
+    seen[num] = true;
+  }
+
+  return false;
+}
+
+// O(n log n)
+function arrSumFinder3(arr, sum) {
+  if (arr.length < 2) return false;
+  const sortedArr = arr.sort((a, b) => a - b);
+  let start = 0;
+  let end = arr.length - 1;
+  while (start < end) {
+    const currSum = sortedArr[start] + sortedArr[end];
+    if (currSum === sum) {
+      return true;
+    } 
+    else if (currSum < sum) {
+      start++;
+    } 
+    else {
+      end--;
+    }
+  }
+  return false;
+}
+
+/* END OF ARRAY SUM FINDER */
+
 btnLm.addEventListener('click', () => {
-  console.log(removeArrDup([1, 2, 2, 3, 6, 7, 2, 1]));
+  console.log(arrSumFinder3([1, 2], 3));
 });
