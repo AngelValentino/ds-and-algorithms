@@ -331,6 +331,46 @@ function arrSumFinder3(arr, sum) {
 
 /* END OF ARRAY SUM FINDER */
 
+/* MERGE SORTED ARRAY */
+
+// O(n)
+function mergeSortedArr(arrA, arrB) {
+  if (!arrA.length) {
+    return arrB;
+  } 
+  else if (!arrB.length) {
+    return arrA;
+  }
+  const mergedArr = [];
+  let i = 0;
+  let j = 0;
+
+  while (i < arrA.length && j < arrB.length) {
+    if (arrA[i] <= arrB[j]) {
+      mergedArr.push(arrA[i]);
+      i++;
+    } 
+    else {
+      mergedArr.push(arrB[j]);
+      j++;
+    }
+  }
+
+  while (i < arrA.length) {
+    mergedArr.push(arrA[i]);
+    i++;
+  }
+
+  while (j < arrB.length) {
+    mergedArr.push(arrB[j]);
+    j++;
+  }
+
+  return mergedArr;
+}
+
+/* END OF MERGE SORTED ARRAY */
+
 btnLm.addEventListener('click', () => {
-  console.log(arrSumFinder3([1, 2], 3));
+  console.log(mergeSortedArr([100, 255, 699], [-1, 7, 10, 11, 87, 99, 111]));
 });
