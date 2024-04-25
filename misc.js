@@ -370,7 +370,3 @@ function mergeSortedArr(arrA, arrB) {
 }
 
 /* END OF MERGE SORTED ARRAY */
-
-btnLm.addEventListener('click', () => {
-  console.log(mergeSortedArr([100, 255, 699], [-1, 7, 10, 11, 87, 99, 111]));
-});
