@@ -44,7 +44,7 @@ function recursiveFactorial(n) {
 /* END OF FACTORIAL */ 
 
 /* PRIME NUMBER */
-// If the number is composite; One of the two factors will be less tan or equal the square root for the given number(n = a * b), so we can stop the loop exection there as there is no need to go further because we should already have found a divisible number alredy. If not, it is prime.
+// If the number is composite; One of the two factors will be less tan or equal the square root for the given number(n = a * b), so we can stop the loop exection there as there is no need to go further because we should already have found a divisible number already. If not, it is prime.
 
 // O(sqrt(n))
 function isPrime(n) {
