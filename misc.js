@@ -271,7 +271,6 @@ function removeArrDup(arr) {
     } 
   }
   return newArr; 
-
 }
 
 /* END OF REMOVE ARRAY DUPLICATES */
@@ -386,8 +385,28 @@ function cumulativeSum(arr) {
   return result;
 }
 
-/* CUMULATIVE SUM */
+/* END OF CUMULATIVE SUM */
+
+/* FIND SUM PAIRS */
+
+// O(n)
+function findSumParis(arr, n) {
+  const pairs = [];
+  const seenNumbers = {};
+
+  for (const num of arr) {
+    const target = n - num;
+    if (seenNumbers[target]) {
+      pairs.push([num, target]);
+    } 
+    seenNumbers[num] = true;
+  }
+  
+  return pairs;
+}
+
+/* END OF FIND SUM PAIRS */
 
 btnLm.addEventListener('click', () => {
-  console.log(cumulativeSum([1, 2, 4, 5, 6, 7, 8, 9, 10]));
+  console.log(findSumParis([1, 3, 7, 3, 4, 5, 6, 76, 1], 10));
 });
