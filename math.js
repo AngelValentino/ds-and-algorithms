@@ -59,7 +59,6 @@ function isPrime(n) {
   return true;
 }
 
-
 // O(n)
 function isPrime2(n) {
   if (n < 2) {
@@ -121,7 +120,3 @@ function findMissingInt(arr) {
 }
 
 /* END OF FIND MISSING INTEGER*/
-
-btnLm.addEventListener('click', () => {
-  console.log(findMissingInt([1, 2, 4, 5, 6, 7, 8, 9, 10]));
-});

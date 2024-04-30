@@ -370,3 +370,24 @@ function mergeSortedArr(arrA, arrB) {
 }
 
 /* END OF MERGE SORTED ARRAY */
+
+/* CUMULATIVE SUM */
+
+// O(n)
+function cumulativeSum(arr) {
+  const result = [];
+  let sum = 0;
+
+  for (let i = 0; i < arr.length; i++) {
+    sum += arr[i];
+    result.push(sum);
+  }
+
+  return result;
+}
+
+/* CUMULATIVE SUM */
+
+btnLm.addEventListener('click', () => {
+  console.log(cumulativeSum([1, 2, 4, 5, 6, 7, 8, 9, 10]));
+});
