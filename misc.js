@@ -77,7 +77,7 @@ function isAnagram(str, str2) {
   const secondCharMap = getStringBreakdown(str2);
 
   for (const key in firstCharMap) {
-    if (!secondCharMap[key] || secondCharMap[key] !== firstCharMap[key]) {
+    if (secondCharMap[key] !== firstCharMap[key]) {
       return false;
     }
   }
@@ -407,6 +407,33 @@ function findSumParis(arr, n) {
 
 /* END OF FIND SUM PAIRS */
 
+/* ARRAY INRESECTION */
+// Given two arrays, return the vaules that intersect from each other.
+
+// O(n + m)
+function arrIntersection(arr, arr2) {
+  const intersections = [];
+  const seenValues = {};
+
+  for (let i = 0; i < arr.length; i++) {
+    if (!seenValues[arr[i]]) {
+      seenValues[arr[i]] = 1;
+    }
+  }
+
+  for (let i = 0; i < arr2.length; i++) {
+    if (seenValues[arr2[i]] === 1) {
+      intersections.push(arr2[i]);
+      seenValues[arr2[i]]++;
+    }
+  }
+
+  return intersections;
+}
+
+/* END OF ARRAY INTERSECTION */
+
+
 btnLm.addEventListener('click', () => {
-  console.log(findSumParis([1, 3, 7, 3, 4, 5, 6, 76, 1], 10));
+  console.log(arrIntersection([34, 1, 2, 6, 7, 78], [1, 7, 7, 7, 5, 9, 34]));
 });
