@@ -434,6 +434,45 @@ function arrIntersection(arr, arr2) {
 /* END OF ARRAY INTERSECTION */
 
 
+/* ISOMORPHIC STRINGS */
+// Given two strings check if they are isomorphic, meaning that each character of the string is interchanchable in order with the other string character.
+
+// egg => add
+// e => a
+// g => d
+
+// efl => egg
+// e => g
+// f => g
+// l !== g => g is already map to f
+
+// O(n)
+function areIsomorphic(str, str2)  {
+  if (str.length !== str2.length) return;
+  const charMap = {};
+  const charMap2 = {};
+
+  for (let i = 0; i < str.length; i++) {
+    const char1 = str[i];
+    const char2 = str2[i];
+
+    if (!charMap[char1]) {
+      charMap[char1] = char2;
+    }
+    if (!charMap2[char2]) {
+      charMap2[char2] = char1
+    }
+    if (charMap[char1] !== char2 || charMap2[char2] !== char1) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+/* END OF ISOMORPHIC STRINGS */
+
+
 btnLm.addEventListener('click', () => {
-  console.log(arrIntersection([34, 1, 2, 6, 7, 78], [1, 7, 7, 7, 5, 9, 34]));
+  console.log(areIsomorphic('add', 'egg'));
 });
