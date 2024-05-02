@@ -407,7 +407,7 @@ function findSumParis(arr, n) {
 
 /* END OF FIND SUM PAIRS */
 
-/* ARRAY INRESECTION */
+/* ARRAY INTERSECTION */
 // Given two arrays, return the vaules that intersect from each other.
 
 // O(n + m)
@@ -472,7 +472,32 @@ function areIsomorphic(str, str2)  {
 
 /* END OF ISOMORPHIC STRINGS */
 
+/* BRACKET BALANCER */
+// Check if the brackets {} given are balanced [{{}}] or not [{{}]
+
+// O(n)
+function isBalanced(strExp) {
+  const regex = /[^{}]/g;
+  if (typeof strExp !== 'string' || strExp.length === 0 || strExp.match(regex)) return false;
+  const stack = [];
+  
+  for (const char of strExp) {
+    if (char === '{') {
+      stack.push(char);
+    } 
+    else if (char === '}') {
+      if (stack.length === 0 || stack.pop() !== '{') {
+        return false;
+      }
+    }
+  }
+
+  return stack.length === 0;
+}
+ 
+/* END OF BRACKET BALANCER */
+
 
 btnLm.addEventListener('click', () => {
-  console.log(areIsomorphic('add', 'egg'));
+  console.log(isBalanced('dog'));
 });
