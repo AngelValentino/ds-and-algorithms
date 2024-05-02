@@ -477,8 +477,7 @@ function areIsomorphic(str, str2)  {
 
 // O(n)
 function isBalanced(strExp) {
-  const regex = /[^{}]/g;
-  if (typeof strExp !== 'string' || strExp.length === 0 || strExp.match(regex)) return false;
+  if (typeof strExp !== 'string' || strExp.length === 0) return false;
   const stack = [];
   
   for (const char of strExp) {
@@ -499,5 +498,5 @@ function isBalanced(strExp) {
 
 
 btnLm.addEventListener('click', () => {
-  console.log(isBalanced('dog'));
+  console.log(isBalanced('{{{}}}'));
 });
