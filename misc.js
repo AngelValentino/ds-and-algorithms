@@ -444,7 +444,7 @@ function arrIntersection(arr, arr2) {
 // efl => egg
 // e => g
 // f => g
-// l !== g => g is already map to f
+// l !== g => g is already maped to f
 
 // O(n)
 function areIsomorphic(str, str2)  {
@@ -496,7 +496,45 @@ function isBalanced(strExp) {
  
 /* END OF BRACKET BALANCER */
 
+/* SORT WAVE ARRAY */
+// Return an array with the values changing from hight to low.
+
+// O(n log n)
+function sortWaveArr(arr) {
+  const sortedArr = arr.sort((a, b) => a - b);
+
+  for (let i = 0; i < sortedArr.length - 1; i += 2) {
+    const temp = sortedArr[i];
+    sortedArr[i] = sortedArr[i + 1];
+    sortedArr[i + 1] = temp;
+  }
+
+  return sortedArr;
+}
+
+// O(n)
+// Without sorting.
+function waveArr(arr) {
+  const waveArr = [...arr];
+  
+  for (let i = 0; i < waveArr.length - 1; i++) {
+    if (i % 2 === 0 && waveArr[i] < waveArr[i + 1]) {
+      const temp = waveArr[i];
+      waveArr[i] = waveArr[i + 1];
+      waveArr[i + 1] = temp;
+    } 
+    else if (i % 2 !== 0 && waveArr[i] > waveArr[i + 1]) {
+      const temp = waveArr[i];
+      waveArr[i] = waveArr[i + 1];
+      waveArr[i + 1] = temp;
+    }
+  }
+  
+  return waveArr;
+}
+
+/* END OF SORT WAVE ARRAY */
 
 btnLm.addEventListener('click', () => {
-  console.log(isBalanced('{{{}}}'));
+  console.log(waveArr([1, 2, 3, 4, 5]));
 });
