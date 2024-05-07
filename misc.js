@@ -535,6 +535,48 @@ function waveArr(arr) {
 
 /* END OF SORT WAVE ARRAY */
 
+/* DUTCH FLAG SORT */
+// Sort an array of 0, 1 and 2's.
+// Everything before low === 0
+// Everything before mid === 1
+// Everything after high === 2
+
+// O(n)
+function dutchFlagSort(arr) {
+  let low = 0;
+  let mid = 0;
+  let high = arr.length - 1;
+  let temp;
+
+  while(mid <= high) {
+    switch(arr[mid]) {
+      case 0:
+        temp = arr[low];
+        arr[low] = arr[mid];
+        arr[mid] = temp;
+        low++;
+        mid++;
+        break;
+      case 1:
+        mid++;
+        break;
+      case 2:
+        temp = arr[mid];
+        arr[mid] = arr[high];
+        arr[high] = temp;
+        high--;
+        break;
+      default:
+        console.log('Invalid input array') ;
+        return;
+    }
+  }
+
+  return arr;
+}
+
+/* END OF DUTCH FLAG SORT */
+
 btnLm.addEventListener('click', () => {
-  console.log(waveArr([1, 2, 3, 4, 5]));
+  console.log(dutchFlagSort([1, 0, 2, 1, 2, 2, 0]));
 });
