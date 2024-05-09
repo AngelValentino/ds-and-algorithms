@@ -23,6 +23,7 @@ function recursiveFibonacci(n) {
 
 /* FACTORIAL */
 // n! = n * (n - 1)
+// JavaScript can't handle factorials that are larger than 170!.
  
 // O(n)
 function factorial(n) {
@@ -52,7 +53,7 @@ function recursiveFactorial(n) {
 }
 
 btnLm.addEventListener('click', () => {
-  console.log(factorial(0));
+  console.log(factorial(170));
 });
 
 /* END OF FACTORIAL */ 
