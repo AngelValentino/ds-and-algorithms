@@ -580,6 +580,8 @@ function dutchFlagSort(arr) {
 /* TRAPPING RAINWATER */
 
 function trappingRainwater(arr) {
+  if (arr.length <= 2) return 0;
+
   let maxLeft = 0;
   let maxRight = 0;
   let left = 0;
@@ -611,5 +613,5 @@ function trappingRainwater(arr) {
 /* END OF TRAPPING RAINWATER */
 
 btnLm.addEventListener('click', () => {
-  console.log(trappingRainwater([5, 4, 3, 2, 1]));
+  console.log(trappingRainwater([5, 4]));
 });
