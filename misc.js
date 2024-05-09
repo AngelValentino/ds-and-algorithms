@@ -577,6 +577,39 @@ function dutchFlagSort(arr) {
 
 /* END OF DUTCH FLAG SORT */
 
+/* TRAPPING RAINWATER */
+
+function trappingRainwater(arr) {
+  let maxLeft = 0;
+  let maxRight = 0;
+  let left = 0;
+  let right = arr.length - 1;
+  let totalDrainedWater = 0;
+
+  while(left < right) {
+    if (arr[left] < arr[right]) {
+      if (arr[left] > maxLeft) {
+        maxLeft = arr[left];
+      } else {
+        totalDrainedWater += maxLeft - arr[left];
+      }
+      left++;
+    } 
+    else {
+      if (arr[right] > maxRight) {
+        maxRight = arr[right];
+      } else {
+        totalDrainedWater += maxRight - arr[right];
+      }
+      right--;
+    }
+  }
+
+  return totalDrainedWater;
+}
+
+/* END OF TRAPPING RAINWATER */
+
 btnLm.addEventListener('click', () => {
-  console.log(dutchFlagSort([1, 0, 2, 1, 2, 2, 0]));
+  console.log(trappingRainwater([5, 4, 3, 2, 1]));
 });
