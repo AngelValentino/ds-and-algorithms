@@ -22,6 +22,7 @@ function recursiveFibonacci(n) {
 /* END OF FIBONACCI SEQUENCE */
 
 /* FACTORIAL */
+// n! = n * (n - 1)
  
 // O(n)
 function factorial(n) {
@@ -34,12 +35,25 @@ function factorial(n) {
 } 
 
 // O(n)
+function factorial2(n) {
+  let result = 1;
+  for (let i = 2; i <= n; i++) {
+    result *= i;
+  }
+  return result;
+}
+
+// O(n)
 function recursiveFactorial(n) {
-  if (n === 0) {
+  if (n === 1 || n === 0) {
     return 1;
   }
   return n * recursiveFactorial(n - 1);
 }
+
+btnLm.addEventListener('click', () => {
+  console.log(factorial(0));
+});
 
 /* END OF FACTORIAL */ 
 

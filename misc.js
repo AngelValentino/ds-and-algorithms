@@ -636,7 +636,3 @@ function findPeak(arr) {
 }
 
 /* END OF PEAK ELEMENT */
-
-btnLm.addEventListener('click', () => {
-  console.log(findPeak([5, 4, 9, 1]));
-});
