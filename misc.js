@@ -580,7 +580,7 @@ function dutchFlagSort(arr) {
 /* TRAPPING RAINWATER */
 // Calculate the total ammount of water that can be trapped between two slopes using an array to simulate the hills.
 // We achieve the result by utilising two pointers from left to right that remember which was the highest slop and how much water can be drained in front of them, comparing the maxPointer hight with the next element. 
-// And always checking the other pointer hight.
+// And always checking the other pointer's hight.
 
 // O(n)
 function trappingRainwater(arr) {
@@ -616,6 +616,27 @@ function trappingRainwater(arr) {
 
 /* END OF TRAPPING RAINWATER */
 
+/* PEAK ELEMENT */
+// Find the peak element of an array.
+
+// O(n)
+function findPeak(arr) {
+  if (!arr.length) return null;
+  if (arr.length === 1) return arr[0];
+
+  let peak = 0;
+
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] > peak) {
+      peak = arr[i];
+    }
+  }
+
+  return peak;
+}
+
+/* END OF PEAK ELEMENT */
+
 btnLm.addEventListener('click', () => {
-  console.log(trappingRainwater([5, 4]));
+  console.log(findPeak([5, 4, 9, 1]));
 });
