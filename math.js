@@ -52,10 +52,6 @@ function recursiveFactorial(n) {
   return n * recursiveFactorial(n - 1);
 }
 
-btnLm.addEventListener('click', () => {
-  console.log(factorial(170));
-});
-
 /* END OF FACTORIAL */ 
 
 /* PRIME NUMBER */

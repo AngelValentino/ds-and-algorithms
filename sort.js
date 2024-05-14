@@ -1,30 +1,75 @@
-/* BUBBLE SORT */
+//? BUBBLE SORT
 
-// O(n^2)
+//* Best case - Ω(n) if the array is already sorted
+//* Average case - Θ(n^2)
+//* Worst case - O(n^2)
+//* Space - O(1)
+//* Stable sort
 
-/* The bigger elements bubble up to the end of the array. We loop throught the elements of the
-array, each time ignoring the already sorted elements at the end using arr.length - i - 1*/
+/* The bigger elements bubble up to the end of the array. 
+We loop throught the elements of the array, each time ignoring the 
+already sorted elements at the end using arr.length - i - 1*/
 
 function bubbleSort(arr) {
-  for (let i = 0; i < arr.length; i++) {
+  for (let i = 0; i < arr.length - 1; i++) {
+    let swap = false;
     for (let j = 0; j < arr.length - i - 1; j++) {
+      // Swap bigger left element with smaller right one until 
+      // arr.length + 1 - 1.
       if (arr[j] > arr[j + 1]) {
         const temp = arr[j];
         arr[j] = arr[j + 1];
         arr[j + 1] = temp;
+        swap = true;
       }
     }
+    // if the array is already sorted return early from the outer loop ending 
+    // in (n) iterations instead of (n^2).
+    if (!swap) break;
+  }
+  return arr;
+}
+//? END OF BUBBLE SORT
+
+//? SELECTION SORT 
+
+//* Best case - Ω(n^2)
+//* Average case - Θ(n^2)
+//* Worst case - O(n^2)
+//* Space - O(1)
+//* Unstable sort
+
+/* Searches through an array an keeps track of the minimum or maximum vale 
+depending on the sorting order(ascending or descending) during each 
+iteration and swaps the tracked value with the beginning value of the array
+at the end of each iteration.
+We start at i + 1 in each iteration as the first values of the array are 
+already sorted and there's no need to check them again. */
+
+function selectionSort(arr) {
+  for (let i = 0; i < arr.length - 1; i++) {
+    let min = i;
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[j] < arr[min]) {
+        // We found a new minimum value, so we remember the index.
+        min = j;
+      }
+    }
+    // Swap the former min value with the current one.
+    const temp = arr[i];
+    arr[i] = arr[min];
+    arr[min] = temp;
   }
   return arr;
 }
 
-/* END OF BUBBLE SORT */
+//? END OF SELECTION SORT
 
-/* INSERTION SORT */
+//? INSERTION SORT
 
-// Best case - Ω(n)
-// Average case - Θ(n^2)
-// Worst case - O(n^2)
+//* Best case - Ω(n)
+//* Average case - Θ(n^2)
+//* Worst case - O(n^2)
 
 /* We start by assuming that the frist element in the array is already sorted, so we start from index 1.
 From there, we store the current element in a temporal variable and we check if any of the sorted 
@@ -48,13 +93,13 @@ function insertionSort(arr) {
   return arr;
 }
 
-/* END OF INSERTION SORT */
+//? END OF INSERTION SORT
 
-/* QUICK SORT */
+//? QUICK SORT
 
-// Best case - Ω(n log(n))
-// Average case - Θ(n log(n))
-// Worst case - O(n^2) If the array is already sorted.
+//* Best case - Ω(n log(n))
+//* Average case - Θ(n log(n))
+//* Worst case - O(n^2) If the array is already sorted.
 
 /* Move smaller elements to the left, bigger to the right*/
 
@@ -93,4 +138,8 @@ function quickSort(arr, start = 0, end = arr.length - 1) {
   return arr;
 }
 
-/* END OF QUICK SORT*/
+//? END OF QUICK SORT
+
+btnLm.addEventListener('click', () => {
+  console.log(bubbleSort([1, 9, 8, 1, 50, 2]));
+});
