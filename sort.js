@@ -67,18 +67,18 @@ function selectionSort(arr) {
 
 //? INSERTION SORT
 
-//* Best case - Ω(n)
+//* Best case - Ω(n) if the array is already sorted
 //* Average case - Θ(n^2)
 //* Worst case - O(n^2)
+//* Space - O(1)
+//* Stable sort
 
-/* We start by assuming that the frist element in the array is already sorted, so we start from index 1.
-From there, we store the current element in a temporal variable and we check if any of the sorted 
-elements from before is bigger than the current one, if it is place the bigger element to the right 
-until is smaller than the current one.
-After that, place the temporal value to the right of where the while loop stoped. (j + 1) */
-/* j >= 0 is needed to not go after the boundaries of the array and check a nonexistent element. 
-Because if it weren't by this comparison the code will still compare arr[-1] > with temp, stopping
-the loop nonetheless, but a reduntant comparison. */
+/* We start by assuming that the first element in the array is already 
+sorted, so we start from index 1. From there, we store the current element 
+in a temporal variable and we check if any of the sorted elements from before 
+are bigger than the current one. If they are, place the bigger element +1 to the 
+right. After that, place the temporal value to the right of where the while loop 
+stoped. (j + 1) or to the right of the element smaller than the temp value.*/
 
 function insertionSort(arr) {
   for (let i = 1; i < arr.length; i++) {
