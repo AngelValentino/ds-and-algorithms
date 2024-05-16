@@ -41,7 +41,7 @@ function bubbleSort(arr) {
 
 /* Searches through an array an keeps track of the minimum or maximum vale 
 depending on the sorting order(ascending or descending) during each 
-iteration and swaps the tracked value with the beginning value of the array
+iteration swaps the tracked value with the beginning value of the array
 at the end of each iteration.
 We start at i + 1 in each iteration as the first values of the array are 
 already sorted and there's no need to check them again. */
@@ -100,8 +100,12 @@ function insertionSort(arr) {
 //* Best case - Ω(n log(n))
 //* Average case - Θ(n log(n))
 //* Worst case - O(n^2) If the array is already sorted.
+//* Space - O(log n)
+//* Unstable sort
 
-/* Move smaller elements to the left, bigger to the right*/
+/* Move smaller elements to the left, bigger to the right and recursively
+divide the array into two partitions. */
+[10, 9, 8, 1, 50, 2]
 
 function pivot(arr, start, end) {
   /* We pick the first element of the partition as our pivot. It could also be the last, the median
@@ -112,9 +116,9 @@ function pivot(arr, start, end) {
     if (pivot > arr[i]) {
       swapIndex++;
       //Swapping elements without array destructuring
-        const temp = arr[i];
-        arr[i] = arr[swapIndex];
-        arr[swapIndex] = temp; 
+      const temp = arr[i];
+      arr[i] = arr[swapIndex];
+      arr[swapIndex] = temp; 
       //[arr[swapIndex], arr[i]] = [arr[i], arr[swapIndex]];
     }
   }
@@ -141,5 +145,5 @@ function quickSort(arr, start = 0, end = arr.length - 1) {
 //? END OF QUICK SORT
 
 btnLm.addEventListener('click', () => {
-  console.log(bubbleSort([1, 9, 8, 1, 50, 2]));
+  console.log(quickSort([10, 9, 8, 1, 50, 2]));
 });
