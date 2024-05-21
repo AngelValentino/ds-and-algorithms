@@ -231,7 +231,3 @@ function quickSort(arr, start = 0, end = arr.length - 1) {
 }
 
 //? END OF QUICK SORT
-
-btnLm.addEventListener('click', () => {
-  console.log(mergeSort([0, 2, 4, 6, 1, 3, 5, 7]));
-});
