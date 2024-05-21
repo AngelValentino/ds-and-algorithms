@@ -1,6 +1,12 @@
-/* LINEAR SEARCH */
+//? LINEAR SEARCH
 
-// O(n)
+//* Best case - Ω(1)
+//* Average case - Θ(n)
+//* Worst case - O(n)
+//* Space - O(1)
+
+// Find the target's index if it exists in the array, else return -1.
+
 function linearSearch(arr, target) {
   for (let i = 0; i < arr.length; i++) {
     if (arr[i] === target) {
@@ -10,7 +16,7 @@ function linearSearch(arr, target) {
   return -1;
 }
 
-/* END OF LINEAR SEARCH */
+//? END OF LINEAR SEARCH
 
 /* BINARY SEARCH */
 
