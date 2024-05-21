@@ -95,6 +95,95 @@ function insertionSort(arr) {
 
 //? END OF INSERTION SORT
 
+//? MERGE SORT
+
+//* Best case - Ω(n log n)
+//* Average case - Θ(n log n)
+//* Worst case - O(n log n)
+//* Space - O(n)
+//* Stable sort
+
+/* We divide the array into two sub arrays until there's only one, 
+after that we start sorting the subarrays until we have the final 
+sorted array.
+Input array arr[] = [4,0,6,2,5,1,7,3]
+                           /  \
+                          /    \
+                  [4,0,6,2] and [5,1,7,3]
+                     / \           / \
+                    /   \         /   \
+                 [4,0] [6,2]    [5,1] [7,3] 
+                   |     |        |     |
+                   |     |        |     |
+                 [0,4] [2,6]    [1,5] [3,7]
+                   \     /        \     /                        
+                    \   /          \   /
+                 [0,2,4,6]      [1,3,5,7]
+                      \             /
+                       \           / 
+                     [0,1,2,3,4,5,6,7]
+*/
+
+function merge(leftArr, rightArr, arr) {
+  const leftSize = Math.floor(arr.length / 2);
+  const rightSize = arr.length - leftSize;
+  let i = 0; l = 0; r = 0;
+
+  // Merging conditions
+  while(l < leftSize && r < rightSize) {
+    if (leftArr[l] < rightArr[r]) {
+      arr[i] = leftArr[l];
+      i++;
+      l++;
+    }
+    else {
+      arr[i] = rightArr[r];
+      i++;
+      r++;
+    }
+  }
+  // If there's an element remaining
+  while(l < leftSize) {
+    arr[i] = leftArr[l];
+    i++;
+    l++;
+  }
+  while(r < rightSize) {
+    arr[i] = rightArr[r];
+    i++;
+    r++;
+  }
+}
+
+function mergeSort(arr) {
+  const length = arr.length;
+  if (length <= 1) return;
+
+  const middle = Math.floor(length / 2);
+  const leftArr = [];
+  const rightArr = [];
+
+  let i = 0; // left array
+  let j = 0; // right array
+
+  for (; i < length; i++) {
+    if (i < middle) {
+      leftArr[i] = arr[i];
+    } 
+    else {
+      rightArr[j] = arr[i];
+      j++;
+    }
+  }
+
+  mergeSort(leftArr);
+  mergeSort(rightArr);
+  merge(leftArr, rightArr, arr);
+  return arr;
+}
+
+//? END OF MERGE SORT
+
 //? QUICK SORT
 
 //* Best case - Ω(n log(n))
@@ -105,7 +194,6 @@ function insertionSort(arr) {
 
 /* Move smaller elements to the left, bigger to the right and recursively
 divide the array into two partitions. */
-[10, 9, 8, 1, 50, 2]
 
 function pivot(arr, start, end) {
   /* We pick the first element of the partition as our pivot. It could also be the last, the median
@@ -145,5 +233,5 @@ function quickSort(arr, start = 0, end = arr.length - 1) {
 //? END OF QUICK SORT
 
 btnLm.addEventListener('click', () => {
-  console.log(quickSort([10, 9, 8, 1, 50, 2]));
+  console.log(mergeSort([0, 2, 4, 6, 1, 3, 5, 7]));
 });
