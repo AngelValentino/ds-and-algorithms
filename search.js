@@ -82,6 +82,68 @@ function binarySearchRecursive(arr, target, start = 0, end = arr.length - 1) {
 
 //? END OF BINARY SEARCH
 
+//? INTERPOLATION SEARCH
+
+//* Best case - Ω(1)
+//* Average case - Θ(log log n)
+//* Worst case - O(n) The elements are distributed in a skewed manner.
+//* Space - O(1)
+
+/* The data needs to be uniformly distributed and sorted to have a better 
+performance, and work as intended. It guesses where the target should be in
+the array and narrows the serach in each iteration.*/ 
+
+function interpolationSearch(arr, target) {
+	let start = 0;
+	let end = arr.length - 1;
+
+	while (start <= end && target >= arr[start] && target <= arr[end]) {
+		if (start === end) {
+			if (arr[start] === target) return start;
+			return -1;
+		}
+
+    // Calculate estimate index position
+		let pos = start + Math.floor(((end - start) / (arr[end] - arr[start])) * (target - arr[start]));
+
+		if (arr[pos] === target) {
+			return pos;
+		}
+
+		// Adjusting search boundaries and narrowing the search area
+		if (arr[pos] < target) {
+			start = pos + 1;
+		} 
+    else {
+			end = pos - 1;
+		}
+	}
+
+	return -1;
+}
+
+//* Space - O(log n) Recursive callstack
+
+function interpolationSearchRecursive(arr, target, start = 0, end = arr.length - 1) {
+	if (start > end || target < arr[start] || target > arr[end]) {
+		return -1;
+	}
+
+	let pos = start + Math.floor(((end - start) / (arr[end] - arr[start])) * (target - arr[start]));
+
+	if (arr[pos] === target) {
+		return pos;
+	} 
+  else if (arr[pos] < target) {
+		return interpolationSearchRecursive(arr, target, pos + 1, end);
+	} 
+  else {
+		return interpolationSearchRecursive(arr, target, start, pos - 1);
+	}
+}
+
+//? END OF INTERPOLATION SEARCH
+
 btnLm.addEventListener('click', () => {
-  console.log(binarySearch([0, 2, 4, 6, 1, 3, 5, 7], 7));
+  console.log(interpolationSearchRecursive([10, 20, 30, 40, 50, 60, 70, 80, 90, 100], 90));
 });
