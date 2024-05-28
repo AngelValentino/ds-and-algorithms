@@ -14,6 +14,8 @@ Array.prototype.customFilter = function(callback) {
 
 //? END OF ARRAY FILTER
 
+//TODO
+
 //? ARRAY ARRAY FIND AND FIND INDEX
 
 Array.prototype.customFind = function(callback) {
@@ -36,6 +38,42 @@ Array.prototype.customFindIndex = function(callback) {
 
 //? END OF ARRAY FIND AND FIND INDEX
 
+//TODO
+
+//? ARRAY REDUCE AND REDUCE RIGHT
+
+Array.prototype.customReduce = function(callback, initialValue) {
+  if (this.length === 0) {
+    throw new Error('Reduce of empty array with no initial value');
+  }
+  let accumulator = initialValue === undefined ? this[0] : initialValue;
+  let i = initialValue === undefined ? 1 : 0;
+
+  for (; i < this.length; i++) {
+    accumulator = callback(accumulator, this[i], i, this);
+  }
+
+  return accumulator;
+}
+
+Array.prototype.customReduceRight = function(callback, initialValue) {
+  if (this.length === 0) {
+    throw new Error('Reduce of empty array with no initial value');
+  }
+  let accumulator = initialValue === undefined ? this[this.length - 1] : initialValue;
+  let i = initialValue === undefined ? this.length - 2 : this.length - 1;
+
+  for (; i >= 0; i--) {
+    accumulator = callback(accumulator, this[i], i, this);
+  }
+
+  return accumulator;
+}
+
+//? ARRAY REDUCE AND REDUCE RIGHT
+
+//TODO
+
 btnLm.addEventListener('click', () => {
-  console.log([1, 2, 3, 4, 5, 6].customFind((num) => num > 20));
+  console.log([5, 10, 20, 30, 32].customReduceRight((acc, num) =>  acc + num, 0));
 });
