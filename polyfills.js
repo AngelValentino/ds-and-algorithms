@@ -70,10 +70,37 @@ Array.prototype.customReduceRight = function(callback, initialValue) {
   return accumulator;
 }
 
-//? ARRAY REDUCE AND REDUCE RIGHT
+//? END OF ARRAY REDUCE AND REDUCE RIGHT
+
+//TODO
+
+//? ARRAY SOME AND EVERY
+
+Array.prototype.customSome = function(callback) {
+  for (let i = 0; i < this.length; i++) {
+    if (callback(this[i], i, this)) {
+      return true;
+    }
+  }
+  return false;
+}
+
+Array.prototype.customEvery = function(callback) {
+  for (let i = 0; i < this.length; i++) {
+    if (!callback(this[i], i, this)) {
+      return false;
+    }
+  }
+  return true;
+}
+
+//? END OF ARRAY SOME AND EVERY
 
 //TODO
 
 btnLm.addEventListener('click', () => {
-  console.log([5, 10, 20, 30, 32].customReduceRight((acc, num) =>  acc + num, 0));
+  console.log([2, 2, 3, 4].customEvery((num) => num > 2))
+  console.log([2, 2, 3, 4].customSome((num) => num > 2))
 });
+
+
