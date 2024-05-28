@@ -143,7 +143,3 @@ function interpolationSearchRecursive(arr, target, start = 0, end = arr.length -
 }
 
 //? END OF INTERPOLATION SEARCH
-
-btnLm.addEventListener('click', () => {
-  console.log(interpolationSearchRecursive([10, 20, 30, 40, 50, 60, 70, 80, 90, 100], 90));
-});
