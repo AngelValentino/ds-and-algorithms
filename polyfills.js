@@ -42,6 +42,7 @@ Array.prototype.customFindIndex = function(callback) {
 
 //? REDUCE AND REDUCE RIGHT ARRAY METHODS
 
+//* REDUCE
 Array.prototype.customReduce = function(callback, initialValue) {
   if (this.length === 0) {
     throw new Error('Reduce of empty array with no initial value');
@@ -56,6 +57,7 @@ Array.prototype.customReduce = function(callback, initialValue) {
   return accumulator;
 }
 
+//* REDUCE RIGHT
 Array.prototype.customReduceRight = function(callback, initialValue) {
   if (this.length === 0) {
     throw new Error('Reduce of empty array with no initial value');
@@ -76,6 +78,7 @@ Array.prototype.customReduceRight = function(callback, initialValue) {
 
 //? SOME AND EVERY ARRAY METHODS
 
+//* SOME
 Array.prototype.customSome = function(callback) {
   for (let i = 0; i < this.length; i++) {
     if (callback(this[i], i, this)) {
@@ -85,6 +88,7 @@ Array.prototype.customSome = function(callback) {
   return false;
 }
 
+//* EVERY
 Array.prototype.customEvery = function(callback) {
   for (let i = 0; i < this.length; i++) {
     if (!callback(this[i], i, this)) {
@@ -98,8 +102,9 @@ Array.prototype.customEvery = function(callback) {
 
 //TODO
 
-//? SLICE ARRAY METHOD
+//? SLICE AND SPLICE ARRAY METHODS
 
+//* SLICE
 Array.prototype.customSlice = function(start, end) {
   const result = [];
   const length = this.length;
@@ -122,12 +127,7 @@ Array.prototype.customSlice = function(start, end) {
   return result;
 };
 
-//? END OF SLICE ARRAY METHOD
-
-//TODO
-
-//? SPLICE ARRAY METHOD
-
+//* SPLICE
 Array.prototype.customSplice = function(start, deleteCount) {
   const array = this;
   const length = array.length;
@@ -187,10 +187,63 @@ Array.prototype.customSplice = function(start, deleteCount) {
   return itemsToRemove;
 };
 
-//? END OF SPLICE ARRAY METHOD
+//? END OF SLICE AND SPLICE ARRAY METHODS
+
+//TODO
+
+//? PUSH, POP, SHIFT AND UNSHIFT ARRAY METHODS
+
+//* PUSH
+Array.prototype.customPush = function(...elements) {
+  for (let i = 0; i < elements.length; i++) {
+    this[this.length] = elements[i];
+  }
+  return this.length;
+}
+
+//* POP
+Array.prototype.customPop = function() {
+  if (this.length === 0) return undefined;
+  const removedElement = this[this.length - 1];
+  this.length--;
+  return removedElement;
+}
+
+//* UNSHIFT
+Array.prototype.customUnshift = function(...elements) {
+  const length = this.length;
+  const numberOfElements = elements.length;
+
+  for (let i = length - 1; i >= 0; i--) {
+    this[i + numberOfElements] = this[i];
+  }
+
+  for (let i = 0; i < numberOfElements; i++) {
+    this[i] = elements[i];
+  }
+
+  return this.length;
+}
+
+//* SHIFT
+Array.prototype.customShift = function() {
+  if (this.length === 0) return undefined;
+  const removedElement = this[0];
+
+  for (let i = 1; i < this.length; i++) {
+    this[i - 1] = this[i];
+  }
+
+  this.length--;
+  return removedElement;
+}
+
+//? END OF PUSH, POP, SHIFT AND UNSHIFT ARRAY METHODS
 
 //TODO
 
 btnLm.addEventListener('click', () => {
-
+  const arr = [1, 2, 3, 4, 5];
+  console.log(arr.customUnshift(9, 25, 32));
+  console.log(arr);
 });
