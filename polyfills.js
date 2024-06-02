@@ -1,3 +1,38 @@
+//? MATH RANDOM FUNCTIONS
+
+function generateRandomNumber(max) {
+  // (max + 1) is needed to also include the max value
+  return Math.floor(Math.random() * (max + 1));
+}
+
+function generateRandomNumberBetween(min, max) {
+  // + 1 includes the max number also
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+//? END OF MATH RANDOM FUNCTIONS
+
+//TODO
+
+//? FISHER-YATES SHUFFLE
+
+//* O(n)
+//* Space - O(1)
+
+Array.prototype.shuffle = function() {
+  for (let i = this.length - 1; i > 0; i--) {
+    // Generate a random index between 0 and i
+    const randomIndex = Math.floor(Math.random() * (i + 1));
+    // Swap variables using array destructuring
+    [this[i], this[randomIndex]] = [this[randomIndex], this[i]];
+  }
+  return this;
+}
+
+//? END OF FISHER-YATES SHUFFLE 
+
+//TODO
+
 //? FILTER ARRAY METHOD
 
 Array.prototype.customFilter = function(callback) {
