@@ -298,8 +298,26 @@ Array.prototype.customConcat = function(...args) {
 
 //TODO
 
+//? JOIN ARRAY METHOD
+
+Array.prototype.customJoin = function(separator = ',') {
+  if (this.length === 0) return '';
+  let result = '';
+
+  for (let i = 0; i < this.length; i++) {
+    if (i > 0) result += separator;
+    result += this[i] === null || this[i] === undefined ? '' : this[i];
+  }
+
+  return result;
+}
+
+//? JOIN ARRAY METHOD
+
+//TODO
+
 btnLm.addEventListener('click', () => {
-  const arr = [1, 2, 3]
-  const result = arr.customConcat([1, 2, 3], 'a', [])
-  console.log(arr, result)
+  const arr = [1, null, undefined, 123, 'abc', [123123, 588]]
+  const result = arr.customJoin('');
+  console.log(result)
 });
