@@ -301,7 +301,6 @@ Array.prototype.customConcat = function(...args) {
 //? JOIN ARRAY METHOD
 
 Array.prototype.customJoin = function(separator = ',') {
-  if (this.length === 0) return '';
   let result = '';
 
   for (let i = 0; i < this.length; i++) {
@@ -316,8 +315,49 @@ Array.prototype.customJoin = function(separator = ',') {
 
 //TODO
 
+//? REVERSE ARRAY METHOD
+
+Array.prototype.customReverse = function() {
+  let start = 0;
+  let end = this.length - 1;
+
+  while (start < end) {
+    console.log(start, end)
+    // Check if the elements at the start and end indices exist
+    let startExists = this.hasOwnProperty(start);
+    let endExists = this.hasOwnProperty(end);
+
+    // Swap the elements or handle the sparse array appropriately
+    if (startExists && endExists) {
+      const temp = this[start];
+      this[start] = this[end];
+      this[end] = temp;
+    } 
+    // Only start exists
+    // End is empty, move start to end and after delete start.
+    else if (startExists) {
+      this[end] = this[start];
+      delete this[start];
+    } 
+    // Only end exists
+    // Start is empty, move end to start and after delete end.
+    else if (endExists) {
+      this[start] = this[end];
+      delete this[end];
+    }
+
+    // Move towards the middle
+    start++;
+    end--;
+  }
+
+  return this;
+}
+
+//? END OF REVERSE ARRAY METHOD
+
 btnLm.addEventListener('click', () => {
-  const arr = [1, null, undefined, 123, 'abc', [123123, 588]]
-  const result = arr.customJoin('');
+  const arr = ['234', , ,1 , , undefined, null]
+  const result = arr.customReverse();
   console.log(result)
 });
