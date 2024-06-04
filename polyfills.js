@@ -277,8 +277,29 @@ Array.prototype.customShift = function() {
 
 //TODO
 
+//? CONCAT ARRAY METHOD
+
+Array.prototype.customConcat = function(...args) {
+  let result = Array.from(this);
+
+  for (const arg of args) {
+    if (Array.isArray(arg)) {
+      result.push(...arg);
+    } 
+    else {
+      result.push(arg);
+    }
+  }
+
+  return result;
+}
+
+//? END OF CONCAT ARRAY METHOD
+
+//TODO
+
 btnLm.addEventListener('click', () => {
-  const arr = [1, 2, 3, 4, 5];
-  console.log(arr.customUnshift(9, 25, 32));
-  console.log(arr);
+  const arr = [1, 2, 3]
+  const result = arr.customConcat([1, 2, 3], 'a', [])
+  console.log(arr, result)
 });
