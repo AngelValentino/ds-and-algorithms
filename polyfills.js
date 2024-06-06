@@ -420,11 +420,49 @@ Array.prototype.customIncludes = function(searchElement, fromIndex = 0) {
 
 //? END OF ARRAY INLCUDES METHOD
 
-const arr = [1, 2, , , 4];
+//TODO
+
+//? ARRAY MAP AND FOREACH METHODS
+
+//* FOREACH
+Array.prototype.customForEach = function(callback, thisArg) {
+  if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function');
+
+  for (let i = 0; i < this.length; i++) {
+    // Check if the property exists in the array (to handle sparse arrays)
+    if (i in this) {
+      callback.call(thisArg, this[i], i, this);
+    }
+  }
+}
+
+//* MAP
+Array.prototype.customMap = function(callback, thisArg) {
+  if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function');
+
+  // Handle sparse arrays for the result array
+  const result = new Array(this.length);
+
+  for (let i = 0; i < this.length; i++) {
+    // Check if the property exists in the array (to handle sparse arrays)
+    if (i in this) {
+      result[i] = (callback.call(thisArg, this[i], i, this));
+    }
+  }
+
+  return result;
+}
+
+//? END OF ARRAY MAP AND FOREACH METHODS
+
+const arr = [1, , , 2, 3];
 
 const btnLm = document.querySelector('button');
 btnLm.addEventListener('click', () => {
-  console.log(arr.includes(2))
-  console.log(arr.customIncludes(2))
+  console.log(arr.map((n) => n * 2))
+  console.log(arr.customMap((n) => n * 2))
+
+  console.log(arr.forEach((n) => console.log(n)))
+  console.log(arr.customForEach((n) => console.log(n)))
 });
 
