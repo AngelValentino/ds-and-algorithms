@@ -355,6 +355,8 @@ Array.prototype.customReverse = function() {
 
 //? END OF REVERSE ARRAY METHOD
 
+//TODO
+
 //? BASIC SPLIT STRING METHOD
 
 //* It only has the basic functionality
@@ -386,11 +388,43 @@ String.prototype.customSplit = function(separator) {
 
 //? END OF BASIC SPLIT STRING METHOD
 
-const word = 'banana';
+//TODO
+
+//? ARRAY INCLUDES METHOD
+
+Array.prototype.customIncludes = function(searchElement, fromIndex = 0) {
+	let length = this.length;
+	let n = fromIndex;
+
+	if (length === 0) return false;
+  // The search index goes past the array boundaries
+	if (n >= length) return false;
+
+  /* Checks for a negative fromIndex, and counts from end or if it goes past the 
+  array boundaries, from 0*/
+	if (n < 0) {
+		n = Math.max(length + n, 0);
+	}
+
+  // It also checks if fromIndex doesn't go past the array boundaries.
+	while (n < length) {
+    // Checks if there is a NaN value
+		if (Number.isNaN(searchElement) && Number.isNaN(this[n])) return true;
+    // Checks for the searchElement
+		if (this[n] === searchElement) return true;
+    n++;
+	}
+
+	return false;
+};
+
+//? END OF ARRAY INLCUDES METHOD
+
+const arr = [1, 2, , , 4];
 
 const btnLm = document.querySelector('button');
 btnLm.addEventListener('click', () => {
-  console.log(word.split('').reverse().join(''))
-  console.log(word.customSplit('').customReverse().customJoin(''))
-})
+  console.log(arr.includes(2))
+  console.log(arr.customIncludes(2))
+});
 
