@@ -322,7 +322,6 @@ Array.prototype.customReverse = function() {
   let end = this.length - 1;
 
   while (start < end) {
-    console.log(start, end)
     // Check if the elements at the start and end indices exist
     let startExists = this.hasOwnProperty(start);
     let endExists = this.hasOwnProperty(end);
@@ -356,8 +355,42 @@ Array.prototype.customReverse = function() {
 
 //? END OF REVERSE ARRAY METHOD
 
+//? BASIC SPLIT STRING METHOD
+
+//* It only has the basic functionality
+String.prototype.customSplit = function(separator) {
+  // If we don't call toString it returns the primitive object
+  if (separator === null || separator === undefined) return [this.toString()];
+
+  // Spread operator can handle the object, there's no need to call toString
+  if (separator === '') return [...this];
+
+  const result = [];
+  let startIndex = 0;
+  let index = this.indexOf(separator, startIndex);
+
+  while (index !== -1) {
+    // Push the content from the start index until the found separator(not inclusive)
+    result.push(this.substring(startIndex, index));
+    // Start from right after the found separator
+    startIndex = index + separator.length;
+    // Check if there's another match
+    index = this.indexOf(separator, startIndex);
+  }
+
+  // Push the rest of the string
+  result.push(this.substring(startIndex));
+
+  return result;
+}
+
+//? END OF BASIC SPLIT STRING METHOD
+
+const word = 'banana';
+
+const btnLm = document.querySelector('button');
 btnLm.addEventListener('click', () => {
-  const arr = ['234', , ,1 , , undefined, null]
-  const result = arr.customReverse();
-  console.log(result)
-});
+  console.log(word.split('').reverse().join(''))
+  console.log(word.customSplit('').customReverse().customJoin(''))
+})
+

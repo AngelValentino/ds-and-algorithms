@@ -2,6 +2,7 @@
 
 //O(n)
 function reverseString(str) {
+  if (!str) return;
   let reversedStr = '';
   for (const char of str) {
     reversedStr = char + reversedStr;
@@ -10,7 +11,10 @@ function reverseString(str) {
 }
 
 //O(n)
-const reverseString2 = (str) => str.split('').reverse().join('');
+const reverseString2 = (str) => str ? str.split('').reverse().join('') : undefined;
+
+//O(n)
+const reverseStringWithPolyfills = (str) => str ? str.customSplit('').customReverse().customJoin('') : undefined;
 
 /* END OF REVERSE A STRING */
 

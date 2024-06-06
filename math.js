@@ -1,5 +1,3 @@
-const btnLm = document.querySelector('button');
-
 /* FIBONACCI SEQUENCE */
 
 // O(n)
