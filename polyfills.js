@@ -460,6 +460,7 @@ Array.prototype.customMap = function(callback, thisArg) {
 
 //? FLAT AND FLAT MAP ARRAY METHOD
 
+//* FLAT
 Array.prototype.customFlat = function(depth = 1) {
   const result = [];
 
@@ -485,6 +486,14 @@ Array.prototype.customFlat = function(depth = 1) {
   return result;
 }
 
+//* FLAT MAP
+/* The flatMap() method of Array instances returns a new array formed by 
+applying a given callback function to each element of the array, 
+and then flattening the result by one level. */
+Array.prototype.customFlatMap = function(callback, thisArg) {
+  return this.customMap(callback, thisArg).customFlat();
+}
+
 //? END OF FLAT AND FLAT MAP ARRAY METHOD
 
 
@@ -496,8 +505,12 @@ btnLm.addEventListener('click', () => {
   console.log(arr2.customFlat(Infinity))
 });
 
-console.log(check(arr2))
+const arr1 = [1, 2, , , ,  1];
+const arr3 = ['q2', '12312', '', '123']
 
-function check(arr) {
-  return (4 in arr)
-}
+const result = arr1.customFlatMap((num) => (num === 2 ? [2, 2] : 1));
+const result2 = arr3.map((x) => x.split(' '));
+
+console.log(result);
+console.log(result2);
+// Expected output: Array [1, 2, 2, 1]
