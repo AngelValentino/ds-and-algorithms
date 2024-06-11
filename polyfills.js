@@ -39,7 +39,8 @@ Array.prototype.customFilter = function(callback) {
   const result = [];
 
   for (let i = 0; i < this.length; i++) {
-    if (callback(this[i], i, this)) {
+    // Also handles sparse arrays
+    if (this.hasOwnProperty(i) && callback(this[i], i, this)) {
       result.push(this[i]);
     }
   }
@@ -430,7 +431,7 @@ Array.prototype.customForEach = function(callback, thisArg) {
 
   for (let i = 0; i < this.length; i++) {
     // Check if the property exists in the array (to handle sparse arrays)
-    if (i in this) {
+    if (this.hasOwnProperty(i)) {
       callback.call(thisArg, this[i], i, this);
     }
   }
@@ -445,7 +446,7 @@ Array.prototype.customMap = function(callback, thisArg) {
 
   for (let i = 0; i < this.length; i++) {
     // Check if the property exists in the array (to handle sparse arrays)
-    if (i in this) {
+    if (this.hasOwnProperty(i)) {
       result[i] = (callback.call(thisArg, this[i], i, this));
     }
   }
@@ -455,14 +456,48 @@ Array.prototype.customMap = function(callback, thisArg) {
 
 //? END OF ARRAY MAP AND FOREACH METHODS
 
-const arr = [1, , , 2, 3];
+//TODO
+
+//? FLAT AND FLAT MAP ARRAY METHOD
+
+Array.prototype.customFlat = function(depth = 1) {
+  const result = [];
+
+  function flatten(arr, currentDepth) {
+    for (let i = 0; i < arr.length; i++) {
+      if (arr.hasOwnProperty(i)) {
+        const element = arr[i];
+        /* if element is an array and depth is still bigger than 0, 
+        call flatten once more. */
+        if (Array.isArray(element) && currentDepth > 0) {
+          flatten(element, currentDepth - 1);
+        } 
+        // push element to the result array
+        else {
+          result.push(element);
+        }
+      }
+    }
+  }
+
+  flatten(this, depth);
+
+  return result;
+}
+
+//? END OF FLAT AND FLAT MAP ARRAY METHOD
+
 
 const btnLm = document.querySelector('button');
+const arr = [1, 2, 3, 4, 5, [1, 2, 3], [1, 2], [1, [2, 3, [4, 5, [1, 2]]]]]
+const arr2 = [1, , , , 3, 4, 5,[2, 3, [3, , ,  , 4]]];
 btnLm.addEventListener('click', () => {
-  console.log(arr.map((n) => n * 2))
-  console.log(arr.customMap((n) => n * 2))
-
-  console.log(arr.forEach((n) => console.log(n)))
-  console.log(arr.customForEach((n) => console.log(n)))
+  console.log(arr2.flat(Infinity))
+  console.log(arr2.customFlat(Infinity))
 });
 
+console.log(check(arr2))
+
+function check(arr) {
+  return (4 in arr)
+}
