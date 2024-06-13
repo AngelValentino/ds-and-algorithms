@@ -151,3 +151,54 @@ function onBitsNonBitwise(n) {
 }
 
 //? End of Count On Bits (Population Count)
+
+//TODO
+
+//? Set Specific Bit
+
+/*
+  Implement a function that sets (changes to '1') a specific bit at a given 
+  position in the binary representation of the integer.
+
+  NOTE: It uses the OR (|) and LEFT SHIFT (<<) operators.
+
+  Example Usage:
+ 
+  Input: setSpecificBit(5, 1)
+  Output: 7 (binary representation of 5 is '101',
+  setting the bit at position 1 results in '111')
+ 
+  Input: setSpecificBit(8, 2)
+  Output: 12 (binary representation of 8 is '1000',
+  setting the bit at position 2 results in '1100')
+ 
+  Input: setSpecificBit(0, 3)
+  Output: 8 (binary representation of 0 is '0',
+  setting the bit at position 3 results in '1000')
+*/
+
+//* O(1) 
+//* Space - O(1)
+function setSpecificBit(number, position) {
+  const mask = 1 << position;
+  return number | mask;
+}
+
+// Input: setSpecificBit(5, 1)
+// Output: 7 (binary representation of 5 is '101',
+// setting the bit at position 1 results in '111')
+
+// number 5, position 1
+// 1 0 1 (binary of n)
+// Shift bits of 1 to the left by position (<< postion)
+// 0 0 1 (binary of 1)
+// - - - <<
+// 0 1 0 (mask of 1, new binary of position after LEFT SHIFT <<)
+// Compares the mask and number using the OR (|) operator to set the specific bit
+// 1 0 1 (binary of n)
+// 0 1 0 (mask) It adds as many padding(leading) 0's as needed
+// - - - |
+// 1 1 1 (new n is 7)
+// return n | mask; (7)
+
+//? End of Set Specific Bit
