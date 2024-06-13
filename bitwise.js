@@ -22,7 +22,8 @@
   Output: 10
 */
 
-//* Time O(n), Space O(1)
+//* O(n)
+//* Space - O(1)
 function findNonRepeating(arr) {
   let result = 0;
   for (const num of arr) {
@@ -67,3 +68,86 @@ function findNonRepeating(arr) {
 // return result; (3)
 
 //? End of Find Non-Repeating Element with XOR
+
+//TODO
+
+//? Count On Bits (Population Count)
+
+/*
+  Implement a function that counts the number of set bits (1's) 
+  in the binary representation of an integer. This is known as 
+  the population count or Hamming Weight.
+
+  NOTE: It uses the AND (&) and RIGHT SHIFT (>>) operators.
+
+  Example Usage:
+ 
+  Input: countSetBits(5)
+  Output: 2 (binary representation of 5 is '101', which has two '1's)
+ 
+  Input: countSetBits(7)
+  Output: 3 (binary representation of 7 is '111', which has three '1's)
+ 
+  Input: countSetBits(10)
+  Output: 2 (binary representation of 10 is '1010', which has two '1's)
+*/
+
+//* O(log n)
+/* It's log n and not n because the function works on the bits of the number,
+log n is just the estimate. */
+//* Space - O(1)
+function countOnBits(n) {
+  let count = 0;
+  while (n > 0) {
+      count += n & 1;
+      n >>= 1;
+  }
+  return count;
+}
+
+// Input: countOnBits(5)
+// Output: 2
+
+// count 0, n(5) => 101
+// 1 0 1 (binary of n)
+// 0 0 1 (binary of 1)
+// - - - &
+// 0 0 1 count (1)
+// Shift bits of n to the right by 1 (>> 1)
+// 1 0 1 (binary of n)
+// - - - >>
+// 0 1 0 (new binary of n after RIGHT SHIFT >>)
+
+// count 1, n(2) => 010
+// 0 1 0 (binary of n)
+// 0 0 1 (binary of 1)
+// - - - &
+// 0 0 0 count (1)
+// Shift bits of n to the right by 1 (>> 1)
+// 0 1 0 (binary of n)
+// - - - >>
+// 0 0 1 (new binary of n after RIGHT SHIFT >>)
+
+// count 1, n(1) => 001
+// 0 0 1 (binary of n)
+// 0 0 1 (binary of 1)
+// - - - &
+// 0 0 1 count (2)
+// Shift bits of n to the right by 1 (>> 1)
+// 0 0 1 (binary of n)
+// - - - >>
+// 0 0 0 (new binary of n after RIGHT SHIFT >>)
+
+// n is not larger than 0, while loop terminates
+// return count; (2)
+
+//* Non bitwise solution
+//* O(log n)
+/* We are working with the binary number, not the number itself. */
+//* Space - O(log n)
+function onBitsNonBitwise(n) {
+  const binaryStr = n.toString(2);
+  return binaryStr.split('').filter(bit => bit === '1').length;
+}
+
+//? End of Count On Bits (Population Count)
