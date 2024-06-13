@@ -495,22 +495,3 @@ Array.prototype.customFlatMap = function(callback, thisArg) {
 }
 
 //? END OF FLAT AND FLAT MAP ARRAY METHOD
-
-
-const btnLm = document.querySelector('button');
-const arr = [1, 2, 3, 4, 5, [1, 2, 3], [1, 2], [1, [2, 3, [4, 5, [1, 2]]]]]
-const arr2 = [1, , , , 3, 4, 5,[2, 3, [3, , ,  , 4]]];
-btnLm.addEventListener('click', () => {
-  console.log(arr2.flat(Infinity))
-  console.log(arr2.customFlat(Infinity))
-});
-
-const arr1 = [1, 2, , , ,  1];
-const arr3 = ['q2', '12312', '', '123']
-
-const result = arr1.customFlatMap((num) => (num === 2 ? [2, 2] : 1));
-const result2 = arr3.map((x) => x.split(' '));
-
-console.log(result);
-console.log(result2);
-// Expected output: Array [1, 2, 2, 1]
