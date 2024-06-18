@@ -36,32 +36,32 @@ function findNonRepeating(arr) {
 // Output: 3
 
 // result 0, num 1
-// 0 0 0 (binary of result)
-// 0 0 1 (binary of num)
+// 0 0 0 (binary of result(0))
+// 0 0 1 (binary of num(1))
 // - - - XOR
 // 0 0 1 result (1)
 
 // result 1, num 2
-// 0 0 1 (binary of result)
-// 0 1 0 (binary of num)
+// 0 0 1 (binary of result(1))
+// 0 1 0 (binary of num(2))
 // - - - XOR
 // 0 1 1 result (3)
 
 // result 3, num 1
-// 0 1 1 (binary of result)
-// 0 0 1 (binary of num)
+// 0 1 1 (binary of result(3))
+// 0 0 1 (binary of num(1))
 // - - - XOR
 // 0 1 0 result (2)
 
 // result 2, num 2
-// 0 1 0
-// 0 1 0
+// 0 1 0 (binary of result(2))
+// 0 1 0 (binary of num(2))
 // - - - XOR
 // 0 0 0 result (0)
 
 // result 0, num 3
-// 0 0 0
-// 0 1 1
+// 0 0 0 (binary of result(0))
+// 0 1 1 (binary of result(3))
 // - - - XOR
 // 0 1 1 result (3)
 
@@ -109,32 +109,32 @@ function countOnBits(n) {
 // Output: 2
 
 // count 0, n(5) => 101
-// 1 0 1 (binary of n)
+// 1 0 1 (binary of n(5))
 // 0 0 1 (binary of 1)
 // - - - &
 // 0 0 1 count (1)
 // Shift bits of n to the right by 1 (>> 1)
-// 1 0 1 (binary of n)
+// 1 0 1 (binary of n(5))
 // - - - >>
 // 0 1 0 (new binary of n after RIGHT SHIFT >>)
 
 // count 1, n(2) => 010
-// 0 1 0 (binary of n)
+// 0 1 0 (binary of n(2))
 // 0 0 1 (binary of 1)
 // - - - &
 // 0 0 0 count (1)
 // Shift bits of n to the right by 1 (>> 1)
-// 0 1 0 (binary of n)
+// 0 1 0 (binary of n(2))
 // - - - >>
 // 0 0 1 (new binary of n after RIGHT SHIFT >>)
 
 // count 1, n(1) => 001
-// 0 0 1 (binary of n)
+// 0 0 1 (binary of n(1))
 // 0 0 1 (binary of 1)
 // - - - &
 // 0 0 1 count (2)
 // Shift bits of n to the right by 1 (>> 1)
-// 0 0 1 (binary of n)
+// 0 0 1 (binary of n(1))
 // - - - >>
 // 0 0 0 (new binary of n after RIGHT SHIFT >>)
 
@@ -189,13 +189,13 @@ function setSpecificBit(number, position) {
 // setting the bit at position 1 results in '111')
 
 // number 5, position 1
-// 1 0 1 (binary of n)
+// 1 0 1 (binary of n(5))
 // Shift bits of 1 to the left by position (<< postion)
 // 0 0 1 (binary of 1)
 // - - - <<
 // 0 1 0 (mask of 1, new binary of position after LEFT SHIFT <<)
 // Compares the mask and number using the OR (|) operator to set the specific bit
-// 1 0 1 (binary of n)
+// 1 0 1 (binary of n(5))
 // 0 1 0 (mask) It adds as many padding(leading) 0s as needed
 // - - - |
 // 1 1 1 (new n is 7)
@@ -241,8 +241,7 @@ function findComplement(number) {
   return (~number) & mask;
 }
 
-console.log(findComplement(5));
-
+// findComplement(5)
 // number => 5, binary => 101
 // significantBits => 3 (it gets us the position of the furthest ON bit + 1 === bit count)
 // 0 0 0 1 (binary of 1 with leading zeros)
