@@ -1,19 +1,3 @@
-//? MATH RANDOM FUNCTIONS
-
-function generateRandomNumber(max) {
-  // (max + 1) is needed to also include the max value
-  return Math.floor(Math.random() * (max + 1));
-}
-
-function generateRandomNumberBetween(min, max) {
-  // + 1 includes the max number also
-  return Math.floor(Math.random() * (max - min + 1) + min);
-}
-
-//? END OF MATH RANDOM FUNCTIONS
-
-//TODO
-
 //? FISHER-YATES SHUFFLE
 
 //* O(n)

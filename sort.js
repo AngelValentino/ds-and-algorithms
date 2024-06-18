@@ -1,18 +1,19 @@
 //? BUBBLE SORT
 
-//* Best case - Ω(n) if the array is already sorted
-//* Average case - Θ(n^2)
-//* Worst case - O(n^2)
-//* Space - O(1)
+//* Time Complexity - Ω(n) Best case => if the array is already sorted
+//* Time Complexity - Θ(n^2) Average case
+//* Time Complexity - O(n^2) Worst case
+//* Space Complexity - O(1)
 //* Stable sort
 
 /* The bigger elements bubble up to the end of the array. 
 We loop throught the elements of the array, each time ignoring the 
-already sorted elements at the end using arr.length - i - 1*/
+already sorted elements at the end using arr.length - i - 1 */
 
 function bubbleSort(arr) {
   for (let i = 0; i < arr.length - 1; i++) {
     let swap = false;
+
     for (let j = 0; j < arr.length - i - 1; j++) {
       // Swap bigger left element with smaller right one until 
       // arr.length + 1 - 1.
@@ -23,20 +24,23 @@ function bubbleSort(arr) {
         swap = true;
       }
     }
-    // if the array is already sorted return early from the outer loop ending 
-    // in (n) iterations instead of (n^2).
+
+    /*  if the array is already sorted return early from the outer 
+    loop ending in (n) iterations instead of (n^2). */
     if (!swap) break;
   }
   return arr;
 }
 //? END OF BUBBLE SORT
 
+//TODO
+
 //? SELECTION SORT 
 
-//* Best case - Ω(n^2)
-//* Average case - Θ(n^2)
-//* Worst case - O(n^2)
-//* Space - O(1)
+//* Time Complexity - Ω(n^2) Best case
+//* Time Complexity - Θ(n^2) Average case
+//* Time Complexity - O(n^2) Worst case
+//* Space Complexity - O(1)
 //* Unstable sort
 
 /* Searches through an array an keeps track of the minimum or maximum vale 
@@ -65,12 +69,14 @@ function selectionSort(arr) {
 
 //? END OF SELECTION SORT
 
+//TODO
+
 //? INSERTION SORT
 
-//* Best case - Ω(n) if the array is already sorted
-//* Average case - Θ(n^2)
-//* Worst case - O(n^2)
-//* Space - O(1)
+//* Time Complexity - Ω(n) Best case => if the array is already sorted
+//* Time Complexity - Θ(n^2) Average case
+//* Time Complexity - O(n^2) Worst case
+//* Space Complexity - O(1)
 //* Stable sort
 
 /* We start by assuming that the first element in the array is already 
@@ -78,16 +84,18 @@ sorted, so we start from index 1. From there, we store the current element
 in a temporal variable and we check if any of the sorted elements from before 
 are bigger than the current one. If they are, place the bigger element +1 to the 
 right. After that, place the temporal value to the right of where the while loop 
-stoped. (j + 1) or to the right of the element smaller than the temp value.*/
+stoped. (j + 1) or to the right of the element smaller than the temp value. */
 
 function insertionSort(arr) {
   for (let i = 1; i < arr.length; i++) {
     const temp = arr[i];
     let j = i - 1;
+
     while (j >= 0 && arr[j] > temp) {
       arr[j + 1] = arr[j];
       j--;
     }
+
     arr[j + 1] = temp;
   }
   return arr;
@@ -95,12 +103,14 @@ function insertionSort(arr) {
 
 //? END OF INSERTION SORT
 
+//TODO
+
 //? MERGE SORT
 
-//* Best case - Ω(n log n)
-//* Average case - Θ(n log n)
-//* Worst case - O(n log n)
-//* Space - O(n)
+//* Time Complexity - Ω(n log n) Best case
+//* Time Complexity - Θ(n log n) Average case
+//* Time Complexity - O(n log n) Worst case
+//* Space Complexity - O(n)
 //* Stable sort
 
 /* We divide the array into two sub arrays until there's only one, 
@@ -118,7 +128,7 @@ Input array arr[] = [4,0,6,2,5,1,7,3]
                  [0,4] [2,6]    [1,5] [3,7]
                    \     /        \     /                        
                     \   /          \   /
-                 [0,2,4,6]      [1,3,5,7]
+                  [0,2,4,6]      [1,3,5,7]
                       \             /
                        \           / 
                      [0,1,2,3,4,5,6,7]
@@ -184,12 +194,14 @@ function mergeSort(arr) {
 
 //? END OF MERGE SORT
 
+//TODO
+
 //? QUICK SORT
 
-//* Best case - Ω(n log(n))
-//* Average case - Θ(n log(n))
-//* Worst case - O(n^2) If the array is already sorted.
-//* Space - O(log n)
+//* Time Complexity - Ω(n log(n)) Best case
+//* Time Complexity - Θ(n log(n)) Average case
+//* Time Complexity - O(n^2) Worst case => If the array is already sorted.
+//* Space Complexity - O(log n)
 //* Unstable sort
 
 /* Move smaller elements to the left, bigger to the right and recursively

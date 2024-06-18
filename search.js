@@ -1,9 +1,9 @@
 //? LINEAR SEARCH
 
-//* Best case - Ω(1)
-//* Average case - Θ(n)
-//* Worst case - O(n)
-//* Space - O(1)
+//* Time Complexity - Ω(1) Best Case 
+//* Time Complexity - Θ(n) Average case
+//* Time Complexity - O(n) Worst case
+//* Space Complexity - O(1)
 
 // Find the target's index if it exists in the array, else return -1.
 // It iterates each item of the array until target is found, else return.
@@ -19,20 +19,21 @@ function linearSearch(arr, target) {
 
 //? END OF LINEAR SEARCH
 
+//TODO
+
 //? BINARY SEARCH
 
-//* Best case - Ω(1)
-//* Average case - Θ(log n)
-//* Worst case - O(log n)
-//* Space - O(1)
+//* Time Complexity - Ω(1) Best case
+//* Time Complexity - Θ(log n) Average case
+//* Time Complexity - O(log n) Worst case
+//* Space Complexity - O(1)
 
 /* The array needs to be sorted in order to use binary search. 
 Find the target's index, else return -1. In each iteration we locate
 the midpoint of the array, 
 if (mid === target) we return the index, 
 else if (mid < target) we search the right side of the array/subarrays 
-if (mid > target) we search the left side of the array/subarrays.
-*/
+if (mid > target) we search the left side of the array/subarrays. */
 
 function binarySearch(arr, target) {
   let start = 0;
@@ -57,7 +58,7 @@ function binarySearch(arr, target) {
   return -1;
 }
 
-//* Space - O(log n) Recursive callstack
+//* Space Complexity - O(log n) Recursive callstack
 
 function binarySearchRecursive(arr, target, start = 0, end = arr.length - 1) {
   if (start > end) {
@@ -82,16 +83,18 @@ function binarySearchRecursive(arr, target, start = 0, end = arr.length - 1) {
 
 //? END OF BINARY SEARCH
 
+//TODO
+
 //? INTERPOLATION SEARCH
 
-//* Best case - Ω(1)
-//* Average case - Θ(log log n)
-//* Worst case - O(n) The elements are distributed in a skewed manner.
-//* Space - O(1)
+//* Time Complexity - Ω(1) Best case
+//* Time Complexity - Θ(log log n) Average case
+//* Time Complexity - O(n) Worst case => The elements are distributed in a skewed manner.
+//* Space Complexity - O(1)
 
 /* The data needs to be uniformly distributed and sorted to have a better 
 performance, and work as intended. It guesses where the target should be in
-the array and narrows the serach in each iteration.*/ 
+the array and narrows the serach in each iteration. */ 
 
 function interpolationSearch(arr, target) {
 	let start = 0;
@@ -122,7 +125,7 @@ function interpolationSearch(arr, target) {
 	return -1;
 }
 
-//* Space - O(log n) Recursive callstack
+//* Space Complexity - O(log n) Recursive callstack
 
 function interpolationSearchRecursive(arr, target, start = 0, end = arr.length - 1) {
 	if (start > end || target < arr[start] || target > arr[end]) {
