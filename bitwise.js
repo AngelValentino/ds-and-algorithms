@@ -22,8 +22,8 @@
   Output: 10
 */
 
-//* O(n)
-//* Space - O(1)
+//* Time Complexity - O(n)
+//* Space Complexity - O(1)
 function findNonRepeating(arr) {
   let result = 0;
   for (const num of arr) {
@@ -92,10 +92,10 @@ function findNonRepeating(arr) {
   Output: 2 (binary representation of 10 is '1010', which has two '1's)
 */
 
-//* O(log n)
+//* Time Complexity - O(log n)
 /* It's log n and not n because the function works on the bits of the number,
 log n is just the estimate. */
-//* Space - O(1)
+//* Space Complexity - O(1)
 function countOnBits(n) {
   let count = 0;
   while (n > 0) {
@@ -142,9 +142,9 @@ function countOnBits(n) {
 // return count; (2)
 
 //* Non bitwise solution
-//* O(log n)
+//* Time Complexity - O(log n) or O(k)
 /* We are working with the binary number, not the number itself. */
-//* Space - O(log n)
+//* Space Complexity - O(log n) or O(k)
 function onBitsNonBitwise(n) {
   const binaryStr = n.toString(2);
   return binaryStr.split('').filter(bit => bit === '1').length;
@@ -177,8 +177,8 @@ function onBitsNonBitwise(n) {
   setting the bit at position 3 results in '1000')
 */
 
-//* O(1) 
-//* Space - O(1)
+//* Time Complexity - O(1) 
+//* Space Complexity - O(1)
 function setSpecificBit(number, position) {
   const mask = 1 << position;
   return number | mask;
@@ -196,9 +196,75 @@ function setSpecificBit(number, position) {
 // 0 1 0 (mask of 1, new binary of position after LEFT SHIFT <<)
 // Compares the mask and number using the OR (|) operator to set the specific bit
 // 1 0 1 (binary of n)
-// 0 1 0 (mask) It adds as many padding(leading) 0's as needed
+// 0 1 0 (mask) It adds as many padding(leading) 0s as needed
 // - - - |
 // 1 1 1 (new n is 7)
 // return n | mask; (7)
 
 //? End of Set Specific Bit
+
+//TODO
+
+//? Find Complement
+
+/*
+  Implement a function that finds the bitwise complement of a number.
+  The bitwise complement is formed by inverting all bits in the binary
+  representation of the number. Ones to Zeros, Zeros to Ones
+
+  NOTE: The function addresses only the significant bits of the number
+  to accurately compute the complement.
+
+  Example Usage:
+ 
+  Input: findComplement(5)
+  Output: 2 (binary representation of 5 is '101',
+  and its complement is '010' which is 2 in decimal)
+ 
+  Input: findComplement(1)
+  Output: 0 (binary representation of 1 is '1',
+  and its complement is '0')
+ 
+  Input: findComplement(8)
+  Output: 7 (binary representation of 8 is '1000',
+  and its complement is '0111' which is 7 in decimal)
+*/
+
+//* Time Complexity - O(1)
+//* Space Complexity - O(1)
+function findComplement(number) { 
+  // It can give decimal numbers, Math.floor() makes sure we work with integers
+  const significantBits = Math.floor(Math.log2(number)) + 1;
+  // Set OFF bits ON
+  const mask = (1 << significantBits) - 1;
+  // Return the complement
+  return (~number) & mask;
+}
+
+console.log(findComplement(5));
+
+// number => 5, binary => 101
+// significantBits => 3 (it gets us the position of the furthest ON bit + 1 === bit count)
+// 0 0 0 1 (binary of 1 with leading zeros)
+// - - - - << 3
+// 1 0 0 0 (mask) => 0 1 1 1 (mask(8) - 1 = 7)
+// ...111 0 1 0 (~number) It also sets the leading zeros ON
+// ...000 1 1 1 (mask)
+// ...--- - - - &
+// ...000 0 1 0 
+// return (2)    
+
+//* Time Complexity - O(k) 
+//* Space Complexity - O(k) 
+function findComplementNonBitwise(number) {
+  const binaryStr = number.toString(2);
+  let complementStr = '';
+
+  for (const char of binaryStr) {
+      complementStr += char === '0' ? '1' : '0';
+  }
+
+  return parseInt(complementStr, 2);
+}
+
+//? End of find complement
