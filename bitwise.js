@@ -38,31 +38,31 @@ function findNonRepeating(arr) {
 // result 0, num 1
 // 0 0 0 (binary of result(0))
 // 0 0 1 (binary of num(1))
-// - - - XOR
+// - - - ^
 // 0 0 1 result (1)
 
 // result 1, num 2
 // 0 0 1 (binary of result(1))
 // 0 1 0 (binary of num(2))
-// - - - XOR
+// - - - ^
 // 0 1 1 result (3)
 
 // result 3, num 1
 // 0 1 1 (binary of result(3))
 // 0 0 1 (binary of num(1))
-// - - - XOR
+// - - - ^
 // 0 1 0 result (2)
 
 // result 2, num 2
 // 0 1 0 (binary of result(2))
 // 0 1 0 (binary of num(2))
-// - - - XOR
+// - - - ^
 // 0 0 0 result (0)
 
 // result 0, num 3
 // 0 0 0 (binary of result(0))
 // 0 1 1 (binary of result(3))
-// - - - XOR
+// - - - ^
 // 0 1 1 result (3)
 
 // return result; (3)
@@ -267,3 +267,133 @@ function findComplementNonBitwise(number) {
 }
 
 //? End of find complement
+
+//TODO
+
+//? Add Two Integers Without Using Plus Operator
+
+/*
+  Implement a function that adds two integers without using the `+` operator.
+  This demonstrates the power of bitwise operations in simulating fundamental
+  arithmetic operations at a low level.
+
+  Example Usage:
+ 
+  Input: addWithoutPlus(5, 3)
+  Output: 8 (adds 5 and 3 without using `+`, resulting in 8)
+ 
+  Input: addWithoutPlus(10, 20)
+  Output: 30 (adds 10 and 20 without using `+`, resulting in 30)
+ 
+  Input: addWithoutPlus(0, 0)
+  Output: 0 (adds 0 and 0 without using `+`, resulting in 0)
+*/
+
+/* In a fixed-width integer representation (such as 32-bit or 64-bit integers), 
+the number of iterations is constant and does not depend on the actual values 
+of a and b. */
+//* Time complexity - O(1) => It's constant because it is bound by the fixed number of bits in the system.
+//* Space Complexity - O(1)
+function addWithoutPlus(a, b) {
+  while(b != 0) {
+    // Carry calculation
+    let carry = a & b;
+    // Sum without carry
+    a = a ^ b;
+    // Shift carry for next iteration
+    b = carry << 1;
+  }
+  return a;
+}
+
+//* addWithoutPlus(5, 3)
+
+//TODO while(b(3) != 0) true
+//TODO--------------- Iteration 1 ---------------
+//* a(5), b(3)
+
+// 1 0 1 (binary of a(5))
+// 0 1 1 (binary of b(3))
+// - - - &
+// 0 0 1
+//? let carry = 0 0 1(1) Carry calculation
+
+// 1 0 1 (binary of a(5))
+// 0 1 1 (binary of b(3))
+// - - - ^
+// 1 1 0
+//? a = 1 1 0(6) Sum without carry
+
+// 0 0 1 (carry)
+// - - - <<
+// 0 1 0
+//? b = 0 1 0(2) Shift carry for next iteration
+
+//TODO while(b(2) != 0) true
+//TODO--------------- Iteration 2 ---------------
+//* a(6), b(2)
+
+// 1 1 0 (binary of a(6))
+// 0 1 0 (binary of b(2))
+// - - - &
+// 0 1 0 
+//? let carry = 0 1 0(2) Carry calculation
+
+// 1 1 0 (binary of a(6))
+// 0 1 0 (binary of b(2))
+// - - - ^
+// 1 0 0
+//? a = 1 0 0(4) Sum without carry
+
+// 0 1 0 (carry)
+// - - - <<
+// 1 0 0 
+//? b = 1 0 0(4) Shift carry for next iteration
+
+//TODO while(b(4) != 0) true
+//TODO--------------- Iteration 3 ---------------
+//* a(4), b(4)
+
+// 1 0 0 (binary of a(4)) 
+// 1 0 0 (binary of b(4))
+// - - - &
+// 1 0 0
+//? let carry = 1 0 0(4) Carry calculation
+
+// 1 0 0 (binary of a(4))
+// 1 0 0 (binary of b(4))
+// - - - ^
+// 0 0 0
+//? a = 0 0 0(0) Sum without carry
+
+// 0 1 0 0 (carry)
+// - - - - <<
+// 1 0 0 0 
+//? b = 1 0 0 0(8) Shift carry for next iteration
+
+//TODO while(b(8) != 0) true
+//TODO--------------- Iteration 4 ---------------
+//* a(0), b(8)
+
+// 0 0 0 0 (binary of a(0))
+// 1 0 0 0 (binary of b(8))
+// - - - - &
+// 0 0 0 0
+//? let carry = 0 0 0 0(0) Carry calculation
+
+// 0 0 0 0 (binary of a(0))
+// 1 0 0 0 (binary of b(8))
+// - - - - ^
+// 1 0 0 0
+//? a = 1 0 0 0(8) Sum without carry
+
+// 0 0 0 0 0 (carry)
+// - - - - - <<
+// 0 0 0 0 0 
+//? b = 0 0 0 0 0(0) Shift carry for next iteration
+
+//TODO while(b(0) != 0) false
+
+//* returns a(1 0 0 0) => 8
+
+//? End of Add Two Integers Without Using Plus Operator
