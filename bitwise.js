@@ -1,4 +1,4 @@
-//? Find Non-Repeating Element with XOR
+//? FIND NON-REPEATING ELEMENT WITH XOR
 
 /*
   Implement a function that finds the unique, non-repeating element in an array
@@ -32,46 +32,51 @@ function findNonRepeating(arr) {
   return result;
 }
 
-// Input: findNonRepeating([1, 2, 1, 2, 3])
-// Output: 3
+//* Input: findNonRepeating([1, 2, 1, 2, 3])
+//* Output: 3
 
-// result 0, num 1
+//* result 0, num 1
+//TODO--------------- Iteration 1 ---------------
 // 0 0 0 (binary of result(0))
 // 0 0 1 (binary of num(1))
 // - - - ^
 // 0 0 1 result (1)
 
-// result 1, num 2
+//* result 1, num 2
+//TODO--------------- Iteration 2 ---------------
 // 0 0 1 (binary of result(1))
 // 0 1 0 (binary of num(2))
 // - - - ^
 // 0 1 1 result (3)
 
-// result 3, num 1
+//* result 3, num 1
+//TODO--------------- Iteration 3 ---------------
 // 0 1 1 (binary of result(3))
 // 0 0 1 (binary of num(1))
 // - - - ^
 // 0 1 0 result (2)
 
-// result 2, num 2
+//* result 2, num 2
+//TODO--------------- Iteration 4 ---------------
 // 0 1 0 (binary of result(2))
 // 0 1 0 (binary of num(2))
 // - - - ^
 // 0 0 0 result (0)
 
-// result 0, num 3
+//* result 0, num 3
+//TODO--------------- Iteration 5 ---------------
 // 0 0 0 (binary of result(0))
 // 0 1 1 (binary of result(3))
 // - - - ^
 // 0 1 1 result (3)
 
-// return result; (3)
+//* return result; (3)
 
-//? End of Find Non-Repeating Element with XOR
+//? END OF FIND NON-REPEATING ELEMENT WITH XOR
 
 //TODO
 
-//? Count On Bits (Population Count)
+//? COUNT ON BITS (POPULATION COUNT)
 
 /*
   Implement a function that counts the number of set bits (1's) 
@@ -105,41 +110,53 @@ function countOnBits(n) {
   return count;
 }
 
-// Input: countOnBits(5)
-// Output: 2
+//* Input: countOnBits(5)
+//* Output: 2
 
-// count 0, n(5) => 101
+//* count 0, n(5) => 101
+//TODO while(n(5) > 0) true
+//TODO--------------- Iteration 1 ---------------
 // 1 0 1 (binary of n(5))
 // 0 0 1 (binary of 1)
 // - - - &
 // 0 0 1 count (1)
+
 // Shift bits of n to the right by 1 (>> 1)
 // 1 0 1 (binary of n(5))
 // - - - >>
 // 0 1 0 (new binary of n after RIGHT SHIFT >>)
 
-// count 1, n(2) => 010
+//* count 1, n(2) => 010
+//TODO while(n(2) > 0) true
+//TODO--------------- Iteration 1 ---------------
 // 0 1 0 (binary of n(2))
 // 0 0 1 (binary of 1)
 // - - - &
 // 0 0 0 count (1)
+
 // Shift bits of n to the right by 1 (>> 1)
 // 0 1 0 (binary of n(2))
 // - - - >>
 // 0 0 1 (new binary of n after RIGHT SHIFT >>)
 
-// count 1, n(1) => 001
+//* count 1, n(1) => 001
+//TODO while(n(1) > 0) true
+//TODO--------------- Iteration 1 ---------------
 // 0 0 1 (binary of n(1))
 // 0 0 1 (binary of 1)
 // - - - &
 // 0 0 1 count (2)
+
 // Shift bits of n to the right by 1 (>> 1)
 // 0 0 1 (binary of n(1))
 // - - - >>
 // 0 0 0 (new binary of n after RIGHT SHIFT >>)
 
+//* count 2, n(0) => 000
+//TODO while(n(0) > 0) false
 // n is not larger than 0, while loop terminates
-// return count; (2)
+
+//* return count; (2)
 
 //* Non bitwise solution
 //* Time Complexity - O(log n) or O(k)
@@ -150,11 +167,11 @@ function onBitsNonBitwise(n) {
   return binaryStr.split('').filter(bit => bit === '1').length;
 }
 
-//? End of Count On Bits (Population Count)
+//? END OF COUNT ON BITS (POPULATION COUNT)
 
 //TODO
 
-//? Set Specific Bit
+//? SET SPECIFIC BIT
 
 /*
   Implement a function that sets (changes to '1') a specific bit at a given 
@@ -179,33 +196,33 @@ function onBitsNonBitwise(n) {
 
 //* Time Complexity - O(1) 
 //* Space Complexity - O(1)
-function setSpecificBit(number, position) {
+function setSpecificBit(n, position) {
   const mask = 1 << position;
-  return number | mask;
+  return n | mask;
 }
 
-// Input: setSpecificBit(5, 1)
-// Output: 7 (binary representation of 5 is '101',
-// setting the bit at position 1 results in '111')
+//* Input: setSpecificBit(5, 1)
+//* Output: 7 (binary representation of 5 is '101', setting the bit at position 1 results in '111')
 
-// number 5, position 1
-// 1 0 1 (binary of n(5))
-// Shift bits of 1 to the left by position (<< postion)
+//* n(5), position 1
+// Shift bits of 1 to the left by position (<< postion(1))
 // 0 0 1 (binary of 1)
-// - - - <<
+// - - - << 1
 // 0 1 0 (mask of 1, new binary of position after LEFT SHIFT <<)
+
 // Compares the mask and number using the OR (|) operator to set the specific bit
 // 1 0 1 (binary of n(5))
 // 0 1 0 (mask) It adds as many padding(leading) 0s as needed
 // - - - |
 // 1 1 1 (new n is 7)
-// return n | mask; (7)
 
-//? End of Set Specific Bit
+//* return n | mask; (7)
+
+//? END OF SET SPECIFIC BIT
 
 //TODO
 
-//? Find Complement
+//? FIND COMPLEMENT
 
 /*
   Implement a function that finds the bitwise complement of a number.
@@ -232,26 +249,30 @@ function setSpecificBit(number, position) {
 
 //* Time Complexity - O(1)
 //* Space Complexity - O(1)
-function findComplement(number) { 
+function findComplement(n) { 
   // It can give decimal numbers, Math.floor() makes sure we work with integers
-  const significantBits = Math.floor(Math.log2(number)) + 1;
+  const significantBits = Math.floor(Math.log2(n)) + 1;
   // Set OFF bits ON
   const mask = (1 << significantBits) - 1;
   // Return the complement
-  return (~number) & mask;
+  return (~n) & mask;
 }
 
-// findComplement(5)
-// number => 5, binary => 101
+//* findComplement(5)
+
+//* n(5), binary => 101
 // significantBits => 3 (it gets us the position of the furthest ON bit + 1 === bit count)
+
 // 0 0 0 1 (binary of 1 with leading zeros)
-// - - - - << 3
+// - - - - << significantBits(3)
 // 1 0 0 0 (mask) => 0 1 1 1 (mask(8) - 1 = 7)
-// ...111 0 1 0 (~number) It also sets the leading zeros ON
+
+// ...111 0 1 0 (~n) It also sets the leading zeros ON
 // ...000 1 1 1 (mask)
 // ...--- - - - &
 // ...000 0 1 0 
-// return (2)    
+
+//* return (2)    
 
 //* Time Complexity - O(k) 
 //* Space Complexity - O(k) 
@@ -266,11 +287,11 @@ function findComplementNonBitwise(number) {
   return parseInt(complementStr, 2);
 }
 
-//? End of find complement
+//? END OF FIND COMPLEMENT
 
 //TODO
 
-//? Add Two Integers Without Using Plus Operator
+//? ADD TWO INTEGERS WITHOUT USING PLUS OPERATOR
 
 /*
   Implement a function that adds two integers without using the `+` operator.
@@ -396,7 +417,9 @@ function addWithoutPlus(a, b) {
 
 //* return a(1 0 0 0) => 8
 
-//? End of Add Two Integers Without Using Plus Operator
+//? END OF ADD TWO INTEGERS WITHOUT USING PLUS OPERATOR
+
+//TODO
 
 //? SWAP NUMBERS WITHOUT USING TEMP VARIABLE
 
@@ -460,6 +483,6 @@ function swapNumsNonBitwise(a, b) {
   return [a, b]
 }
 
-console.log(swapNums(1, 2))
+//? END OF SWAP NUMBERS WITHOUT USING TEMP VARIABLE
 
-
+//TODO
