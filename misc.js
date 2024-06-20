@@ -1,6 +1,6 @@
-/* REVERSE A STRING */
+//? REVERSE A STRING
 
-//O(n)
+//* Time Complexity - O(n)
 function reverseString(str) {
   if (!str) return;
   let reversedStr = '';
@@ -10,17 +10,19 @@ function reverseString(str) {
   return reversedStr;
 }
 
-//O(n)
+//* Time Complexity - O(n)
 const reverseString2 = (str) => str ? str.split('').reverse().join('') : undefined;
 
-//O(n)
+//* Time Complexity - O(n)
 const reverseStringWithPolyfills = (str) => str ? str.customSplit('').customReverse().customJoin('') : undefined;
 
-/* END OF REVERSE A STRING */
+//? END OF REVERSE A STRING
 
-/* PALINDROME */
+//TODO
 
-//O(n)
+//? PALINDROME
+
+//* Time Complexity - O(n)
 function isPalindrome(str) {
   const formatedStr = str.replace(/\s+/g, '');
   let reversedStr = '';
@@ -32,11 +34,13 @@ function isPalindrome(str) {
   return reversedStr === formatedStr;
 }
 
-/* END OF PALINDROME */
+//? END OF PALINDROME
 
-/* COUNT THE CHARACTERS OF A STRING */
+//TODO
 
-//O(n);
+//? COUNT THE CHARACTERS OF A STRING
+
+//* Time Complexity - O(n);
 function getStringBreakdown(str) {
   const formatedStr = str.toLowerCase();
   const breakdown = {};
@@ -51,11 +55,13 @@ function getStringBreakdown(str) {
   return breakdown;
 }
 
-/* END OF COUNT THE CHARACTERS OF A STRING */
+//? END OF COUNT THE CHARACTERS OF A STRING
 
-/* RETURN THE HIGHEST REPEATING CHARACTER IN A STRING */
+//TODO
 
-//O(n)
+//? RETURN THE HIGHEST REPEATING CHARACTER IN A STRING
+
+//* Time Complexity - O(n)
 function maxCharCount(str) {
   const breakdown = getStringBreakdown(str);
   let currMaxChar = '';
@@ -71,11 +77,13 @@ function maxCharCount(str) {
   return currMaxChar;
 }
 
-/* END RETURN THE HIGHEST REPEATING CHARACTER IN A STRING */
+//? END RETURN THE HIGHEST REPEATING CHARACTER IN A STRING
 
-/* ANAGRAM */
+//TODO
 
-//O(n)
+//? ANAGRAM
+
+//* Time Complexity - O(n)
 function isAnagram(str, str2) { 
   const firstCharMap = getStringBreakdown(str);
   const secondCharMap = getStringBreakdown(str2);
@@ -89,11 +97,13 @@ function isAnagram(str, str2) {
   return true;
 }
 
-/* END OF ANAGRAM */
+//? END OF ANAGRAM
 
-/* REVERSE AN NUMBER */
+//TODO
 
-//O(n)
+//? REVERSE AN NUMBER
+
+//* Time Complexity - O(n)
 function reverseNum(num) {
   const numStr = num + '';
   let reversedNum = '';
@@ -105,11 +115,13 @@ function reverseNum(num) {
   return parseFloat(reversedNum) * Math.sign(num);
 }
 
-/* END OF REVERSE AN NUMBER */
+//? END OF REVERSE AN NUMBER
 
-/* FIZZBUZZ */
+//TODO
 
-//O(n)
+//? FIZZBUZZ */
+
+//* Time Complexity - O(n)
 function fizzBuzz(n) {
   for (let i = 1; i <= n; i++) {
     if (!(i % 15)) {
@@ -127,7 +139,7 @@ function fizzBuzz(n) {
   }
 }
 
-//O(n)
+//* Time Complexity - O(n)
 function fizzBuzz2(n) {
   for (let i = 1; i <= n; i++) {
     let output = '';
@@ -143,11 +155,13 @@ function fizzBuzz2(n) {
   }
 }
 
-/* END OF FIZZBUZ */
+//? END OF FIZZBUZ */
 
-//O(n)
-/* CAPITALIZE WORDS */
+//TODO
 
+//? CAPITALIZE WORDS
+
+//* Time Complexity - O(n)
 function capitalizeWords(str) {
   let result = str[0].toUpperCase();
   const regex = /[\s,.;:'"-]+/;
@@ -159,15 +173,18 @@ function capitalizeWords(str) {
   return result;
 }
 
-/* END OF CAPITALIZE WORDS*/
+//? END OF CAPITALIZE WORDS
 
-/* COUNT VOWELS */
+//TODO
 
-//O(n)
+//? COUNT VOWELS
+
+//* Time Complexity - O(n)
 function countVowels(str) {
   return str.match(/[aeiou]/gi).length;
 }
 
+//* Time Complexity - O(n)
 function countVowels2(str) {
   const vowels = ['a', 'e', 'i', 'o', 'u'];
   let matches = 0;
@@ -181,11 +198,13 @@ function countVowels2(str) {
   return matches;
 }
 
-/* END OF COUNT VOWELS*/
+//? END OF COUNT VOWELS
 
-/* ARRAY CHUNK */
+//TODO
 
-// O(n)
+//? ARRAY CHUNK
+
+//* Time Complexity - O(n)
 function chunkArr(arr, n) {
   const chunkedArr = [];
 
@@ -203,6 +222,7 @@ function chunkArr(arr, n) {
   return chunkedArr;
 }
 
+//* Time Complexity - O(n)
 function chunkArr2(arr, n) {
   const chunkedArr = [];
   let i = 0;
@@ -215,11 +235,13 @@ function chunkArr2(arr, n) {
   return chunkedArr;
 }
 
-/* END OF ARRAY CHUNK*/
+//? END OF ARRAY CHUNK
 
-/* PRINT PYRAMID */
+//TODO
 
-// O(n)
+//? PRINT PYRAMID
+
+//* Time Complexity - O(n)
 function printSteps(n) {
   if (n <= 0) return;
   let col = '';
@@ -231,7 +253,7 @@ function printSteps(n) {
   }
 }
 
-// O(n^2)
+//* Time Complexity - O(n^2)
 function printInvertedSteps(n) {
   for (let i = 1; i <= n; i++) {
     let col = '';
@@ -245,7 +267,7 @@ function printInvertedSteps(n) {
   }
 }
 
-// O(n^2)
+//* Time Complexity - O(n^2)
 function printPyramid(n) {
   for (let i = 1; i <= n; i++) {
     let col = '';
@@ -259,11 +281,13 @@ function printPyramid(n) {
   }
 }
 
-/* END OF PRINT PYRAMID */
+//? END OF PRINT PYRAMID
 
-/* REMOVE ARRAY DUPLICATES */
+//TODO
 
-// O(n)
+//? REMOVE ARRAY DUPLICATES
+
+//* Time Complexity - O(n)
 function removeArrDup(arr) {
   if (arr.length === 1) return arr;
   const arrDupes = {};
@@ -277,46 +301,49 @@ function removeArrDup(arr) {
   return newArr; 
 }
 
-/* END OF REMOVE ARRAY DUPLICATES */
+//? END OF REMOVE ARRAY DUPLICATES
 
-/* ARRAY SUM FINDER*/
+//TODO
 
-// O(n^2)
+//? ARRAY SUM FINDER
+
+//* Time Complexity - O(n^2)
 function arrSumFinder(arr, sum) {
   if (arr.length < 2) return false;
+
   for (let i = 0; i < arr.length; i++) {
     for (let j = i + 1; j < arr.length; j++) {
-      if (arr[i] + arr[j] === sum) {
-        return true;
-      }
+      if (arr[i] + arr[j] === sum) return true;
     }
   }
+  
   return false;
 }
 
-// O(n)
-// If we already have a number that's the same as the difference between our the total sum and our current number, it means that the numbers can be added to form the sum argument. 
+//* Time Complexity - O(n)
+/* If we already have a number that's the same as the difference between 
+our the total sum and our current number, it means that the numbers can be 
+added to form the sum argument. */
 function arrSumFinder2(arr, sum) {
   if (arr.length < 2) return false;
   const seen = {};
 
   for (let i = 0; i < arr.length; i++) {
     const num = arr[i];
-    if (seen[sum - num]) {
-      return true;
-    }
+    if (seen[sum - num]) return true;
     seen[num] = true;
   }
 
   return false;
 }
 
-// O(n log n)
+//* Time Complexity - O(n log n)
 function arrSumFinder3(arr, sum) {
   if (arr.length < 2) return false;
   const sortedArr = arr.sort((a, b) => a - b);
   let start = 0;
   let end = arr.length - 1;
+
   while (start < end) {
     const currSum = sortedArr[start] + sortedArr[end];
     if (currSum === sum) {
@@ -329,14 +356,17 @@ function arrSumFinder3(arr, sum) {
       end--;
     }
   }
+
   return false;
 }
 
-/* END OF ARRAY SUM FINDER */
+//? END OF ARRAY SUM FINDER
 
-/* MERGE SORTED ARRAY */
+//TODO
 
-// O(n)
+//? MERGE SORTED ARRAY
+
+//* Time Complexity - O(n)
 function mergeSortedArr(arrA, arrB) {
   if (!arrA.length) {
     return arrB;
@@ -372,11 +402,13 @@ function mergeSortedArr(arrA, arrB) {
   return mergedArr;
 }
 
-/* END OF MERGE SORTED ARRAY */
+//? END OF MERGE SORTED ARRAY
 
-/* CUMULATIVE SUM */
+//TODO
 
-// O(n)
+//? CUMULATIVE SUM
+
+//* Time Complexity - O(n)
 function cumulativeSum(arr) {
   const result = [];
   let sum = 0;
@@ -389,11 +421,13 @@ function cumulativeSum(arr) {
   return result;
 }
 
-/* END OF CUMULATIVE SUM */
+//? END OF CUMULATIVE SUM
 
-/* FIND SUM PAIRS */
+//TODO
 
-// O(n)
+//? FIND SUM PAIRS
+
+//* Time Complexity - O(n)
 function findSumParis(arr, n) {
   const pairs = [];
   const seenNumbers = {};
@@ -409,12 +443,14 @@ function findSumParis(arr, n) {
   return pairs;
 }
 
-/* END OF FIND SUM PAIRS */
+//? END OF FIND SUM PAIRS
 
-/* ARRAY INTERSECTION */
+//TODO
+
+//? ARRAY INTERSECTION
 // Given two arrays, return the vaules that intersect from each other.
 
-// O(n + m)
+//* Time Complexity - O(n + m)
 function arrIntersection(arr, arr2) {
   const intersections = [];
   const seenValues = {};
@@ -435,11 +471,13 @@ function arrIntersection(arr, arr2) {
   return intersections;
 }
 
-/* END OF ARRAY INTERSECTION */
+//? END OF ARRAY INTERSECTION
 
+//TODO
 
-/* ISOMORPHIC STRINGS */
-// Given two strings check if they are isomorphic, meaning that each character of the string is interchanchable in order with the other string character.
+//? ISOMORPHIC STRINGS
+/* Given two strings check if they are isomorphic, meaning that each character 
+of the string is interchanchable in order with the other string character. */
 
 // egg => add
 // e => a
@@ -450,7 +488,7 @@ function arrIntersection(arr, arr2) {
 // f => g
 // l !== g => g is already maped to f
 
-// O(n)
+//* Time Complexity - O(n)
 function areIsomorphic(str, str2)  {
   if (str.length !== str2.length) return;
   const charMap = {};
@@ -474,12 +512,14 @@ function areIsomorphic(str, str2)  {
   return true;
 }
 
-/* END OF ISOMORPHIC STRINGS */
+//? END OF ISOMORPHIC STRINGS
 
-/* BRACKET BALANCER */
+//TODO
+
+//? BRACKET BALANCER
 // Check if the brackets {} given are balanced [{{}}] or not [{{}]
 
-// O(n)
+//* Time Complexity - O(n)
 function isBalanced(strExp) {
   if (typeof strExp !== 'string' || strExp.length === 0) return false;
   const stack = [];
@@ -498,12 +538,14 @@ function isBalanced(strExp) {
   return stack.length === 0;
 }
  
-/* END OF BRACKET BALANCER */
+//? END OF BRACKET BALANCER
 
-/* SORT WAVE ARRAY */
+//TODO
+
+//? SORT WAVE ARRAY
 // Return an array with the values changing from hight to low.
 
-// O(n log n)
+//* Time Complexity - O(n log n)
 function sortWaveArr(arr) {
   const sortedArr = arr.sort((a, b) => a - b);
 
@@ -516,7 +558,7 @@ function sortWaveArr(arr) {
   return sortedArr;
 }
 
-// O(n)
+//* Time Complexity - O(n)
 // Without sorting.
 function waveArr(arr) {
   const waveArr = [...arr];
@@ -537,15 +579,17 @@ function waveArr(arr) {
   return waveArr;
 }
 
-/* END OF SORT WAVE ARRAY */
+//? END OF SORT WAVE ARRAY
 
-/* DUTCH FLAG SORT */
+//TODO
+
+//? DUTCH FLAG SORT
 // Sort an array of 0, 1 and 2's.
 // Everything before low === 0
 // Everything before mid === 1
 // Everything after high === 2
 
-// O(n)
+//* Time Complexity - O(n)
 function dutchFlagSort(arr) {
   let low = 0;
   let mid = 0;
@@ -579,14 +623,18 @@ function dutchFlagSort(arr) {
   return arr;
 }
 
-/* END OF DUTCH FLAG SORT */
+//? END OF DUTCH FLAG SORT
 
-/* TRAPPING RAINWATER */
-// Calculate the total ammount of water that can be trapped between two slopes using an array to simulate the hills.
-// We achieve the result by utilising two pointers from left to right that remember which was the highest slop and how much water can be drained in front of them, comparing the maxPointer hight with the next element. 
-// And always checking the other pointer's hight.
+//TODO
 
-// O(n)
+//? TRAPPING RAINWATER
+/* Calculate the total ammount of water that can be trapped between two slopes 
+using an array to simulate the hills. We achieve the result by utilising two 
+pointers from left to right that remember which was the highest slop and how 
+much water can be drained in front of them, comparing the maxPointer hight with 
+the next element. And always checking the other pointer's hight. */
+
+//* Time Complexity - O(n)
 function trappingRainwater(arr) {
   if (arr.length <= 2) return 0;
 
@@ -618,12 +666,14 @@ function trappingRainwater(arr) {
   return totalDrainedWater;
 }
 
-/* END OF TRAPPING RAINWATER */
+//? END OF TRAPPING RAINWATER
 
-/* PEAK ELEMENT */
+//TODO
+
+//? PEAK ELEMENT
 // Find the peak element of an array.
 
-// O(n)
+//* Time Complexity - O(n)
 function findPeak(arr) {
   if (!arr.length) return null;
   if (arr.length === 1) return arr[0];
@@ -639,4 +689,4 @@ function findPeak(arr) {
   return peak;
 }
 
-/* END OF PEAK ELEMENT */
+//? END OF PEAK ELEMENT
