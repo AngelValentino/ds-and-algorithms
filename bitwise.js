@@ -394,6 +394,72 @@ function addWithoutPlus(a, b) {
 
 //TODO while(b(0) != 0) false
 
-//* returns a(1 0 0 0) => 8
+//* return a(1 0 0 0) => 8
 
 //? End of Add Two Integers Without Using Plus Operator
+
+//? SWAP NUMBERS WITHOUT USING TEMP VARIABLE
+
+/*
+  Implement a function that swaps two numbers without using a temporary variable
+  by utilizing the XOR operation. This technique showcases the power of XOR
+  to perform arithmetic operations and memory-efficient tricks.
+
+  Example Usage:
+
+  let a = 5, b = 7;
+  swapNums(a, b);
+  Expected console output: [7, 5]
+
+  let a = 10, b = 20;
+  swapNums(a, b);
+  Expected console output: [20, 10]
+
+  let a = 0, b = -1;
+  swapNums(a, b);
+  Expected console output: [-1, 0]
+*/
+
+//* Time Complexity - O(1)
+//* Space Complexity - O(1)
+function swapNums(a, b) {
+  a = a ^ b;
+  b = a ^ b;
+  a = a ^ b;
+  return [a, b];
+}
+
+//* swapNums(5, 7)
+
+//* a(5), n(7)
+// 1 0 1 (binary of a(5))
+// 1 1 1 (binary of b(7))
+// - - - ^
+// 0 1 0 (new value of a(2))
+
+//* a(2), b(7)
+// 0 1 0 (binary of a(2))
+// 1 1 1 (binary of b(7))
+// - - - ^
+// 1 0 1 (new value of b(5))
+
+//* a(7), b(5)
+// 0 1 0 (binary of a(2))
+// 1 0 1 (binary of b(5))
+// - - - ^
+// 1 1 1 (new value of a(7))
+
+//* return [a(7), b(5)]
+
+//* Time Complexity - O(1)
+//* Space Complexity - O(1)
+function swapNumsNonBitwise(a, b) {
+  a = a + b;
+  b = a - b;
+  a = a - b;
+  return [a, b]
+}
+
+console.log(swapNums(1, 2))
+
+
