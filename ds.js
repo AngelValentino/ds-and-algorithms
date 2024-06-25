@@ -1,112 +1,165 @@
-/* STACK */
-// Last In First Out (LIFO)
-// The last element added into the stack is the first element removed. Like a stack of books, plates or pancakes.
-// They can be found in the undo/redo feature.
+//? STACK
+
+//* Last In First Out (LIFO)
+/* The Stack operates on a Last In, First Out (LIFO) principle, 
+where the most recently added element is the first to be removed, 
+similar to a stack of books, plates, or pancakes. Stacks are commonly 
+used in various applications such as the undo/redo feature, 
+the JavaScript callstack, and browser history management. */
 
 class Stack {
   constructor() {
-    this.storage = {};
+    this.items = {};
     this.size = 0;
   }
 
+  // Adds an element to the top of the stack and returns the new stack size
   push(element) {
     this.size++;
-    this.storage[this.size] = element;
+    this.items[this.size] = element;
+    return this.size;
   }
+  // Removes an element to the top of the stack and returns it
   pop() {
     if (this.size === 0) return undefined;
-    let removed = this.storage[this.size];
-    delete this.storage[this.size];
+    const removed = this.items[this.size];
+    delete this.items[this.size];
     this.size--;
     return removed;
   }
+  // Returns the element on top of the stack without removing it
   peek() {
-    return this.storage[this.size];
+    return this.items[this.size];
   }
-  // The get syntax binds an object property to a function that will be called when that property is looked up.
-  get length() {
-    return this.size;
-  }
+  // Checks if the stack is empty
   isEmpty() {
     return this.size === 0;
   }
-  printStack() {
-    console.log(this.storage);
-  }
-}
-
-// Using javascript array methods.
-class Stack2 {
-  constructor() {
-    this.items = [];
-  }
-
-  push(item) {
-    this.items.push(item);
-  }
-  pop() {
-    if (!this.items.length) return false;
-    return this.items.pop();
-  }
-  peek() {
-    return this.items[this.items.length - 1];
-  }
-  isEmpty() {
-    return this.items.length === 0;
-  }
-  printStack() {
-    console.log(this.items);
+  // Prints all elements of the stack
+  print() {
+    if (this.size === 0) {
+      console.log('Stack is empty');
+    } 
+    else {
+      for (let i = this.size; i >= 1; i--) {
+        console.log(this.items[i]);
+      }
+    }
   }
 }
 
 const stack = new Stack();
 
-/* END OF STACK */
+//* Stack using an Array
+class StackUsingArr {
+  constructor() {
+    this.items = [];
+  }
 
-/* QUEUE */
-// First In First Out (FIFO) 
-// The first element added to the queue is the first element that's being removed from it. Like an actually queue of people waiting at the theater, the first one that arrived is the first one to leave.
+  // Adds an element to the top of the stack and returns the new stack size
+  push(element) {
+    this.items.push(element);
+    return this.items.length;
+  }
+  // Removes the element from the top of the stack and returns it
+  pop() {
+    if (this.items.length === 0) return undefined;
+    return this.items.pop();
+  }
+  // Returns the element on top of the stack without removing it
+  peek() {
+    return this.items[this.items.length - 1];
+  }
+  // Checks if the stack is empty
+  isEmpty() {
+    return this.items.length === 0;
+  }
+  // Prints all elements of the stack
+  print() {
+    if (this.items.length === 0) {
+      console.log('Stack is empty');
+    } 
+    else {
+      for (let i = this.items.length - 1; i >= 0; i--) {
+        console.log(this.items[i]);
+      }
+    }
+  }
+}
+
+const stackUsingArr = new StackUsingArr();
+
+//? END OF STACK
+
+//TODO
+
+//? QUEUE
+
+//* First In First Out (FIFO) 
+/* A queue is a data structure that operates on a First-In-First-Out (FIFO) 
+principle. This means that the first element added to the queue is the first 
+one to be removed, much like a line of people waiting at a theater. 
+The person who arrives first is the first to enter the theater. 
+Queues are widely used in various practical applications. In operating systems, 
+queues manage process scheduling and task scheduling, ensuring that processes 
+are executed in the order they arrive. In networking, routers and switches 
+use queues to manage data packets waiting to be transmitted, and print spoolers 
+use queues to handle print jobs in the order they are received. */
 
 class Queue {
   constructor() {
-    this.elements = {};
+    this.items = {};
     this.head = 0;
     this.tail = 0;
   }
 
-  enqueue(element) {
-    if (this.tail - this.head === 0) {
-      this.head = 0;
-      this.tail = 0;
-    }
-    this.elements[this.tail] = element;
-    this.tail++;
-  }
-  dequeue() {
-    if (this.tail - this.head === 0) {
-      this.head = 0;
-      this.tail = 0;
-      return;
-    }
-    const removed = this.elements[this.head];
-    delete this.elements[this.head];
-    this.head++;
-    return removed;
-  }
-  peek() {
-    return this.elements[this.head];
-  }
+  /* The get syntax binds an object property to a function that is invoked 
+  automatically when that property is accessed. This allows us to use 
+  Queue.size instead of Queue.size() to retrieve the value associated with 
+  the property, providing a more intuitive interface. */
   get size() {
     return this.tail - this.head;
   }
+  // Adds an element to the end of the queue
+  enqueue(element) {
+    this.items[this.tail] = element;
+    this.tail++;
+    return this.size;
+  }
+  // Removes and returns the first element added to the queue
+  dequeue() {
+    if (this.size === 0) return;
+    const removed = this.items[this.head];
+    delete this.items[this.head];
+    this.head++;
+    return removed;
+  }
+  // Returns the first element added to the queue without removing it
+  peek() {
+    return this.items[this.head];
+  }
+  // Checks if the queue is empty
   isEmpty() {
-    return this.length === 0;
+    return this.size === 0;
+  }
+  // Prints all elements of the queue
+  print() {
+    if (this.size === 0) {
+      console.log('Queue is empty');
+    } 
+    else {
+      for (let i = this.head; i < this.tail; i++) {
+        console.log(this.items[i]);
+      }
+    }
   }
 }
 
 const queue = new Queue();
 
-/* END OF QUEUE */
+//? END OF QUEUE
+
+//TODO
 
 /* LINKED LIST */
 // It's slower to find an element compared to an array, as it has to search all nodes in order(no random access like an array). But is much faster to add or remove elements as there's no need to move the other elements location in memory like an array, that'a allocated in a contiguous block of memory, we just have to point the node to the desired one.
