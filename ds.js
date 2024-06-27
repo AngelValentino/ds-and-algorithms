@@ -37,7 +37,7 @@ class Stack {
   }
   // Prints all elements of the stack
   print() {
-    if (this.size === 0) {
+    if (this.isEmpty()) {
       console.log('Stack is empty');
     } 
     else {
@@ -50,8 +50,8 @@ class Stack {
 
 const stack = new Stack();
 
-//* Stack using an Array
-class StackUsingArr {
+//* STACK USING AN ARRAY
+class StackArr {
   constructor() {
     this.items = [];
   }
@@ -63,7 +63,6 @@ class StackUsingArr {
   }
   // Removes the element from the top of the stack and returns it
   pop() {
-    if (this.items.length === 0) return undefined;
     return this.items.pop();
   }
   // Returns the element on top of the stack without removing it
@@ -76,7 +75,7 @@ class StackUsingArr {
   }
   // Prints all elements of the stack
   print() {
-    if (this.items.length === 0) {
+    if (this.isEmpty()) {
       console.log('Stack is empty');
     } 
     else {
@@ -87,7 +86,7 @@ class StackUsingArr {
   }
 }
 
-const stackUsingArr = new StackUsingArr();
+const stackArr = new StackArr();
 
 //? END OF STACK
 
@@ -156,6 +155,128 @@ class Queue {
 }
 
 const queue = new Queue();
+
+//* QUEUE USING AN ARRAY
+class QueueArr {
+  constructor() {
+    this.items = [];
+  }
+
+  // Add an element to the end of the queue
+  enqueue(element) {
+    this.items.push(element);
+  }
+  // Remove and return the first element from the queue
+  dequeue() {
+    return this.items.shift();
+  }
+  // Return the first element from the queue without removing it
+  peek() {
+    return !this.isEmpty() ? this.items[0] : null;
+  }
+  // Check if the queue is empty
+  isEmpty() {
+    return this.items.length === 0;
+  }
+  // Get the number of elements in the queue
+  size() {
+    return this.items.length;
+  }
+  // Print all elements in the queue
+  print() {
+    if (this.isEmpty()) {
+      console.log('Queue is empty')
+    }
+    else {
+      for (let i = 0; i < this.items.length; i++) {
+        console.log(this.items[i]);
+      }
+    }
+  }
+}
+
+const queueArr = new QueueArr();
+
+//* CIRCULAR QUEUE
+/* A Circular Queue is an extension of a standard queue where the last element is 
+connected to the first element, creating a fixed-length circle. This structure 
+optimizes memory usage by reusing positions after elements are dequeued, ensuring 
+efficient data handling. It's commonly used in scenarios requiring continuous 
+data processing and fixed memory allocation, such as buffering data in real-time 
+applications, managing requests in operating systems, and implementing circular 
+buffers in hardware for seamless data flow management.*/
+class CircularQueue {
+  constructor(capacity) {
+    this.items = new Array(capacity);
+    this.rear = -1;
+    this.front = -1;
+    this.currentLength = 0;
+    this.capacity = capacity;
+  }
+
+  // Check if the queue is full
+  isFull() {
+    return this.currentLength === this.capacity;
+  }
+  // Check if the queue is empty
+  isEmpty() {
+    return this.currentLength === 0;
+  }
+  // Return the current number of elements in the queue
+  size() {
+    return this.currentLength;
+  }
+  // Add an element to the rear of the queue
+  enqueue(item) {
+    if (!this.isFull()) {
+      this.rear = (this.rear + 1) % this.capacity; // Increment rear pointer using modulo to wrap around
+      this.items[this.rear] = item; // Insert the new item
+      this.currentLength++;
+
+      if (this.front === -1) this.front = this.rear; // If this is the first element, set front pointer
+    }
+  }
+
+  // Remove and return the front element of the queue
+  dequeue() {
+    if (this.isEmpty()) return null;
+    const item = this.items[this.front];
+    this.items[this.front] = null; // Clear the front position
+    this.front = (this.front + 1) % this.capacity; // Move front pointer, wrap around if necessary
+    this.currentLength -= 1;
+
+    // Reset pointers if queue becomes empty
+    if (this.isEmpty()) {
+      this.front = -1;
+      this.rear = -1;
+    }
+
+    return item; // Return the dequeued item
+  }
+
+  // Return the front element of the queue without removing it
+  peek() {
+    return !this.isEmpty() ? this.items[this.front] : null;
+  }
+
+  print() {
+    if (this.isEmpty()) {
+      console.log("Queue is empty");
+    } 
+    else {
+      let i;
+      let str = "";
+      // Loop through the queue from front to rear, wrapping around to the beginning of the array
+      for (let i = this.front; i !== this.rear; i = (i + 1) % this.capacity) {
+        str += this.items[i] + " ";
+      }
+      str += this.items[i]; // Add the last element
+      console.log(str);
+    }
+  }
+}
+
+const circularQueue = new CircularQueue(5);
 
 //? END OF QUEUE
 
