@@ -284,7 +284,11 @@ const circularQueue = new CircularQueue(5);
 //TODO
 
 //? LINKED LIST
-/* While slower to find elements compared to arrays, as each element must be accessed 
+
+/* Linked lists are fundamental in implementing various data structures and applications 
+such as stacks, queues, graphs, music playlists and video players. They efficiently 
+manage memory allocation, track free memory blocks, and facilitate operations in file 
+systems. While slower to find elements compared to arrays, as each element must be accessed 
 sequentially (No random access like an Array), linked lists excel in quickly adding or 
 removing elements (especially when using a tail pointer). Unlike arrays, that require 
 shifting contiguous memory blocks, linked lists only need to adjust node pointers, 
