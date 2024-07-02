@@ -13,6 +13,13 @@ class Stack {
     this.size = 0;
   }
 
+  getSize() {
+    return this.size;
+  }
+  // Checks if the stack is empty
+  isEmpty() {
+    return this.size === 0;
+  }
   // Adds an element to the top of the stack and returns the new stack size
   push(element) {
     this.size++;
@@ -30,10 +37,6 @@ class Stack {
   // Returns the element on top of the stack without removing it
   peek() {
     return this.items[this.size];
-  }
-  // Checks if the stack is empty
-  isEmpty() {
-    return this.size === 0;
   }
   // Prints all elements of the stack
   print() {
@@ -56,6 +59,13 @@ class StackArr {
     this.items = [];
   }
 
+  getSize() {
+    return this.items.length;
+  }
+  // Checks if the stack is empty
+  isEmpty() {
+    return this.items.length === 0;
+  }
   // Adds an element to the top of the stack and returns the new stack size
   push(element) {
     this.items.push(element);
@@ -68,10 +78,6 @@ class StackArr {
   // Returns the element on top of the stack without removing it
   peek() {
     return this.items[this.items.length - 1];
-  }
-  // Checks if the stack is empty
-  isEmpty() {
-    return this.items.length === 0;
   }
   // Prints all elements of the stack
   print() {
@@ -112,11 +118,7 @@ class Queue {
     this.tail = 0;
   }
 
-  /* The get syntax binds an object property to a function that is invoked 
-  automatically when that property is accessed. This allows us to use 
-  Queue.size instead of Queue.size() to retrieve the value associated with 
-  the property, providing a more intuitive interface. */
-  get size() {
+  getSize() {
     return this.tail - this.head;
   }
   // Adds an element to the end of the queue
@@ -162,6 +164,14 @@ class QueueArr {
     this.items = [];
   }
 
+  // Get the number of elements in the queue
+  getSize() {
+    return this.items.length;
+  }
+  // Check if the queue is empty
+  isEmpty() {
+    return this.items.length === 0;
+  }
   // Add an element to the end of the queue
   enqueue(element) {
     this.items.push(element);
@@ -173,14 +183,6 @@ class QueueArr {
   // Return the first element from the queue without removing it
   peek() {
     return !this.isEmpty() ? this.items[0] : null;
-  }
-  // Check if the queue is empty
-  isEmpty() {
-    return this.items.length === 0;
-  }
-  // Get the number of elements in the queue
-  size() {
-    return this.items.length;
   }
   // Print all elements in the queue
   print() {
@@ -204,7 +206,8 @@ optimizes memory usage by reusing positions after elements are dequeued, ensurin
 efficient data handling. It's commonly used in scenarios requiring continuous 
 data processing and fixed memory allocation, such as buffering data in real-time 
 applications, managing requests in operating systems, and implementing circular 
-buffers in hardware for seamless data flow management.*/
+buffers in hardware for seamless data flow management. */
+
 class CircularQueue {
   constructor(capacity) {
     this.items = new Array(capacity);
@@ -223,7 +226,7 @@ class CircularQueue {
     return this.currentLength === 0;
   }
   // Return the current number of elements in the queue
-  size() {
+  getSize() {
     return this.currentLength;
   }
   // Add an element to the rear of the queue
@@ -236,7 +239,6 @@ class CircularQueue {
       if (this.front === -1) this.front = this.rear; // If this is the first element, set front pointer
     }
   }
-
   // Remove and return the front element of the queue
   dequeue() {
     if (this.isEmpty()) return null;
@@ -253,12 +255,11 @@ class CircularQueue {
 
     return item; // Return the dequeued item
   }
-
   // Return the front element of the queue without removing it
   peek() {
     return !this.isEmpty() ? this.items[this.front] : null;
   }
-
+  // Print all elements in the queue from front to rear
   print() {
     if (this.isEmpty()) {
       console.log("Queue is empty");
@@ -282,15 +283,39 @@ const circularQueue = new CircularQueue(5);
 
 //TODO
 
-/* LINKED LIST */
-// It's slower to find an element compared to an array, as it has to search all nodes in order(no random access like an array). But is much faster to add or remove elements as there's no need to move the other elements location in memory like an array, that'a allocated in a contiguous block of memory, we just have to point the node to the desired one.
-// The singly linked list nodes point to the next one, the last one points to null.
-// The double linked list nodes point to the previous one and the next none, the tail and head(previous) point to null.
-// The circular linked list works like the dobule one, but the head and the tail point at each other instead of null.
+//? LINKED LIST
+/* While slower to find elements compared to arrays, as each element must be accessed 
+sequentially (No random access like an Array), linked lists excel in quickly adding or 
+removing elements (especially when using a tail pointer). Unlike arrays, that require 
+shifting contiguous memory blocks, linked lists only need to adjust node pointers, 
+resulting in efficient performance. */
 
-class ListNode {
-  constructor(val) {
-    this.val = val;
+//* SINGLY LINKED LIST
+/* Each node in a singly linked list contains a value and a pointer/reference to the next 
+node in the sequence. The last node's pointer points to null, indicating the end of the list. */
+
+//* DOUBLY LINKED LIST
+/* Nodes in a doubly linked list have pointers to both the next and the previous nodes. 
+This bidirectional linkage allows traversal in both forward and backward directions. 
+The list is typically managed with references to both the head (start) and tail (end) nodes, 
+initially set to null when the list is empty. */ 
+
+//* CIRCULAR LINKED LIST
+/* Similar to a doubly linked list, a circular linked list allows traversal in both directions. 
+However, in a circular linked list, the last node's next pointer points back to the first 
+node (head), creating a circular structure. This circular reference means the tail's next 
+pointer points to the head, and the head's previous pointer points to the tail, enabling 
+continuous traversal in a loop. */
+
+/* NOTE: We can also use a tail property to improve linked list methods time complexity.
+Implementing queues and stacks using linked lists is advantageous due to their dynamic size, 
+efficient insertions and deletions (especially when using a tail pointer), and lack of wasted space compared to arrays.
+Linked lists allow elements to be added or removed dynamically, making them suitable for 
+scenarios where the size of the data structure varies frequently. */
+
+class Node {
+  constructor(value) {
+    this.value = value;
     this.next = null;
   }
 }
@@ -298,101 +323,188 @@ class ListNode {
 class SinglyLinkedList {
   constructor() {
     this.head = null;
+    this.size = 0;
   }
-  insert(val) {
-    if (!this.head) {
-      this.head = new ListNode(val);
+
+  isEmpty() {
+    return this.size === 0;
+  }
+  getSize() {
+    return this.size;
+  }
+  // Add value to the start of the list
+  prepend(value) {
+    const node = new Node(value);
+    /* Sets the new node's next pointer to the current head
+    NOTE: if list is empty, node.next will be defaulted to null as it is the
+    default value of the constructor */
+    node.next = this.head; 
+    this.head = node; // Update the head to point to the new node
+    this.size++;
+  }
+  // Add value to the end of the list
+  append(value) {
+    const node = new Node(value);
+
+    if (this.isEmpty()) {
+      this.head = node;
     } 
     else {
-      this.insertEnd(val);
-    }
-  }
-  insertHead(val) {
-    const newNode = new ListNode(val);
-    newNode.next = this.head;
-    this.head = newNode;
-  }
-  insertEnd(val) {
-    const newNode = new ListNode(val);
-    let tempNode = this.head;
-    while (tempNode.next) {
-      tempNode = tempNode.next;
-    }
-    tempNode.next = newNode;
-  }
-  insertAtIndex(val, index) {
-    let previousNode;
-    let currentNode = this.head;
-    let indexCounter = 1;
-    let newNode = new ListNode(val);
-
-    while (indexCounter <= index) {
-      previousNode = currentNode;
-      currentNode = previousNode.next;
-      indexCounter++;
-    }
-    previousNode.next = newNode;
-    newNode.next = currentNode;
-  }
-  print() {
-    let tempNode = this.head;
-    let result = '';
-    while (tempNode) {
-      if (!tempNode.next) {
-        result += tempNode.val + ' --> Null';
-      } 
-      else {
-        result += tempNode.val + ' --> ';
-      }
-      tempNode = tempNode.next;
-    }
-    return result;
-  }
-  exists(val) {
-    let tempNode = this.head;
-    while (tempNode) {
-      if (tempNode.val === val) return true;
-      tempNode = tempNode.next;
-    }
-    return false;
-  }
-  removeFirst() {
-    let tempNode = this.head;
-    this.head = tempNode.next;
-  }
-  removeLast(prevNode) {
-    prevNode.next = null;
-  }
-  removeBetween(prevNode, node) {
-    prevNode.next = node.next
-  }
-  remove(val) {
-    let currentNode = this.head;
-    let previousNode = this.head;
-
-    if (this.head) {
-      while(currentNode) {
-        if (currentNode.val === val) {
-          if (currentNode === this.head) {
-            this.removeFirst();
-            return;
-          } 
-          else if (currentNode.next === null) {
-            this.removeLast(previousNode);
-            return;
-          }
-          else {
-            this.removeBetween(previousNode, currentNode);
-            return;
-          }
-        }
-        previousNode = currentNode;
+      let currentNode = this.head;
+      while (currentNode.next) {
         currentNode = currentNode.next;
       }
+      currentNode.next = node;
+    }
+
+    this.size++;
+  }
+  // Insert value at a specified index in list
+  insert(value, index) {
+    // Check if index is out of bounds or undefined
+    if (index < 0 || index > this.size || index === undefined) {
+      return;
+    } 
+    // Insert at the beginning of the list
+    else if (index === 0) {
+      this.prepend(value);
+    } 
+    // Insert at a specific index
+    else {
+      const node = new Node(value);
+      let previousNode = this.head; // Start from the head of the list
+
+      // Traverse the node list stopping just before the insertion point
+      for (let i = 0; i < index - 1; i++) {
+        previousNode = previousNode.next;
+      }
+
+      // Insert the new node between previousNode and previousNode.next
+      node.next = previousNode.next;
+      previousNode.next = node;
+      this.size++;
+    }
+  }
+  // Remove from specified index
+  removeFrom(index) {
+    // Check if the index is out of bounds or undefined
+    if (index === undefined || index < 0 || index >= this.size) return;
+    let removedNode;
+
+    if (index === 0) {
+      removedNode = this.head;
+      this.head = removedNode.next;
+    } 
+    else {
+      let previousNode = this.head; // Start from the head of the list
+
+      // Traverse the list to find the node just before the one to be removed
+      for (let i = 0; i < index - 1; i++) {
+        previousNode = previousNode.next;
+      }
+
+      removedNode = previousNode.next; // The node to be removed is the next node of the previous node
+      previousNode.next = removedNode.next; // Update the next pointer of the previous node to skip the removed node
+    }
+
+    this.size--;
+    return removedNode.value;
+  }
+  removeValue(value) {
+    if (this.isEmpty()) return;
+
+    // Remove the first node and return the removed value
+    if (this.head.value === value) {
+      this.head = this.head.next;
+      this.size--;
+      return value;
+    } 
+    // Remove a node in between or end
+    let previousNode = this.head;
+
+    while (previousNode.next && previousNode.next.value !== value) {
+      previousNode = previousNode.next;
+    }
+
+    // Check if the value has been found
+    if (previousNode.next) {
+      const removedNode = previousNode.next; // The node to be removed is the next node of the previous node
+      previousNode.next = removedNode.next; // Update the next pointer of the previous node to skip the removed node
+      this.size--;
+      return value;
+    }
+
+    // The node has not been found
+    return null;
+  }
+  // Return the index in which the value is found, return -1 if it isn't in the list
+  search(value) {
+    if (this.isEmpty()) return -1;
+    let currentNode = this.head;
+    let i = 0;
+
+    while(currentNode) {
+      if (currentNode.value === value) return i; // Return index if value is found
+      currentNode = currentNode.next;
+      i++;
+    }
+
+    return -1; // Return -1 if value is not found in the list
+  }
+  // Search by index and return the value at that index
+  searchByIndex(index) {
+    if (index === undefined || index < 0 || index >= this.size) return;
+    let currentNode = this.head;
+
+    for (let i = 0; i < index; i++) {
+      currentNode = currentNode.next;
+    }
+
+    return currentNode.value;
+  }
+  // Reverse a linked list
+  reverse() {
+    if (this.isEmpty()) return;
+
+    let previousNode = null; // Initialize previousNode to null, as it will be the new tail of the reversed list
+    let currentNode = this.head;
+
+    while(currentNode) {
+      let next = currentNode.next; // Store the next node in the original list before reversing
+      currentNode.next = previousNode; // Reverse the next pointer of the current node to point to the previous node
+      
+      // Move forward in the list: Shift previousNode and currentNode one step forward
+      previousNode = currentNode; // Move previousNode to the current node
+      currentNode = next; // Move currentNode to the next node in the original list
+    }
+
+    this.head = previousNode; // Update the head to point to the last node of the original list
+  }
+  print() {
+    if (this.isEmpty()) {
+      console.log('List is empty');
+    } 
+    else {
+      let currentNode = this.head;
+      let result = '';
+  
+      while(currentNode) {
+        if (!currentNode.next) {
+          result += currentNode.value + ' --> Null';
+        }
+        else {
+          result += currentNode.value + ' --> ';
+        }
+        currentNode = currentNode.next;
+      }
+  
+      console.log(result);
     }
   }
 }
 
-const list = new SinglyLinkedList();
+const singlyLinkedList = new SinglyLinkedList();
 
-/* END OF LINKED LIST */
+//? END OF LINKED LIST
+
+//TODO
