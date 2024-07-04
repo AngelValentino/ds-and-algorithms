@@ -512,3 +512,103 @@ const singlyLinkedList = new SinglyLinkedList();
 //? END OF LINKED LIST
 
 //TODO
+
+//? HASH TABLE
+
+/*
+A hash table, or hash map, is a data structure used to store key-value pairs with 
+average constant time complexity "Θ(1)" for insertion, deletion, and lookup operations. 
+It utilizes an array and calculates the index for each key based on a hash function 
+and the array's size to not go over the predetermined boundaries. The hash function plays 
+a crucial role as it must be deterministic, meaning that for a given key, it always 
+produces the same index. Hash tables are used in databases for fast data retrieval, 
+in compilers to manage variables efficiently and for secure password storage. 
+They optimize web caching, manage unique items, and balance loads in distributed 
+systems for better scalability.
+
+Hash tables can experience collisions, where different keys hash code converts to same index. 
+There are two main strategies to handle collisions:
+*Open Addressing: Continuously probes the array for the next available empty index to place the data.
+*Closed Addressing (Chaining): Uses a bucket (often implemented as a linked list or another data structure) 
+*to store multiple entries at the same index.
+
+The load factor, defined as the number of items stored divided by the size of the array, 
+is an important consideration in hash table design. It is generally good practice to maintain 
+a load factor of around 75%, as this minimizes collisions while making efficient use of memory.
+*/
+
+// Simple example of a Hash map implementation
+class HashMap {
+  constructor(size) {
+    this.table = new Array(size)
+    this.size = size;
+  }
+
+  // Simple hashing function
+  hash(key) {
+    if (typeof key === 'number') {
+      return Math.floor(key % this.size); // For numeric keys, use modulo operation
+    } 
+    else if (typeof key === 'string') {
+      let result = 0;
+      for (let i = 0; i < key.length; i++) {
+        result += key.charCodeAt(i); // Calculate a numeric hash value for string keys
+      }
+      return Math.floor(result % this.size); // Map the hash value to a valid index
+    }
+  }
+  // Set key/value pair
+  set(key, value) {
+    const index = this.hash(key);
+    const bucket = this.table[index];
+
+    // Add or update key/value pair in bucket
+    if (bucket) {
+      /* If bucket exists, check if the key already exists in the bucket, if it does
+      change the matching key/value pair value, else push a new key/value pair to the bucket. */
+      const sameKeyItem = bucket.find(item => item[0] === key);
+      sameKeyItem ? sameKeyItem[1] = value : bucket.push([key, value]);
+    } 
+    // Create the bucket with a 2D Array of key/value pairs
+    else {
+      this.table[index] = [[key, value]];
+    }
+  }
+  // Get value by key
+  get(key) {
+    const index = this.hash(key);
+    const bucket = this.table[index];
+
+    if (bucket) {
+      // If bucket exists, find the the item that matches the given key in the bucket
+      const sameKeyItem = bucket.find(item => item[0] === key); 
+      if (sameKeyItem) return sameKeyItem[1]; // If key exists, return its corresponding value
+    }
+    // If key does not exist, return undefined (implicitly)
+  }
+  // Remove key/value pair
+  remove(key) {
+    const index = this.hash(key);
+    const bucket = this.table[index];
+
+    if (bucket) {
+      const indexToRemove = bucket.findIndex(item => item[0] === key); // If bucket exists, find the index of the key in the bucket
+      // If key exists, remove the key/value pair from the bucket
+      if (indexToRemove !== -1) {
+        const removedItem = bucket.splice(indexToRemove, 1)[0];
+        return removedItem[1]; // Return the removed value
+      }
+    }
+    // If key does not exist, return undefined (implicitly)
+  }
+  // Display hash table
+  display() {
+    for (let i = 0; i < this.size; i++) {
+      if(this.table[i]) console.log(this.table[i]);
+    }
+  }
+}
+
+const hashMap = new HashMap(50);
+
+//? END OF HASH TABLE
