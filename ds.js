@@ -612,3 +612,245 @@ class HashMap {
 const hashMap = new HashMap(50);
 
 //? END OF HASH TABLE
+
+// TODO
+
+//? BINARY SEARCH TREE
+
+//* Tree
+/* The Tree Data Structure is a non-linear data structure in which a collection of elements 
+known as nodes are connected to each other via edges such that there exists exactly one 
+path between any two nodes. Trees, such as Binary Search Trees (BSTs), are used in databases 
+for efficient searching, file systems for organizing files, and network routing algorithms. 
+The Document Object Model (DOM) used in web development is a type of tree structure. */
+
+//* Binary Tree
+/* A Binary Tree Data Structure is a hierarchical data structure in which each node has 
+at most two children, referred to as the left child and the right child. */
+
+//* Binary Search Tree (BST)
+/* A Binary Search Tree is a data structure used in computer science for organizing 
+and storing data in a sorted manner. Each node in a Binary Search Tree has at most 
+two children, a left child and a right child, with the left child containing values 
+less than the parent node and the right child containing values greater than the 
+parent node. This hierarchical structure allows for efficient searching, insertion 
+and deletion operations on the data stored in the tree. */
+
+class TreeNode {
+  constructor(value) {
+    this.value = value;
+    this.left = null; // Left pointer
+    this.right = null; // Right pointer
+  }
+}
+
+class BinarySearchTree {
+  constructor() {
+    this.root = null;
+  }
+
+  // Checks if tree is empty
+  isEmpty() {
+    return this.root === null;
+  }
+  // Insert TreeNode helper function
+  insertNode(root, newNode) {
+    // New node value is less than root value
+    if (newNode.value < root.value) {
+      // Check if the left pointer of the root(at start) or subtree is empty
+      if (root.left === null) {
+        root.left = newNode; // Assign the new node to the root's left pointer
+      } 
+      // If the left pointer of the root(at start) or subtree is not empty
+      else {
+        // Call insert node with the left node of root and the newNode
+        this.insertNode(root.left, newNode);
+      }
+    } 
+    // New node value is greater than or equal to root value
+    else {
+      // Check if the right pointer of the root(at start) or subtree is empty
+      if (root.right === null) {
+        root.right = newNode; // Assign the new node to the root's right pointer
+      } 
+      // If the right pointer of the root(at start) or subtree is not empty
+      else {
+        // Call insert node with the right node of root and the newNode
+        this.insertNode(root.right, newNode);
+      }
+    }
+  }
+  // Insert a node with a given value
+  insert(value) {
+    const newNode = new TreeNode(value);
+
+    // If tree is empty assign newNode to the tree root
+    if (this.isEmpty()) {
+      this.root = newNode;
+    } 
+    // Else call insert node with root and newNode
+    else {
+      this.insertNode(this.root, newNode);
+    }
+  }
+  // Check if tree contains a value
+  contains(value, root = this.root) {
+    // Check if root or subtree are empty
+    if (!root) return false;
+
+    // Root or subtree are not empty
+
+    // Check if the root value is equal to the contained value
+    if (root.value === value) {
+      return true; 
+    } 
+    // Check if the value is less than the root value
+    else if (value < root.value) {
+      // If it is, call contains with the value and the left node of the root
+      return this.contains(value, root.left);
+    } 
+    // Check if the value is greater than the root value
+    else {
+      // If it is, call contains with the value and the right node of the root
+      return this.contains(value, root.right);
+    }
+  }
+  //* Depth First Search (DFS)
+  //* The DFS algorithm starts at the root node and explores as far as possible along
+  //* each branch before backtracking.
+  // Perform a pre-order traversal starting from the given root node
+  // Visits each node's value in a top down manner: root -> left subtree -> right subtree
+  // Encounters all the roots before encountering all of the leaves
+  // Useful for creating a copy of a tree (serialization).
+  DFSPreOrder() {
+    if (this.isEmpty()) return []; // Return an empty array if the tree is empty
+    let results = [];
+
+    (function traverse(currentNode) {
+      results.push(currentNode.value); // Push the value of the current node
+      if (currentNode.left) traverse(currentNode.left); // Recursively traverse the left subtree
+      if (currentNode.right) traverse(currentNode.right); // Recursively traverse the right subtree
+    })(this.root) // Inital call with the tree root
+
+    return results;
+  }
+  // Perform a post-order traversal starting from the given root node
+  // Visits each node's value in a bottom up manner: left subtree -> right subtree -> root
+  // Encounters the leaves before raching the root
+  // Useful for deleting a tree from leaf to root.
+  DFSPostOrder() {
+    if (this.isEmpty()) return []; // Return an empty array if the tree is empty
+    let results = [];
+
+    (function traverse(currentNode) {
+      if (currentNode.left) traverse(currentNode.left); // Recursively traverse the left subtree
+      if (currentNode.right) traverse(currentNode.right); // Recursively traverse the right subtree
+      results.push(currentNode.value); // Push the value of the current node
+    })(this.root) // Inital call with the tree root
+
+    return results;
+  }
+  // Perform an in-order traversal starting from the given root node
+  // Visits each node's value in a bottom up manner: left subtree -> root -> right subtree
+  // This traversal is commonly used in binary search trees (BSTs) to retrieve values in a sorted order (ascending).
+  DFSInOrder() {
+    if (this.isEmpty()) return []; // Return an empty array if the tree is empty
+    let results = [];
+
+    (function traverse(currentNode) {
+      if (currentNode.left) traverse(currentNode.left); // Recursively traverse the left subtree
+      results.push(currentNode.value); // Push the value of the current node
+      if (currentNode.right) traverse(currentNode.right); // Recursively traverse the right subtree
+    })(this.root) // Inital call with the tree root
+
+    return results;
+  }
+  //* Breath First Search (BFS)
+  //* The BFS algorithm starts at the root node and explores all the nodes at the current level
+  //* before moving on to the next level.
+  // Retrieves the data according to its inherent sequence(accessing elements in the tree in the order they were added)
+  BFS() {
+    if (this.isEmpty()) return []; // Return an empty array if the tree is empty
+    let currentNode = this.root; // Start with the root node
+    const queue = []; // Initialize a "queue" to keep track of nodes to visit
+    const results = []; // Initialize an array to store the values of nodes in level order
+    queue.push(currentNode); // Add the root node to the queue
+
+    while(queue.length) {
+      currentNode = queue.shift(); // Remove the first node from the queue and process it
+      results.push(currentNode.value); // Add the value of the current node to the results array
+      // If the current node has a left child, add it to the queue
+      if (currentNode.left) queue.push(currentNode.left);
+      // If the current node has a right child, add it to the queue
+      if (currentNode.right) queue.push(currentNode.right);
+    }
+
+    return results; // Return the array of values in level order
+  }
+  // Find the minimum value in the tree
+  min(root = this.root) {
+    // Base case: If there is no left child, the current node is the minimum
+    if (!root.left) {
+      return root.value;
+    } 
+    // Recursively search for the minimum value in the left subtree
+    else {
+      return this.min(root.left);
+    } 
+  }
+  // Find the maximum value in the tree
+  max(root = this.root) {
+    // Base case: If there is no right child, the current node is the maximum
+    if (!root.right) {
+      return root.value;
+    } 
+    // Recursively search for the maximum value in the right subtree
+    else {
+      return this.max(root.right)
+    }
+  }
+  // Delete helper function
+  deleteNode(root, value) {
+    // If the root is null return null (base case)
+    if (root === null) return root;
+
+    // If the value to be deleted is less than the root value, recursively delete from the left subtree
+    if (value < root.value) {
+      root.left = this.deleteNode(root.left, value);
+    } 
+    // If the value to be deleted is greater than the root value, recursively delete from the right subtree
+    else if (value > root.value) {
+      root.right = this.deleteNode(root.right, value);
+    } 
+    // If the root value matches the value to be deleted.
+    else {
+      // Case 1: Node to be deleted has no children (leaf node), return null
+      if (!root.left && !root.right) {
+        return null;
+      }
+      // Case 2: Node to be deleted has no left child, return its right child
+      if (!root.left) {
+        return root.right;
+      } 
+      // Case 3: Node to be deleted has no right child, return its left child
+      else if (!root.right) {
+        return root.left;
+      }
+      // Case 4: Node to be deleted has both left and right children
+      // Find the minimum value in the right subtree (successor), replace current node's value with it,
+      // and recursively delete the successor node from the right subtree
+      root.value = this.min(root.right);
+      root.right = this.deleteNode(root.right, root.value);
+    }
+    // Return the updated root after deletion or traversal
+    return root;
+  }
+  // Deletes a node with the specified value from the tree
+  delete(value) {
+    this.root = this.deleteNode(this.root, value);
+  }
+}
+
+const bst = new BinarySearchTree();
+
+//? END OF BINARY SEARCH TREE
