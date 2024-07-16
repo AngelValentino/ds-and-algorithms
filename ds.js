@@ -854,3 +854,99 @@ class BinarySearchTree {
 const bst = new BinarySearchTree();
 
 //? END OF BINARY SEARCH TREE
+
+//TODO
+
+//? GRAPH
+
+/* The Graph Data Structure is a collection of vertices connected by edges, 
+representing relationships between entities. Graph algorithms manipulate and analyze 
+graphs, solving problems like finding the shortest path or detecting cycles.
+
+Graphs are widely used in the real world to model relationships and connections. 
+Common applications include social networks, where nodes represent individuals and 
+edges represent relationships; transportation networks, which map routes and connections 
+between locations; Google Maps, which represents roads and intersections; and web page 
+ranking algorithms like Google's PageRank, which model the internet as a graph of web 
+pages and hyperlinks.
+
+An adjacency list stores a graph's edges with lists of neighbors, ideal for sparse graphs 
+due to its space efficiency. In contrast, an adjacency matrix uses a 2D array for direct
+O(1) edge lookup but consumes more space, making it better suited for dense graphs. 
+
+In graph theory, a dense graph has edges close to the maximum possible, while a sparse 
+graph has edges close to the minimum possible.*/
+
+class Graph {
+  constructor() {
+    // Initialize an empty adjacency list to store graph connections
+    this.adjacencyList = {};
+  }
+
+  // Add a vertex to the graph
+  addVertex(vertex) {
+    // Only add the vertex if it does not exist in the adjacency list
+    if (!this.adjacencyList[vertex]) {
+      this.adjacencyList[vertex] = new Set();
+    }
+  }
+  // Add an edge between two vertices
+  addEdge(vertex1, vertex2) {
+    // Ensure both vertices exist in the graph
+    this.addVertex(vertex1);
+    this.addVertex(vertex2);
+    // Add each vertex to the other's adjacency set (undirected edge)
+    this.adjacencyList[vertex1].add(vertex2);
+    this.adjacencyList[vertex2].add(vertex1);
+  }
+  // Remove an edge between two vertices
+  removeEdge(vertex1, vertex2) {
+    // Check if each vertex exists in the adjacency list before removing the edge
+    if (this.adjacencyList[vertex1]) {
+      this.adjacencyList[vertex1].delete(vertex2);
+    }
+    if (this.adjacencyList[vertex2]) {
+      this.adjacencyList[vertex2].delete(vertex1);
+    }
+  }
+  // Remove a vertex from the graph
+  removeVertex(vertex) {
+    // Return if the vertex does not exist
+    if (!this.adjacencyList[vertex]) return;
+    // Remove all edges connected to the vertex
+    for (const adjacencyVertex of this.adjacencyList[vertex]) {
+      this.removeEdge(vertex,adjacencyVertex);
+    }
+    // Delete the vertex from the adjacency list
+    delete this.adjacencyList[vertex];
+  }
+  // Check if there is an edge between two vertices
+  hasEdge(vertex1, vertex2) {
+    // Ensure both vertices exist and check if they are in each other's adjacency set
+    return this.adjacencyList[vertex1]?.has(vertex2) && this.adjacencyList[vertex2]?.has(vertex1);
+  }
+  // Display the graph's adjacency list
+  display() {
+    // Log the vertex and its connections
+    for (const vertex in this.adjacencyList) {
+      console.log(vertex + ' -> ' + [...this.adjacencyList[vertex]].join(', '));
+    }
+  }
+}
+
+const graph = new Graph();
+
+graph.addVertex('A')
+graph.addVertex('B')
+graph.addVertex('C')
+
+graph.addEdge('A', 'B');
+graph.addEdge('B', 'C');
+
+graph.addVertex('L')
+
+console.log(graph.hasEdge('B', 'A'))
+
+graph.display();
+
+//? END OF GRAPH
