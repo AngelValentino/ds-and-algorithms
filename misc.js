@@ -23,6 +23,7 @@ const reverseStringWithPolyfills = (str) => str ? str.customSplit('').customReve
 //? PALINDROME
 
 //* Time Complexity - O(n)
+// A word, phrase, or sequence that reads the same backwards as forwards, e.g. madam or nurses run.
 function isPalindrome(str) {
   const formatedStr = str.replace(/\s+/g, '');
   let reversedStr = '';
@@ -84,6 +85,7 @@ function maxCharCount(str) {
 //? ANAGRAM
 
 //* Time Complexity - O(n)
+// A word, phrase, or name formed by rearranging the letters of another, such as spar, formed from rasp.
 function isAnagram(str, str2) { 
   const firstCharMap = getStringBreakdown(str);
   const secondCharMap = getStringBreakdown(str2);
@@ -120,17 +122,20 @@ function reverseNum(num) {
 //TODO
 
 //? FIZZBUZZ */
+// For multiples of 3, print "Fizz" instead of the number
+// For multiples of 5, print "Buzz" instead of the number
+// For numbers which are multiples of both 3 and 5, print "FizzBuzz" instead of the number
 
 //* Time Complexity - O(n)
 function fizzBuzz(n) {
   for (let i = 1; i <= n; i++) {
-    if (!(i % 15)) {
+    if (i % 15 === 0) {
       console.log('fizzBuzz');
     } 
-    else if (!(i % 5)) {
+    else if (i % 5 === 0) {
       console.log('buzz');
     } 
-    else if (!(i % 3)) {
+    else if (i % 3 === 0) {
       console.log('fizz');
     } 
     else {
@@ -144,10 +149,10 @@ function fizzBuzz2(n) {
   for (let i = 1; i <= n; i++) {
     let output = '';
 
-    if (!(i % 3)) {
+    if (i % 3 === 0) {
       output += 'fizz';
     }
-    if (!(i % 5)) {
+    if (i % 5 === 0) {
       output += 'buzz';
     }
 
@@ -203,6 +208,13 @@ function countVowels2(str) {
 //TODO
 
 //? ARRAY CHUNK
+/* Also know as buffering, write an algorithm that takes two arguments, an array and
+a number. The function must return an array with subarrays (chunks) Lenght n containing
+the origninal array elements.
+
+chunkArr([1, 2, 3, 4, 5], 2) => [[1, 2], [3, 4], 5];
+chunkArr([1, 2, 3, 4, 5, 6, 7, 8, 9], 3) => [[1, 2, 3], [4, 5, 6], [7, 8, 9]]; 
+*/
 
 //* Time Complexity - O(n)
 function chunkArr(arr, n) {
@@ -240,6 +252,7 @@ function chunkArr2(arr, n) {
 //TODO
 
 //? PRINT PYRAMID
+// Print pyramids and stairs
 
 //* Time Complexity - O(n)
 function printSteps(n) {
@@ -286,18 +299,25 @@ function printPyramid(n) {
 //TODO
 
 //? REMOVE ARRAY DUPLICATES
+/* Write a function that takes and array as an argument and returns it with no
+duplicated values.
+
+removeDuplicates([1, 2, 3, 2, 1, 4, 5, 4]) => [1, 2, 3, 4, 5]
+*/
 
 //* Time Complexity - O(n)
-function removeArrDup(arr) {
+function removeDuplicates(arr) {
   if (arr.length === 1) return arr;
   const arrDupes = {};
   let newArr = [];
+
   for (let i = 0; i < arr.length; i++) {
     if (!arrDupes[arr[i]]) {
       arrDupes[arr[i]] = true;
       newArr.push(arr[i]);
     } 
   }
+
   return newArr; 
 }
 
@@ -306,6 +326,13 @@ function removeArrDup(arr) {
 //TODO
 
 //? ARRAY SUM FINDER
+/* Write a function that takes two arguments, an array of numbers and a number.
+This function should return a boolean value if the sum(number) can be found 
+between the array's numbers. 
+
+arrSumFinder([6, 4, 3, 2, 1, 7], 9) => true;
+arrSumFinder([6, 4, 3, 2, 1, 7], 2) => false;
+*/
 
 //* Time Complexity - O(n^2)
 function arrSumFinder(arr, sum) {
@@ -365,6 +392,10 @@ function arrSumFinder3(arr, sum) {
 //TODO
 
 //? MERGE SORTED ARRAY
+/* Write a function that takes two sorted arrays of numbers and returns a merged one.
+
+mergeSortedArr([5, 6, 10], [3, 4, 7]) => [3, 4, 5, 6, 7, 10];
+*/
 
 //* Time Complexity - O(n)
 function mergeSortedArr(arrA, arrB) {
@@ -407,6 +438,11 @@ function mergeSortedArr(arrA, arrB) {
 //TODO
 
 //? CUMULATIVE SUM
+/* Write a function that takes an array of integers and returns a new one whose elements
+are the cumulative sum at each index.
+
+cumulativeSum([1, 2, 3, 4, 5]) => [1, 3, 6, 10, 15]
+*/
 
 //* Time Complexity - O(n)
 function cumulativeSum(arr) {
@@ -426,6 +462,14 @@ function cumulativeSum(arr) {
 //TODO
 
 //? FIND SUM PAIRS
+/* Write a function that takes an array of integers and a number. This function
+must return an array of arrays that shows each pair of numbers from the input array
+equal to the sum given.
+
+findSumParis([1, 2, 3, 4, 5], 6) => [[4, 2], [5, 1]];
+findSumParis([1, 2, 3], 7) => [];
+findSumParis([], 5) => [];
+*/
 
 //* Time Complexity - O(n)
 function findSumParis(arr, n) {
@@ -448,7 +492,11 @@ function findSumParis(arr, n) {
 //TODO
 
 //? ARRAY INTERSECTION
-// Given two arrays, return the vaules that intersect from each other.
+/* Given two arrays, return the vaules that intersect from each other. 
+
+arrIntesection([2, 2, 4, 1], [1, 2, 0, 2]) => [2, 1];
+arrIntesection([3, 6, 1, 8], [11, 15, 23, 42]) => [];
+*/
 
 //* Time Complexity - O(n + m)
 function arrIntersection(arr, arr2) {
@@ -477,16 +525,24 @@ function arrIntersection(arr, arr2) {
 
 //? ISOMORPHIC STRINGS
 /* Given two strings check if they are isomorphic, meaning that each character 
-of the string is interchanchable in order with the other string character. */
+of the string is interchanchable in order with the other string character. 
+If the characters in one string can be replaced to obtain the other string 
+while preserving the order of characters, the strings are considered isomorphic. 
+For example, “egg” and “add” are isomorphic because we can replace 'e' with 'a' 
+and 'g' with 'd'.
 
-// egg => add
-// e => a
-// g => d
+egg => add
+e => a
+g => d
 
-// efl => egg
-// e => g
-// f => g
-// l !== g => g is already maped to f
+efl => egg
+e => g
+f => g
+l !== g => g is already maped to f
+
+areIsomorphic('egg', 'add') => true;
+areIsomorphic('foo', 'bar') => true;
+*/
 
 //* Time Complexity - O(n)
 function areIsomorphic(str, str2)  {
@@ -517,8 +573,13 @@ function areIsomorphic(str, str2)  {
 //TODO
 
 //? BRACKET BALANCER
-// Check if the brackets {} given are balanced [{{}}] or not [{{}]
-
+/* Check if the brackets '{}' given are balanced '{{}}' or not '{{}'
+ 
+isBalanced('{}{}') => true
+isBalanced('{{}}') => true
+isBalanced('{{}') => false
+isBalanced('') => false
+*/
 //* Time Complexity - O(n)
 function isBalanced(strExp) {
   if (typeof strExp !== 'string' || strExp.length === 0) return false;
@@ -543,7 +604,12 @@ function isBalanced(strExp) {
 //TODO
 
 //? SORT WAVE ARRAY
-// Return an array with the values changing from hight to low.
+/* Write a function that takes an array of unsorted integers and sorts it into a
+wave array. Returns an array with the values changing from hight to low. 
+
+sortWaveArr([1, 2, 3, 4, 5]) => [2, 1, 4, 3, 5];
+sortWaveArr([11, 8, 5, 10, 6]) => [6, 3, 10, 5, 11, 8]:
+*/
 
 //* Time Complexity - O(n log n)
 function sortWaveArr(arr) {
@@ -584,7 +650,8 @@ function waveArr(arr) {
 //TODO
 
 //? DUTCH FLAG SORT
-// Sort an array of 0, 1 and 2's.
+/* Write a function that rakes an array of unsorted integers of 0, 1 and 2s only
+and returns the sorted array. */
 // Everything before low === 0
 // Everything before mid === 1
 // Everything after high === 2
@@ -632,7 +699,12 @@ function dutchFlagSort(arr) {
 using an array to simulate the hills. We achieve the result by utilising two 
 pointers from left to right that remember which was the highest slop and how 
 much water can be drained in front of them, comparing the maxPointer hight with 
-the next element. And always checking the other pointer's hight. */
+the next element. And always checking the other pointer's hight. 
+
+trappingRainwater([0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]) => 6;
+trappingRainwater([4, 2, 0, 3, 2, 5]) => 9;
+trappingRainwater([1, 2, 3, 4, 5]) => 0;
+*/
 
 //* Time Complexity - O(n)
 function trappingRainwater(arr) {
@@ -671,7 +743,12 @@ function trappingRainwater(arr) {
 //TODO
 
 //? PEAK ELEMENT
-// Find the peak element of an array.
+/* Find the peak element of an array. 
+
+findPeak([1, 3, 7, 1, 2, 6, 0, 3, 2]) => 7;
+findPeak([1, 2, 3, 4, 5]) => 5;
+findPeak([5, 4, 3, 2, 1]) => 5;
+*/
 
 //* Time Complexity - O(n)
 function findPeak(arr) {

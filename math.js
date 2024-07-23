@@ -1,10 +1,12 @@
 //? FIBONACCI SEQUENCE
+/* Write a function that takes a number(n) and returns the number in the 
+Fibonacci sequence at position n. */
 
 //* Time Complexity - O(n)
 function fibonacci(n) {
   const fib = [0, 1];
 
-  for (let i = 2; i < n; i++) {
+  for (let i = 2; i <= n; i++) {
     fib[i] = fib[i - 2] + fib[i - 1];
   }
 
@@ -55,8 +57,9 @@ function recursiveFactorial(n) {
 //TODO
 
 //? PRIME NUMBER
-
-/* If the number is composite; One of the two factors will be less tan or 
+/* A whole number greater than 1 that cannot be exactly divided by any whole 
+number other than itself and 1 (e.g. 2, 3, 5, 7, 11). 
+If the number is composite; One of the two factors will be less tan or 
 equal the square root for the given number(n = a * b), so we can stop the 
 loop exection there as there is no need to go further because we should 
 already have found a divisible number. If not, it is prime. */ 
@@ -123,6 +126,11 @@ function isPowerOfTwoBitwise(n) {
 //TODO
 
 //? FIND MISSING INTEGER
+/* Write a function that takes an array of integers in ascending order from 1 to n
+as an argument and returns the missing integer. 
+
+findMissingInt([1, 2, 3, 5, 6, 7, 8, 9, 10]) => 4;
+*/
 
 //* Time Complexity O(n)
 function findMissingInt(arr) {
