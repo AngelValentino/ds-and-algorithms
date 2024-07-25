@@ -311,7 +311,9 @@ node (head), creating a circular structure. This circular reference means the ta
 pointer points to the head, and the head's previous pointer points to the tail, enabling 
 continuous traversal in a loop. */
 
-/* NOTE: We can also use a tail property to improve linked list methods time complexity.
+/* NOTE: Using a tail pointer in a linked list enhances the efficiency of certain operations by 
+improving their time complexity. While it does add a small amount of memory overhead, it transforms 
+the append operation from O(n) to O(1).
 Implementing queues and stacks using linked lists is advantageous due to their dynamic size, 
 efficient insertions and deletions (especially when using a tail pointer), and lack of wasted space compared to arrays.
 Linked lists allow elements to be added or removed dynamically, making them suitable for 
@@ -327,6 +329,7 @@ class Node {
 class SinglyLinkedList {
   constructor() {
     this.head = null;
+    this.tail = null;
     this.size = 0;
   }
 
@@ -336,44 +339,51 @@ class SinglyLinkedList {
   getSize() {
     return this.size;
   }
-  // Add value to the start of the list
+  // Add a value to the start of the list
   prepend(value) {
-    const node = new Node(value);
-    /* Sets the new node's next pointer to the current head
-    NOTE: if list is empty, node.next will be defaulted to null as it is the
-    default value of the constructor */
-    node.next = this.head; 
-    this.head = node; // Update the head to point to the new node
-    this.size++;
-  }
-  // Add value to the end of the list
-  append(value) {
-    const node = new Node(value);
-
+    const node = new Node(value); // Create a new node with the given value
+    // If the list is empty 
     if (this.isEmpty()) {
+      // Both head and tail should point to the new node
+      this.tail = node;
       this.head = node;
     } 
+    // If the list is not empty 
     else {
-      let currentNode = this.head;
-      while (currentNode.next) {
-        currentNode = currentNode.next;
-      }
-      currentNode.next = node;
+      node.next = this.head; // Set the new node's next pointer to the current head
+      this.head = node; // Update the head to point to the new node
     }
-
     this.size++;
   }
-  // Insert value at a specified index in list
+  // Add a value to the end of the list
+  append(value) {
+    const node = new Node(value); // Create a new node with the given value
+    // If the list is empty 
+    if (this.isEmpty()) {
+       // Both head and tail should point to the new node
+      this.head = node;
+      this.tail = node;
+    } 
+    // If the list is not empty 
+    else {
+      this.tail.next = node; // Set the current tail's next pointer to the new node
+      this.tail = node; // Update the tail to point to the new node
+    }
+    this.size++;
+  }
+  // Insert a value at a specified index in list
   insert(value, index) {
     // Check if index is out of bounds or undefined
-    if (index < 0 || index > this.size || index === undefined) {
-      return;
-    } 
-    // Insert at the beginning of the list
-    else if (index === 0) {
+    if (index === undefined || index < 0 || index > this.size) return;
+    // Insert at the start
+    if (index === 0) {
       this.prepend(value);
     } 
-    // Insert at a specific index
+    // Insert at the end
+    else if (index === this.size) {
+      this.append(value);
+    }
+    //Insert at a specific index
     else {
       const node = new Node(value);
       let previousNode = this.head; // Start from the head of the list
@@ -389,16 +399,51 @@ class SinglyLinkedList {
       this.size++;
     }
   }
-  // Remove from specified index
+  // Remove a value from the start of the list
+  removeFromFront() {
+    if (this.isEmpty()) return;
+    const value = this.head.value; // Store the value of the current head
+    this.head = this.head.next; // Update the head to point to the next node
+    this.size--;
+    if (this.isEmpty()) this.tail = null; // If the list becomes empty, update the tail to null
+    return value;
+  }
+  // Remove a value from the end of the list
+  removeFromEnd() {
+    if (this.isEmpty()) return;
+    const value = this.tail.value; // Store the value of the current tail
+    // If the list has only one node set both head and tail to null
+    if (this.size === 1) {
+      this.head = null;
+      this.tail = null;
+    } 
+    else {
+      // Traverse the list to find the node before the tail
+      let previousNode = this.head;
+      while (previousNode.next !== this.tail) {
+        previousNode = previousNode.next;
+      }
+      previousNode.next = null; // Set the next of the previous node to null
+      this.tail = previousNode; // Update the tail to the previous node
+    }
+    this.size--;
+    return value;
+  }
+  // Remove from a specified index
   removeFrom(index) {
     // Check if the index is out of bounds or undefined
     if (index === undefined || index < 0 || index >= this.size) return;
-    let removedNode;
 
+    // Remove the first node (head)
     if (index === 0) {
-      removedNode = this.head;
-      this.head = removedNode.next;
+      return this.removeFromFront();
+
     } 
+    // Remove the last node (tail)
+    else if (index === this.size - 1) {
+      return this.removeFromEnd();
+    } 
+    // Remove at a specific index
     else {
       let previousNode = this.head; // Start from the head of the list
 
@@ -407,59 +452,79 @@ class SinglyLinkedList {
         previousNode = previousNode.next;
       }
 
-      removedNode = previousNode.next; // The node to be removed is the next node of the previous node
+      const removedNode = previousNode.next; // Set the removed node to be the next node of the previous node
       previousNode.next = removedNode.next; // Update the next pointer of the previous node to skip the removed node
+      this.size--;
+      return removedNode.value;
     }
-
-    this.size--;
-    return removedNode.value;
   }
   removeValue(value) {
-    if (this.isEmpty()) return;
-
-    // Remove the first node and return the removed value
+    if (this.isEmpty()) return null;
+    // Remove the first node if head.value and value match
     if (this.head.value === value) {
-      this.head = this.head.next;
-      this.size--;
-      return value;
+      return this.removeFromFront();
     } 
-    // Remove a node in between or end
-    let previousNode = this.head;
-
-    while (previousNode.next && previousNode.next.value !== value) {
-      previousNode = previousNode.next;
+    // Remove the last node if tail.value and value match
+    else if (this.tail.value === value) {
+      return this.removeFromEnd();
     }
+    // Traverse the list to find the node with the specified value
+    else {
+      let previousNode = this.head;
+      while (previousNode.next && previousNode.next.value !== value) {
+        previousNode = previousNode.next;
+      }
 
-    // Check if the value has been found
-    if (previousNode.next) {
-      const removedNode = previousNode.next; // The node to be removed is the next node of the previous node
-      previousNode.next = removedNode.next; // Update the next pointer of the previous node to skip the removed node
-      this.size--;
-      return value;
+      // If the value was found, remove the node and return the value
+      if (previousNode.next) {
+        const removedNode = previousNode.next; // Set the removed node to be the next node of the previous node
+        previousNode.next = removedNode.next; // Update the next pointer of the previous node to skip the removed node
+        this.size--;
+        return value;
+      }
+
+      return null; // Return null if the value was not found
     }
-
-    // The node has not been found
-    return null;
   }
   // Return the index in which the value is found, return -1 if it isn't in the list
   search(value) {
     if (this.isEmpty()) return -1;
-    let currentNode = this.head;
-    let i = 0;
-
-    while(currentNode) {
-      if (currentNode.value === value) return i; // Return index if value is found
-      currentNode = currentNode.next;
-      i++;
+    
+    // Return index 0 if head.value and value match
+    if (this.head.value === value) {
+      return 0;
+    } 
+    // Return the index of the tail if head.tail and value match
+    else if (this.tail.value === value) {
+      return this.size - 1;
     }
 
-    return -1; // Return -1 if value is not found in the list
-  }
-  // Search by index and return the value at that index
-  searchByIndex(index) {
-    if (index === undefined || index < 0 || index >= this.size) return;
+    // Traverse the list to find the specific value
     let currentNode = this.head;
+    let index = 0;
+    while(currentNode) {
+      if (currentNode.value === value) return index; // Return index if value is found
+      currentNode = currentNode.next;
+      index++;
+    }
 
+    return -1; // Return -1 if value has not been found in the list
+  }
+  // Search by index and return the value at the specified index
+  searchByIndex(index) {
+    // Check if index is out of bound or undefined
+    if (index === undefined || index < 0 || index >= this.size) return null;
+    // If it's the first index return the head's value
+    if (index === 0) {
+      return this.head.value;
+    } 
+    // If it's the last index return the tail's value
+    else if (index === this.size - 1) {
+      return this.tail.value;
+    }
+    
+    // Traverse the list to find the value at the specified index
+    let currentNode = this.head;
     for (let i = 0; i < index; i++) {
       currentNode = currentNode.next;
     }
@@ -470,19 +535,20 @@ class SinglyLinkedList {
   reverse() {
     if (this.isEmpty()) return;
 
-    let previousNode = null; // Initialize previousNode to null, as it will be the new tail of the reversed list
-    let currentNode = this.head;
-
-    while(currentNode) {
-      let next = currentNode.next; // Store the next node in the original list before reversing
-      currentNode.next = previousNode; // Reverse the next pointer of the current node to point to the previous node
-      
-      // Move forward in the list: Shift previousNode and currentNode one step forward
-      previousNode = currentNode; // Move previousNode to the current node
-      currentNode = next; // Move currentNode to the next node in the original list
+    let current = this.head; // Initialize the current node to the head of the list
+    let previousNode = null;
+    let next = null; // Temporarily stores the next node during traversal
+    // Traverse and reverse the linked list
+    while (current) {
+      next = current.next; // Store the next node
+      current.next = previousNode; // Reverse the current node's next pointer to point to the previous node
+      previousNode = current;  // Move the previousNode pointer to the current node
+      current = next;  // Move to the next node in the original list
     }
 
-    this.head = previousNode; // Update the head to point to the last node of the original list
+    // After the loop, previousNode is the new head of the reversed list
+    this.tail = this.head; // The original head becomes the new tail of the reversed list
+    this.head = previousNode; // Update the head to the new head (which was the last node in the original list)
   }
   print() {
     if (this.isEmpty()) {
@@ -935,18 +1001,5 @@ class Graph {
 }
 
 const graph = new Graph();
-
-graph.addVertex('A')
-graph.addVertex('B')
-graph.addVertex('C')
-
-graph.addEdge('A', 'B');
-graph.addEdge('B', 'C');
-
-graph.addVertex('L')
-
-console.log(graph.hasEdge('B', 'A'))
-
-graph.display();
 
 //? END OF GRAPH
