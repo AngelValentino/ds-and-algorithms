@@ -767,3 +767,25 @@ function findPeak(arr) {
 }
 
 //? END OF PEAK ELEMENT
+
+//TODO
+
+//? TOWER OF HANOI
+
+//* Time Complexity - O(2^n)
+function hanoi(n, fromRod, toRod, usingRod) {
+  // Base case: If there is only one disk, move it directly from fromRod to toRod
+  if (n === 1) {
+    console.log(`Moved disk 1 from ${fromRod} to ${toRod}`);
+    return;
+  }
+  // Recursive case:
+  // Step 1: Move the top n-1 disks from fromRod to usingRod, using toRod as auxiliary
+  hanoi(n-1, fromRod, usingRod, toRod);
+  // Step 2: Move the nth disk from fromRod to toRod
+  console.log(`Moved disk ${n} from ${fromRod} to ${toRod}`);
+  // Step 3: Move the n-1 disks from usingRod to toRod, using fromRod as auxiliary
+  hanoi(n-1, usingRod, toRod, fromRod);
+}
+
+//? END OF TOWER OF HANOI
