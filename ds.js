@@ -28,7 +28,7 @@ class Stack {
   }
   // Removes an element to the top of the stack and returns it
   pop() {
-    if (this.size === 0) return undefined;
+    if (this.size === 0) return;
     const removed = this.items[this.size];
     delete this.items[this.size];
     this.size--;
@@ -125,27 +125,36 @@ class Queue {
   enqueue(element) {
     this.items[this.tail] = element;
     this.tail++;
-    return this.size;
+    return this.getSize();
   }
   // Removes and returns the first element added to the queue
   dequeue() {
-    if (this.size === 0) return;
+    if (this.isEmpty()) return;
     const removed = this.items[this.head];
     delete this.items[this.head];
     this.head++;
+
+    // Reset to avoid memory bloat
+    if (this.head === this.tail) {
+      this.head = 0;
+      this.tail = 0;
+      this.items = {};
+    }
+
     return removed;
   }
   // Returns the first element added to the queue without removing it
   peek() {
+    if (this.isEmpty()) return;
     return this.items[this.head];
   }
   // Checks if the queue is empty
   isEmpty() {
-    return this.size === 0;
+    return this.getSize() === 0;
   }
   // Prints all elements of the queue
   print() {
-    if (this.size === 0) {
+    if (this.isEmpty()) {
       console.log('Queue is empty');
     } 
     else {
