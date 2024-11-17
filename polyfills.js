@@ -18,12 +18,13 @@ Array.prototype.shuffle = function() {
 //TODO
 
 //? FILTER ARRAY METHOD
-
+/* Initialize the result array, loop through the current array and check if the current 
+value passes the test and it is not sparse. Return the newly created array. */
 Array.prototype.customFilter = function(callback) {
+  if (typeof callback !== 'function') throw new TypeError(typeof callback + ' ' + callback + ' is not a function');
   const result = [];
 
   for (let i = 0; i < this.length; i++) {
-    // Also handles sparse arrays
     if (this.hasOwnProperty(i) && callback(this[i], i, this)) {
       result.push(this[i]);
     }
@@ -37,22 +38,31 @@ Array.prototype.customFilter = function(callback) {
 //TODO
 
 //? FIND AND FIND INDEX ARRAY METHODS
-
+/* Loop through the current array, if the callback returns true return the current looped element, 
+else return undefined. */
 Array.prototype.customFind = function(callback) {
+  if (typeof callback !== 'function') throw new TypeError(callback + 'is not a function');
+  
   for (let i = 0; i < this.length; i++) {
     if (callback(this[i], i, this)) {
       return this[i];
     }
   }
+
   return;
 }
 
+/* Loop through the current array, if the callback returns true return the current looped element's
+index, else return -1. */
 Array.prototype.customFindIndex = function(callback) {
+  if (typeof callback !== 'function') throw new TypeError(callback + 'is not a function');
+  
   for (let i = 0; i < this.length; i++) {
     if (callback(this[i], i, this)) {
       return i;
     }
   }
+  
   return -1;
 }
 
@@ -63,12 +73,20 @@ Array.prototype.customFindIndex = function(callback) {
 //? REDUCE AND REDUCE RIGHT ARRAY METHODS
 
 //* REDUCE
+/* Check if the callback is actually a function, the array is empty and no initial value 
+has been given. Define accumulator and i variable, loop through array and reasign accumulator 
+calling the callback function */
 Array.prototype.customReduce = function(callback, initialValue) {
-  if (this.length === 0) {
-    throw new Error('Reduce of empty array with no initial value');
+  const isInitValUndefined = initialValue === undefined;
+  if (typeof callback !== 'function') {
+    throw new TypeError(callback + ' is not a function');
   }
-  let accumulator = initialValue === undefined ? this[0] : initialValue;
-  let i = initialValue === undefined ? 1 : 0;
+  if (this.length === 0 && isInitValUndefined) {
+    throw new TypeError('Reduce of empty array with no initial value');
+  }
+
+  let accumulator = isInitValUndefined ? this[0] : initialValue;
+  let i = isInitValUndefined ? 1 : 0;
 
   for (; i < this.length; i++) {
     accumulator = callback(accumulator, this[i], i, this);
@@ -78,12 +96,18 @@ Array.prototype.customReduce = function(callback, initialValue) {
 }
 
 //* REDUCE RIGHT
+// The same as reduce but starts from the end of the array
 Array.prototype.customReduceRight = function(callback, initialValue) {
-  if (this.length === 0) {
-    throw new Error('Reduce of empty array with no initial value');
+  const isInitValUndefined = initialValue === undefined;
+  if (typeof callback !== 'function') {
+    throw new TypeError(callback + ' is not a function');
   }
-  let accumulator = initialValue === undefined ? this[this.length - 1] : initialValue;
-  let i = initialValue === undefined ? this.length - 2 : this.length - 1;
+  if (this.length === 0 && isInitValUndefined) {
+    throw new TypeError('Reduce of empty array with no initial value');
+  }
+
+  let accumulator = isInitValUndefined ? this[this.length - 1] : initialValue;
+  let i = isInitValUndefined ? this.length - 2 : this.length - 1;
 
   for (; i >= 0; i--) {
     accumulator = callback(accumulator, this[i], i, this);
@@ -99,22 +123,30 @@ Array.prototype.customReduceRight = function(callback, initialValue) {
 //? SOME AND EVERY ARRAY METHODS
 
 //* SOME
-Array.prototype.customSome = function(callback) {
+// Check callback validity, loop through array and see if at least on element passes the callback condition
+Array.prototype.customSome = function(callback, thisArg) {
+  if (typeof callback !== 'function') throw new TypeError(callback + 'is not a function');
+  
   for (let i = 0; i < this.length; i++) {
-    if (callback(this[i], i, this)) {
+    if (callback.call(thisArg, this[i], i, this)) {
       return true;
     }
   }
+
   return false;
 }
 
 //* EVERY
-Array.prototype.customEvery = function(callback) {
+// Check callback validity, loop through array and see if all the elements pass the callback condition
+Array.prototype.customEvery = function(callback, thisArg) {
+  if (typeof callback !== 'function') throw new TypeError(callback + 'is not a function');
+  
   for (let i = 0; i < this.length; i++) {
-    if (!callback(this[i], i, this)) {
+    if (!callback.call(thisArg, this[i], i, this)) {
       return false;
     }
   }
+
   return true;
 }
 
@@ -284,7 +316,8 @@ Array.prototype.customConcat = function(...args) {
 //TODO
 
 //? JOIN ARRAY METHOD
-
+/* Initialize the result string, loop through array and add values separated by the separator 
+coverting null and undefined to "". Finally return the newly created string. */
 Array.prototype.customJoin = function(separator = ',') {
   let result = '';
 
@@ -410,6 +443,7 @@ Array.prototype.customIncludes = function(searchElement, fromIndex = 0) {
 //? ARRAY MAP AND FOREACH METHODS
 
 //* FOREACH
+// Check callback typeof, loop over the current array and call the callback for each iteration
 Array.prototype.customForEach = function(callback, thisArg) {
   if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function');
 
@@ -422,16 +456,16 @@ Array.prototype.customForEach = function(callback, thisArg) {
 }
 
 //* MAP
+// Check callback typeof, create empty array, map over the current one, retun newly created array.
 Array.prototype.customMap = function(callback, thisArg) {
   if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function');
 
-  // Handle sparse arrays for the result array
-  const result = new Array(this.length);
+  const result = [];
 
   for (let i = 0; i < this.length; i++) {
     // Check if the property exists in the array (to handle sparse arrays)
     if (this.hasOwnProperty(i)) {
-      result[i] = (callback.call(thisArg, this[i], i, this));
+      result[i] = callback.call(thisArg, this[i], i, this);
     }
   }
 
