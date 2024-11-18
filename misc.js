@@ -25,7 +25,7 @@ const reverseStringWithPolyfills = (str) => str ? str.customSplit('').customReve
 //* Time Complexity - O(n)
 // A word, phrase, or sequence that reads the same backwards as forwards, e.g. madam or nurses run.
 function isPalindrome(str) {
-  const formatedStr = str.replace(/\s+/g, '');
+  const formatedStr = str.replace(/\s+/g, '').toLowerCase();
   let reversedStr = '';
 
   for (const char of formatedStr) {
