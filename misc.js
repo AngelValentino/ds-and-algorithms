@@ -358,9 +358,9 @@ function arrSumFinder2(arr, sum) {
   for (let i = 0; i < arr.length; i++) {
     const currNum = arr[i];
     const diff = sum - currNum;
-
+    
     if (seen[diff]) return true;
-    seen[currNum] = true
+    seen[currNum] = true;
   }
 
   return false;
