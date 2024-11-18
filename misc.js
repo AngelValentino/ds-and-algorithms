@@ -351,6 +351,22 @@ function arrSumFinder(arr, sum) {
 }
 
 //* Time Complexity - O(n)
+function arrSumFinder2(arr, sum) {
+  if (arr.length < 2) return false;
+  const seen = {};
+
+  for (let i = 0; i < arr.length; i++) {
+    const currNum = arr[i];
+    const diff = sum - currNum;
+
+    if (seen[diff]) return true;
+    seen[currNum] = true
+  }
+
+  return false;
+}
+
+//* Time Complexity - O(n)
 /* If we already have a number that's the same as the difference between 
 our the total sum and our current number, it means that the numbers can be 
 added to form the sum argument. */
