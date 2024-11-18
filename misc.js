@@ -219,16 +219,18 @@ chunkArr([1, 2, 3, 4, 5, 6, 7, 8, 9], 3) => [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
 
 //* Time Complexity - O(n)
 function chunkArr(arr, n) {
+  if (!arr || arr.length === 0) return;
   const chunkedArr = [];
 
-  for (const element of arr) {
-    const previousChunk = chunkedArr[chunkedArr.length - 1];
+  for (let i = 0; i < arr.length; i++) {
+    const currentElement = arr[i];
+    const currentChunk = chunkedArr[chunkedArr.length - 1];
 
-    if (!previousChunk || previousChunk.length === n) {
-      chunkedArr.push([element]);
+    if (!currentChunk || currentChunk.length === n) {
+      chunkedArr.push([currentElement]);
     } 
     else {
-      previousChunk.push(element);
+      currentChunk.push(currentElement);
     }
   }
 
