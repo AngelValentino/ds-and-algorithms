@@ -351,6 +351,9 @@ function arrSumFinder(arr, sum) {
 }
 
 //* Time Complexity - O(n)
+/* If we already have a number that's the same as the difference between 
+our the total sum and our current number, it means that the numbers can be 
+added to form the sum argument. */
 function arrSumFinder2(arr, sum) {
   if (arr.length < 2) return false;
   const seen = {};
@@ -366,22 +369,6 @@ function arrSumFinder2(arr, sum) {
   return false;
 }
 
-//* Time Complexity - O(n)
-/* If we already have a number that's the same as the difference between 
-our the total sum and our current number, it means that the numbers can be 
-added to form the sum argument. */
-function arrSumFinder2(arr, sum) {
-  if (arr.length < 2) return false;
-  const seen = {};
-
-  for (let i = 0; i < arr.length; i++) {
-    const num = arr[i];
-    if (seen[sum - num]) return true;
-    seen[num] = true;
-  }
-
-  return false;
-}
 
 //* Time Complexity - O(n log n)
 function arrSumFinder3(arr, sum) {
