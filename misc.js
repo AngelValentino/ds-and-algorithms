@@ -500,8 +500,8 @@ function findSumParis(arr, n) {
 //? ARRAY INTERSECTION
 /* Given two arrays, return the vaules that intersect from each other. 
 
-arrIntesection([2, 2, 4, 1], [1, 2, 0, 2]) => [2, 1];
-arrIntesection([3, 6, 1, 8], [11, 15, 23, 42]) => [];
+arrIntersection([2, 2, 4, 1], [1, 2, 0, 2]) => [2, 1];
+arrIntersection([3, 6, 1, 8], [11, 15, 23, 42]) => [];
 */
 
 //* Time Complexity - O(n + m)
