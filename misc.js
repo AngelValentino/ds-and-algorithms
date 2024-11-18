@@ -103,7 +103,7 @@ function isAnagram(str, str2) {
 
 //TODO
 
-//? REVERSE AN NUMBER
+//? REVERSE A NUMBER
 
 //* Time Complexity - O(n)
 function reverseNum(num) {
@@ -186,7 +186,8 @@ function capitalizeWords(str) {
 
 //* Time Complexity - O(n)
 function countVowels(str) {
-  return str.match(/[aeiou]/gi).length;
+  const result = str.match(/[aeiou]/gi);
+  return result ? result.length : 0;
 }
 
 //* Time Complexity - O(n)
