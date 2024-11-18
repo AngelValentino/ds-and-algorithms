@@ -312,7 +312,7 @@ removeDuplicates([1, 2, 3, 2, 1, 4, 5, 4]) => [1, 2, 3, 4, 5]
 function removeDuplicates(arr) {
   if (arr.length === 1) return arr;
   const arrDupes = {};
-  let newArr = [];
+  const newArr = [];
 
   for (let i = 0; i < arr.length; i++) {
     if (!arrDupes[arr[i]]) {
