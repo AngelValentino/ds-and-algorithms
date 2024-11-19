@@ -584,7 +584,9 @@ function areIsomorphic(str, str2)  {
 isBalanced('{}{}') => true
 isBalanced('{{}}') => true
 isBalanced('{{}') => false
+isBalanced('{{') => false
 isBalanced('') => false
+
 */
 //* Time Complexity - O(n)
 function isBalanced(strExp) {
