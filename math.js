@@ -91,6 +91,7 @@ function isPrime2(n) {
 
 //? POWER OF TWO
 
+// A power of two can be divided by 2 repeatedly until it reaches 1
 //* Time Complexity - O(log n)
 //* Space Complexity - O(1)
 function isPowerOfTwo(n) {
@@ -104,9 +105,22 @@ function isPowerOfTwo(n) {
   return true;
 } 
 
-/* We are able to achieve this because the numbers which are powers of two
-are always composed by an ON bit followed by zeros. 
-e.g 1(1), 2(10), 4(100), 8(1000), 16(10000)... */
+/* 
+This function checks if a number is a power of two using a bitwise operation.
+The logic works because numbers that are powers of two have exactly one '1' bit
+in their binary representation, followed by zeros (e.g., 1(1), 2(10), 4(100), 8(1000), 16(10000), etc.).
+
+When you subtract 1 from a power of two, all the bits after the leading '1' become '1',
+and the leading '1' becomes '0'. For example:
+  4 (100) - 1 = 3 (011)
+  8 (1000) - 1 = 7 (0111)
+
+Applying the bitwise AND operation (`n & (n - 1)`) between a power of two and its predecessor always results in 0:
+  4 & 3 = 100 & 011 = 000
+  8 & 7 = 1000 & 0111 = 0000
+
+For numbers that are not powers of two, this check will not be true.
+*/
 //* Time Complexity - O(1)
 //* Space Complexity - O(1)
 function isPowerOfTwoBitwise(n) {
@@ -128,6 +142,13 @@ function isPowerOfTwoBitwise(n) {
 //? FIND MISSING INTEGER
 /* Write a function that takes an array of integers in ascending order from 1 to n
 as an argument and returns the missing integer. 
+Gauss discovered that the sum of the first n natural numbers can be calculated
+using the formula: (n * (n + 1)) / 2. This gives the total sum of all numbers
+from 1 to n. This formula is particularly useful when trying to find a missing integer
+in an unordered array. By using Gauss's formula to calculate the expected sum of
+the first n numbers and then subtracting the actual sum of the elements in the array,
+we can quickly determine the missing number. The difference between the expected sum
+(from Gauss's formula) and the actual sum gives us the missing integer.
 
 findMissingInt([1, 2, 3, 5, 6, 7, 8, 9, 10]) => 4;
 */
@@ -143,6 +164,16 @@ function findMissingInt(arr) {
   }
 
   return totalSum - arrSum;
+}
+
+// Simplified version
+//* Time Complexity O(n)
+const findMissing = arr => {
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i + 1] - arr[i] > 1) {
+      return arr[i] + 1;
+    }
+  }
 }
 
 //? END OF FIND MISSING INTEGER
