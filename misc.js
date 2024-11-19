@@ -547,7 +547,7 @@ f => g
 l !== g => g is already maped to f
 
 areIsomorphic('egg', 'add') => true;
-areIsomorphic('foo', 'bar') => true;
+areIsomorphic('foo', 'bar') => false;
 */
 
 //* Time Complexity - O(n)
