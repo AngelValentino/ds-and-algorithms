@@ -62,17 +62,17 @@ function getStringBreakdown(str) {
 //* Time Complexity - O(n)
 function maxCharCount(str) {
   const breakdown = getStringBreakdown(str);
-  let currMaxChar = '';
-  let currMaxVal = 0;
+  let maxChar = '';
+  let maxVal = 0;
 
-  for (const key in breakdown) {
-    if (breakdown[key] > currMaxVal) {
-      currMaxChar = key;
-      currMaxVal = breakdown[key];
+  for (const char in breakdown) {
+    if (breakdown[char] > maxVal) {
+      maxChar = char;
+      maxVal = breakdown[char];
     }
   }
 
-  return currMaxChar;
+  return maxChar;
 }
 
 //? END RETURN THE HIGHEST REPEATING CHARACTER IN A STRING
