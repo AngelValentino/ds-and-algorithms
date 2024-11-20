@@ -43,13 +43,10 @@ function isPalindrome(str) {
 
 //* Time Complexity - O(n);
 function getStringBreakdown(str) {
-  const formatedStr = str.toLowerCase();
+  const formatedStr = str.replace(/\s+/g, '').toLowerCase();
   const breakdown = {};
 
   for (const char of formatedStr) {
-    if (char === ' ') {
-      continue;
-    }
     breakdown[char] ? breakdown[char]++ : breakdown[char] = 1;
   }
 
