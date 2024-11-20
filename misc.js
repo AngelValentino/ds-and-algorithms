@@ -87,8 +87,8 @@ function isAnagram(str, str2) {
   const firstCharMap = getStringBreakdown(str);
   const secondCharMap = getStringBreakdown(str2);
 
-  for (const key in firstCharMap) {
-    if (secondCharMap[key] !== firstCharMap[key]) {
+  for (const char in firstCharMap) {
+    if (secondCharMap[char] !== firstCharMap[char]) {
       return false;
     }
   }
