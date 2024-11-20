@@ -561,7 +561,7 @@ function areIsomorphic(str, str2)  {
       charMap[char1] = char2;
     }
     if (!charMap2[char2]) {
-      charMap2[char2] = char1
+      charMap2[char2] = char1;
     }
     if (charMap[char1] !== char2 || charMap2[char2] !== char1) {
       return false;
