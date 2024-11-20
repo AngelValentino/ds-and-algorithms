@@ -107,8 +107,8 @@ function reverseNum(num) {
   const numStr = num + '';
   let reversedNum = '';
 
-  for (const char of numStr) {
-    reversedNum = char + reversedNum;
+  for (const num of numStr) {
+    reversedNum = num + reversedNum;
   }
 
   return parseFloat(reversedNum) * Math.sign(num);
