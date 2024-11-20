@@ -210,7 +210,7 @@ function countVowels2(str) {
 a number. The function must return an array with subarrays (chunks) Lenght n containing
 the origninal array elements.
 
-chunkArr([1, 2, 3, 4, 5], 2) => [[1, 2], [3, 4], 5];
+chunkArr([1, 2, 3, 4, 5], 2) => [[1, 2], [3, 4], [5]];
 chunkArr([1, 2, 3, 4, 5, 6, 7, 8, 9], 3) => [[1, 2, 3], [4, 5, 6], [7, 8, 9]]; 
 */
 
