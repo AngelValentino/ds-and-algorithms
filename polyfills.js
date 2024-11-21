@@ -125,7 +125,7 @@ Array.prototype.customReduceRight = function(callback, initialValue) {
 //* SOME
 // Check callback validity, loop through array and see if at least on element passes the callback condition
 Array.prototype.customSome = function(callback, thisArg) {
-  if (typeof callback !== 'function') throw new TypeError(callback + 'is not a function');
+  if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function');
   
   for (let i = 0; i < this.length; i++) {
     if (this.hasOwnProperty(i) && callback.call(thisArg, this[i], i, this)) {
@@ -139,7 +139,7 @@ Array.prototype.customSome = function(callback, thisArg) {
 //* EVERY
 // Check callback validity, loop through array and see if all the elements pass the callback condition
 Array.prototype.customEvery = function(callback, thisArg) {
-  if (typeof callback !== 'function') throw new TypeError(callback + 'is not a function');
+  if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function');
   
   for (let i = 0; i < this.length; i++) {
     if (this.hasOwnProperty(i) && !callback.call(thisArg, this[i], i, this)) {
