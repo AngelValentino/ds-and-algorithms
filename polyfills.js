@@ -40,25 +40,25 @@ Array.prototype.customFilter = function(callback) {
 //? FIND AND FIND INDEX ARRAY METHODS
 /* Loop through the current array, if the callback returns true return the current looped element, 
 else return undefined. */
-Array.prototype.customFind = function(callback) {
+Array.prototype.customFind = function(callback, thisArg) {
   if (typeof callback !== 'function') throw new TypeError(callback + 'is not a function');
   
   for (let i = 0; i < this.length; i++) {
-    if (callback(this[i], i, this)) {
+    if (callback.call(thisArg, this[i], i, this)) {
       return this[i];
     }
   }
 
-  return;
+  return undefined;
 }
 
 /* Loop through the current array, if the callback returns true return the current looped element's
 index, else return -1. */
-Array.prototype.customFindIndex = function(callback) {
+Array.prototype.customFindIndex = function(callback, thisArg) {
   if (typeof callback !== 'function') throw new TypeError(callback + 'is not a function');
   
   for (let i = 0; i < this.length; i++) {
-    if (callback(this[i], i, this)) {
+    if (callback.call(thisArg, this[i], i, this)) {
       return i;
     }
   }
@@ -128,7 +128,7 @@ Array.prototype.customSome = function(callback, thisArg) {
   if (typeof callback !== 'function') throw new TypeError(callback + 'is not a function');
   
   for (let i = 0; i < this.length; i++) {
-    if (callback.call(thisArg, this[i], i, this)) {
+    if (this.hasOwnProperty(i) && callback.call(thisArg, this[i], i, this)) {
       return true;
     }
   }
@@ -142,7 +142,7 @@ Array.prototype.customEvery = function(callback, thisArg) {
   if (typeof callback !== 'function') throw new TypeError(callback + 'is not a function');
   
   for (let i = 0; i < this.length; i++) {
-    if (!callback.call(thisArg, this[i], i, this)) {
+    if (this.hasOwnProperty(i) && !callback.call(thisArg, this[i], i, this)) {
       return false;
     }
   }
@@ -456,7 +456,7 @@ Array.prototype.customForEach = function(callback, thisArg) {
 }
 
 //* MAP
-// Check callback typeof, create empty array, map over the current one, retun newly created array.
+// Check callback typeof, create empty array, map over the current one, return newly created array.
 Array.prototype.customMap = function(callback, thisArg) {
   if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function');
 
