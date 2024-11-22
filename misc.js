@@ -758,7 +758,7 @@ findPeak([5, 4, 3, 2, 1]) => 5;
 
 //* Time Complexity - O(n)
 function findPeak(arr) {
-  if (!arr.length) return null;
+  if (!arr.length === 0) return [];
   if (arr.length === 1) return arr[0];
 
   let peak = 0;
