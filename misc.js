@@ -84,11 +84,12 @@ function maxCharCount(str) {
 //* Time Complexity - O(n)
 // A word, phrase, or name formed by rearranging the letters of another, such as spar, formed from rasp.
 function isAnagram(str, str2) { 
+  if (str.length !== str2.length) return false;
   const firstCharMap = getStringBreakdown(str);
   const secondCharMap = getStringBreakdown(str2);
 
   for (const char in firstCharMap) {
-    if (secondCharMap[char] !== firstCharMap[char]) {
+    if (firstCharMap[char] !== secondCharMap[char]) {
       return false;
     }
   }
