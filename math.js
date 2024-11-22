@@ -4,7 +4,7 @@ Fibonacci sequence at position n. */
 
 //* Time Complexity - O(n)
 function fibonacci(n) {
-  if (n < 0) return;
+  if (n < 0) throw new Error('Input must be a non-negative integer');
   const fib = [0, 1];
 
   for (let i = 2; i <= n; i++) {
@@ -16,7 +16,7 @@ function fibonacci(n) {
 
 //* Time Complexity - O(2^n)
 function recursiveFibonacci(n) {
-  if (n < 0) return;
+  if (n < 0) throw new Error('Input must be a non-negative integer');
   if (n < 2) return n;
   return recursiveFibonacci(n - 2) + recursiveFibonacci(n - 1);
 }
