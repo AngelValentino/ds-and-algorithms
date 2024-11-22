@@ -16,6 +16,7 @@ function fibonacci(n) {
 
 //* Time Complexity - O(2^n)
 function recursiveFibonacci(n) {
+  if (n < 0) return;
   if (n < 2) return n;
   return recursiveFibonacci(n - 2) + recursiveFibonacci(n - 1);
 }
