@@ -550,7 +550,7 @@ areIsomorphic('foo', 'bar') => false;
 
 //* Time Complexity - O(n)
 function areIsomorphic(str, str2)  {
-  if (str.length !== str2.length) return;
+  if (str.length !== str2.length) return false;
   const charMap = {};
   const charMap2 = {};
 
