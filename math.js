@@ -4,6 +4,7 @@ Fibonacci sequence at position n. */
 
 //* Time Complexity - O(n)
 function fibonacci(n) {
+  if (n < 0) return;
   const fib = [0, 1];
 
   for (let i = 2; i <= n; i++) {
