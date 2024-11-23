@@ -20,12 +20,12 @@ Array.prototype.shuffle = function() {
 //? FILTER ARRAY METHOD
 /* Initialize the result array, loop through the current array and check if the current 
 value passes the test and it is not sparse. Return the newly created array. */
-Array.prototype.customFilter = function(callback) {
-  if (typeof callback !== 'function') throw new TypeError(typeof callback + ' ' + callback + ' is not a function');
+Array.prototype.customFilter = function(callback, thisArg) {
+  if (typeof callback !== 'function') throw new TypeError(typeof callback + ' is not a function');
   const result = [];
 
   for (let i = 0; i < this.length; i++) {
-    if (this.hasOwnProperty(i) && callback(this[i], i, this)) {
+    if (this.hasOwnProperty(i) && callback.call(thisArg, this[i], i, this)) {
       result.push(this[i]);
     }
   }
