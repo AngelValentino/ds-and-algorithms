@@ -89,7 +89,9 @@ Array.prototype.customReduce = function(callback, initialValue) {
   let i = isInitValUndefined ? 1 : 0;
 
   for (; i < this.length; i++) {
-    accumulator = callback(accumulator, this[i], i, this);
+    if (this.hasOwnProperty(i)) {
+      accumulator = callback(accumulator, this[i], i, this);
+    }
   }
 
   return accumulator;
