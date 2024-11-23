@@ -482,6 +482,7 @@ Array.prototype.customMap = function(callback, thisArg) {
 
 //* FLAT
 Array.prototype.customFlat = function(depth = 1) {
+  if (depth < 0) depth = 0;
   const result = [];
 
   function flatten(arr, currentDepth) {
