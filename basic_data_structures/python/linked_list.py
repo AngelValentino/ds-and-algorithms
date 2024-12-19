@@ -148,7 +148,7 @@ class LinkedList:
         if index == 0:
             return self.remove_from_front()
         # Remove the last node (tail)
-        elif index == self.size - 1:
+        elif index == (self.size - 1):
             return self.remove_from_end()
         # Remove at a specific index
         else:
