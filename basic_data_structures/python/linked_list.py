@@ -66,7 +66,7 @@ class LinkedList:
     # Space complexity - O(1) constant
     def insert_at(self, data, index):
         # Check if index is out of bounds or undefined
-        if index is None or index < 0 or index > self.size:
+        if index < 0 or index > self.size:
             return
         # Insert at the start
         if index == 0:
