@@ -71,7 +71,7 @@ class LinkedList:
     def insert_at(self, data, index):
         # Check if index is out of bounds or undefined
         if index < 0 or index > self.size:
-            return
+            return None
         
         # Insert at the start
         if index == 0:
