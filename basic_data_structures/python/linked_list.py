@@ -141,7 +141,7 @@ class LinkedList:
     # Space complexity - O(1) constant
     def remove_from(self, index):
         # Check if the index is out of bounds or undefined
-        if index is None or index < 0 or index >= self.size:
+        if index < 0 or index >= self.size:
             return None
 
         # Remove the first node (head)
