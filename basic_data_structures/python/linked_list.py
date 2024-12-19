@@ -37,6 +37,7 @@ class LinkedList:
     # Space complexity - O(1) constant
     def insert_at_front(self, data):
         node = Node(data)  # Create a new node with the given data
+        
         # If the list is empty
         if self.is_empty():
             # Both head and tail should point to the new node
@@ -46,12 +47,14 @@ class LinkedList:
         else:
             node.next = self.head  # Set the new node's next pointer to the current head
             self.head = node  # Update the head to point to the new node
+        
         self.size += 1
 
     # Time complexity - O(1) constant
     # Space complexity - O(1) constant
     def insert_at_end(self, data):
         node = Node(data)  # Create a new node with the given data
+       
         # If the list is empty
         if self.is_empty():
             self.head = node
@@ -60,6 +63,7 @@ class LinkedList:
         else:
             self.tail.next = node  # Set the current tail's next pointer to the new node
             self.tail = node  # Update the tail to point to the new node
+        
         self.size += 1
 
     # Time complexity - O(n) linear
@@ -87,19 +91,22 @@ class LinkedList:
             # Insert the new node between previous_node and previous_node.next
             node.next = previous_node.next
             previous_node.next = node
-
-        self.size += 1
+            self.size += 1
 
     # Time complexity - O(1) constant
     # Space complexity - O(1) constant
     def remove_from_front(self):
         if self.is_empty():
             return None
+
         data = self.head.data  # Store the data of the current head
         self.head = self.head.next  # Update the head to point to the next node
         self.size -= 1
+        
+        # If the list becomes empty, update the tail to None
         if self.is_empty():
-            self.tail = None  # If the list becomes empty, update the tail to None
+            self.tail = None 
+            
         return data
 
     # Time complexity - O(n) linear
@@ -109,7 +116,9 @@ class LinkedList:
     def remove_from_end(self):
         if self.is_empty():
             return None
+        
         data = self.tail.data  # Store the data of the current tail
+
         # If the list has only one node set both head and tail to None
         if self.size == 1:
             self.head = None
@@ -121,6 +130,7 @@ class LinkedList:
                 previous_node = previous_node.next
             previous_node.next = None  # Set the next of the previous node to None
             self.tail = previous_node  # Update the tail to the previous node
+        
         self.size -= 1
         return data
 
@@ -134,11 +144,9 @@ class LinkedList:
         # Remove the first node (head)
         if index == 0:
             return self.remove_from_front()
-
         # Remove the last node (tail)
         elif index == self.size - 1:
             return self.remove_from_end()
-
         # Remove at a specific index
         else:
             previous_node = self.head  # Start from the head of the list
