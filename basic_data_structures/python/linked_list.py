@@ -98,15 +98,18 @@ class LinkedList:
     def remove_from_front(self):
         if self.is_empty():
             return None
-
+        
         data = self.head.data  # Store the data of the current head
-        self.head = self.head.next  # Update the head to point to the next node
-        self.size -= 1
 
-        # If the list becomes empty, update the tail to None
-        if self.is_empty():
-            self.tail = None 
-            
+        # If the list has only one node set both head and tail to None
+        if self.size == 1:
+            self.head = None
+            self.tail = None
+        # Remove head node
+        else:
+            self.head = self.head.next  # Update the head to point to the next node
+        
+        self.size -= 1
         return data
 
     # Time complexity - O(n) linear
@@ -123,8 +126,8 @@ class LinkedList:
         if self.size == 1:
             self.head = None
             self.tail = None
+        # Traverse the list to find the node before the tail
         else:
-            # Traverse the list to find the node before the tail
             previous_node = self.head
             while previous_node.next != self.tail:
                 previous_node = previous_node.next
