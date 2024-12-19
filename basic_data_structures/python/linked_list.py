@@ -102,7 +102,7 @@ class LinkedList:
         data = self.head.data  # Store the data of the current head
         self.head = self.head.next  # Update the head to point to the next node
         self.size -= 1
-        
+
         # If the list becomes empty, update the tail to None
         if self.is_empty():
             self.tail = None 
@@ -110,7 +110,7 @@ class LinkedList:
         return data
 
     # Time complexity - O(n) linear
-        # If we were using a doubly linked list we couild improve the time
+        # If we were using a doubly linked list we could improve the time
         # complexity to O(1) constant as we would have access to the previous node.
     # Space complexity - O(1) constant
     def remove_from_end(self):
