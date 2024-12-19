@@ -68,6 +68,7 @@ class LinkedList:
         # Check if index is out of bounds or undefined
         if index < 0 or index > self.size:
             return
+        
         # Insert at the start
         if index == 0:
             self.insert_at_front(data)
@@ -86,6 +87,7 @@ class LinkedList:
             # Insert the new node between previous_node and previous_node.next
             node.next = previous_node.next
             previous_node.next = node
+
         self.size += 1
 
     # Time complexity - O(1) constant
