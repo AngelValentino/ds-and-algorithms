@@ -3,16 +3,32 @@ class Queue:
         self.items = {}
         self.head = 0
         self.tail = 0
-
+        
     def get_size(self):
         return self.tail - self.head
+    
+    def is_empty(self):
+        return self.get_size() == 0
 
+    # Time complexity - O(n) linear
+    # Space complexity - O(1) constant
+    def print(self):
+        if self.is_empty():
+            print("Queue is empty")
+        else:
+            for n in range(self.head, self.tail):
+                print(self.items[n])
+
+    # Time complexity - O(1) constant
+    # Space complexity - O(1) constant
     # Adds an element to the end of the queue
     def enqueue(self, element):
         self.items[self.tail] = element
         self.tail += 1
         return self.get_size()
 
+    # Time complexity - O(1) constant
+    # Space complexity - O(1) constant
     # Removes and returns the first element added to the queue
     def dequeue(self):
         if self.is_empty():
@@ -29,23 +45,13 @@ class Queue:
 
         return removed
 
+    # Time complexity - O(1) constant
+    # Space complexity - O(1) constant
     # Returns the first element added to the queue without removing it
     def peek(self):
         if self.is_empty():
             return None
         return self.items[self.head]
-
-    # Checks if the queue is empty
-    def is_empty(self):
-        return self.get_size() == 0
-
-    # Prints all elements of the queue
-    def print(self):
-        if self.is_empty():
-            print("Queue is empty")
-        else:
-            for n in range(self.head, self.tail):
-                print(self.items[n])
 
 # Testing the Queue class
 queue = Queue()

@@ -16,7 +16,7 @@ class LinkedList:
         return self.size
     
     # Time complexity - O(n) linear
-    # Space complexity - O(n) constant
+    # Space complexity - O(n) linear
     def print_list(self):
         if self.is_empty():
             print("List is empty")
@@ -164,7 +164,7 @@ class LinkedList:
             return removed_node.data
 
 
-# Create a linked list instance
+# Testing the LinkedList class
 ll = LinkedList()
 
 # Test inserting at the beginning

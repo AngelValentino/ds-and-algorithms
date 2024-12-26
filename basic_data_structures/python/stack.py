@@ -5,28 +5,11 @@ class Stack:
     def get_size(self):
         return len(self.items)
 
-    # Checks if the stack is empty
     def is_empty(self):
         return len(self.items) == 0
-
-    # Adds an element to the top of the stack and returns the new stack size
-    def push(self, element):
-        self.items.append(element)
-        return self.get_size()
-
-    # Removes the element from the top of the stack and returns it
-    def pop(self):
-        if not self.is_empty():
-            return self.items.pop()
-        return None  # Return None if stack is empty
-
-    # Returns the element on top of the stack without removing it
-    def peek(self):
-        if not self.is_empty():
-            return self.items[-1]
-        return None  # Return None if stack is empty
-
-    # Prints all elements of the stack
+    
+    # Time complexity - O(n) linear
+    # Space complexity - O(1) constant
     def print_stack(self):
         if self.is_empty():
             print("Stack is empty")
@@ -34,7 +17,30 @@ class Stack:
             for item in reversed(self.items):
                 print(item)
 
+    # Time complexity - O(1) constant
+    # Space complexity - O(1) constant
+    # Adds an element to the top of the stack and returns the new stack size
+    def push(self, element):
+        self.items.append(element)
+        return self.get_size()
 
+    # Time complexity - O(1) constant
+    # Space complexity - O(1) constant
+    # Removes the element from the top of the stack and returns it
+    def pop(self):
+        if not self.is_empty():
+            return self.items.pop()
+        return None  # Return None if stack is empty
+
+    # Time complexity - O(1) constant
+    # Space complexity - O(1) constant
+    # Returns the element on top of the stack without removing it
+    def peek(self):
+        if not self.is_empty():
+            return self.items[-1]
+        return None  # Return None if stack is empty
+
+# Testing the Stack class
 stack = Stack()
 
 # Test is_empty on an empty stack
