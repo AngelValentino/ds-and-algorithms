@@ -38,33 +38,33 @@ class Stack:
 stack = Stack()
 
 # Test is_empty on an empty stack
-print("Is stack empty?", stack.is_empty())
+print("\nIs stack empty?", stack.is_empty())
 
 # Push elements and check size
-print("Pushing 10", stack.push(10))
-print("Pushing 20", stack.push(20))
-print("Pushing 30", stack.push(30))
+print("\nPushing 10:", stack.push(10))
+print("Pushing 20:", stack.push(20))
+print("Pushing 30:", stack.push(30))
 
 # Print stack contents
-print("Stack contents:")
+print("\nStack contents:")
 stack.print_stack()
 
 # Check peek
-print("Peek element:", stack.peek())
+print("\nPeek element:", stack.peek())
 
 # Pop elements and check size
-print("Popped element:", stack.pop())
+print("\nPopped element:", stack.pop())
 print("Popped element:", stack.pop())
 
 # Print stack contents after pops
-print("Stack contents after pops:")
+print("\nStack contents after pops:")
 stack.print_stack()
 
 # Check is_empty on a non-empty stack
-print("Is stack empty?", stack.is_empty())
+print("\nIs stack empty?", stack.is_empty())
 
 # Pop remaining element
-print("Popped element:", stack.pop())
+print("\nPopped element:", stack.pop())
 
 # Check is_empty on an empty stack again
-print("Is stack empty?", stack.is_empty())
+print("\nIs stack empty?", stack.is_empty())
