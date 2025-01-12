@@ -15,6 +15,7 @@ function fibonacci(n) {
 }
 
 //* Time Complexity - O(2^n)
+// The number of function calls doubles at each level of recursion
 function recursiveFibonacci(n) {
   if (n < 0) throw new Error('Input must be a non-negative integer');
   if (n < 2) return n;
