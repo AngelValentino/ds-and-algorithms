@@ -265,10 +265,9 @@ Array.prototype.customPop = function() {
 
 //* UNSHIFT
 Array.prototype.customUnshift = function(...elements) {
-  const length = this.length;
   const numberOfElements = elements.length;
 
-  for (let i = length - 1; i >= 0; i--) {
+  for (let i = this.length - 1; i >= 0; i--) {
     this[i + numberOfElements] = this[i];
   }
 
