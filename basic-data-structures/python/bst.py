@@ -147,10 +147,25 @@ class BinarySearchTree:
 
         return results
         
-    def min():
-        pass
+    def min(self):
+        current_node = self.root
+        
+        while current_node.left is not None:
+            # Recursively search for the minimum value in the left subtree
+            current_node = current_node.left
+        
+        return current_node.value
 
-    def max():
+    def max(self):
+        current_node = self.root
+        
+        while current_node.right is not None:
+            # Recursively search for the maximum value in the right subtree
+            current_node = current_node.right
+        
+        return current_node.value
+
+    def delete(self, value):
         pass
 
 
@@ -181,3 +196,7 @@ print("DFS In-order:", bst.DFS_in_order())  # Expected output: [3, 5, 7, 10, 13,
 
 # Test BFS traversal
 print("BFS:", bst.BFS())  # Expected output: [10, 5, 15, 3, 7, 13, 18]
+
+# Test min and max methods
+print("Min value:", bst.min())  # Expected output: 3 (the smallest value in the tree)
+print("Max value:", bst.max())  # Expected output: 18 (the largest value in the tree)
