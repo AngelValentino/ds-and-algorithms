@@ -58,32 +58,126 @@ class BinarySearchTree:
         
         return False
     
-    def DFS_pre_order():
-        pass
+    # * Depth First Search (DFS)
+    # - The DFS algorithm starts at the root node and explores as far as possible 
+    #   along each branch before backtracking.
+    #?  - - -
+    # - Performs a pre-order traversal starting from the given root node.
+    # - Visits each node's value in a top-down manner: current root -> left subtree -> right subtree.
+    # - Useful for creating a copy of a tree (serialization).
+    def DFS_pre_order(self):
+        if self.is_empty(): return []
+        results = []
 
-    def DFS_post_order():
-        pass
+        def traverse(current_node):
+            results.append(current_node.value) # Push the value of the current node
+            
+            if current_node.left: 
+                traverse(current_node.left) # Recursively traverse the left subtree
 
-    def DFS_in_order():
-        pass
+            if current_node.right: 
+                traverse(current_node.right) # Recursively traverse the right subtree
 
-    def BFS():
-        pass
+        traverse(self.root) # Inital call with the tree root
 
+        return results
+
+    # - Perform a post-order traversal starting from the given root node
+    # - Visits each node's value in a bottom up manner: left subtree -> right subtree -> current root
+    # - Useful for deleting a tree from leaf to root.
+    def DFS_post_order(self):
+        if self.is_empty(): return []
+        results = []
+
+        def traverse(current_node):
+            if current_node.left: 
+                traverse(current_node.left) # Recursively traverse the left subtree
+
+            if current_node.right: 
+                traverse(current_node.right) # Recursively traverse the right subtree
+
+            results.append(current_node.value) # Push the value of the current node
+
+        traverse(self.root) # Inital call with the tree root
+
+        return results
+
+    # - Perform an in-order traversal starting from the given root node
+    # - Visits each node's value in a bottom-up manner: left subtree -> current root -> right subtree
+    # - This traversal is commonly used in binary search trees (BSTs) to retrieve values in a sorted order (ascending).
+    def DFS_in_order(self):
+        if self.is_empty(): return []
+        results = []
+
+        def traverse(current_node):
+            if current_node.left: 
+                traverse(current_node.left) # Recursively traverse the left subtree
+
+            results.append(current_node.value) # Push the value of the current node
+
+            if current_node.right: 
+                traverse(current_node.right) # Recursively traverse the right subtree
+
+        traverse(self.root) # Inital call with the tree root
+
+        return results
+
+    # * Breadth-First Search (BFS)
+    # - The BFS algorithm starts at the root node and explores all nodes 
+    #   at the current level before moving on to the next level.
+    # - It retrieves data according to its inherent sequence, 
+    #   accessing elements in the tree in the order they were added.
+    def BFS(self):
+        if self.is_empty(): return []
+        current_node = self.root
+        queue = [] # Initialize a "queue" to keep track of nodes to visit
+        results = [] # Initialize an array to store the values of the visited nodes
+        queue.append(current_node)
+
+        while len(queue) > 0:
+            # Remove the first node from the queue and process it
+            current_node = queue.pop(0)
+            results.append(current_node.value)
+            # If the current node has a left child, add it to the queue
+            if current_node.left: 
+                queue.append(current_node.left)
+            # If the current node has a right child, add it to the queue
+            if current_node.right: 
+                queue.append(current_node.right)
+
+        return results
+        
     def min():
         pass
 
     def max():
         pass
 
+
+# Create a BinarySearchTree instance
 bst = BinarySearchTree()
 
-bst.root = Node(10)
-bst.root.left = Node(5)
-bst.root.right = Node(15)
+# Insert nodes into the tree
+bst.insert(10)
+bst.insert(5)
+bst.insert(15)
+bst.insert(3)
+bst.insert(7)
+bst.insert(13)
+bst.insert(18)
 
-# Test contains function
-print(bst.includes(5))  # True
-print(bst.includes(10))  # True
-print(bst.includes(15))  # True
-print(bst.includes(20))  # False
+# Test includes method (checking if a value exists in the tree)
+print(bst.includes(7))   # Expected output: True
+print(bst.includes(20))  # Expected output: False
+
+# Test DFS pre-order traversal
+print("DFS Pre-order:", bst.DFS_pre_order())  # Expected output: [10, 5, 3, 7, 15, 13, 18]
+
+# Test DFS post-order traversal
+print("DFS Post-order:", bst.DFS_post_order())  # Expected output: [3, 7, 5, 13, 18, 15, 10]
+
+# Test DFS in-order traversal
+print("DFS In-order:", bst.DFS_in_order())  # Expected output: [3, 5, 7, 10, 13, 15, 18]
+
+# Test BFS traversal
+print("BFS:", bst.BFS())  # Expected output: [10, 5, 15, 3, 7, 13, 18]

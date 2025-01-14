@@ -790,13 +790,13 @@ class BinarySearchTree {
       return this.contains(value, root.right);
     }
   }
-  //* Depth First Search (DFS)
-  //* The DFS algorithm starts at the root node and explores as far as possible along
-  //* each branch before backtracking.
-  // Perform a pre-order traversal starting from the given root node
-  // Visits each node's value in a top down manner: root -> left subtree -> right subtree
-  // Encounters all the roots before encountering all of the leaves
-  // Useful for creating a copy of a tree (serialization).
+  // * Depth First Search (DFS)
+  // - The DFS algorithm starts at the root node and explores as far as possible 
+  //   along each branch before backtracking.
+  //? - - -
+  // - Performs a pre-order traversal starting from the given root node.
+  // - In pre-order traversal, it visits nodes in the order: current root -> left subtree -> right subtree.
+  // - DFS is useful for creating a copy of a tree (serialization).
   DFSPreOrder() {
     if (this.isEmpty()) return []; // Return an empty array if the tree is empty
     let results = [];
@@ -805,13 +805,12 @@ class BinarySearchTree {
       results.push(currentNode.value); // Push the value of the current node
       if (currentNode.left) traverse(currentNode.left); // Recursively traverse the left subtree
       if (currentNode.right) traverse(currentNode.right); // Recursively traverse the right subtree
-    })(this.root) // Inital call with the tree root
+    })(this.root) // Initial call with the tree root
 
     return results;
   }
   // Perform a post-order traversal starting from the given root node
-  // Visits each node's value in a bottom up manner: left subtree -> right subtree -> root
-  // Encounters the leaves before raching the root
+  // Visits each node's value in a bottom up manner: left subtree -> right subtree -> current root
   // Useful for deleting a tree from leaf to root.
   DFSPostOrder() {
     if (this.isEmpty()) return []; // Return an empty array if the tree is empty
@@ -821,12 +820,12 @@ class BinarySearchTree {
       if (currentNode.left) traverse(currentNode.left); // Recursively traverse the left subtree
       if (currentNode.right) traverse(currentNode.right); // Recursively traverse the right subtree
       results.push(currentNode.value); // Push the value of the current node
-    })(this.root) // Inital call with the tree root
+    })(this.root) // Initial call with the tree root
 
     return results;
   }
   // Perform an in-order traversal starting from the given root node
-  // Visits each node's value in a bottom up manner: left subtree -> root -> right subtree
+  // Visits each node's value in a bottom up manner: left subtree -> current root -> right subtree
   // This traversal is commonly used in binary search trees (BSTs) to retrieve values in a sorted order (ascending).
   DFSInOrder() {
     if (this.isEmpty()) return []; // Return an empty array if the tree is empty
@@ -836,14 +835,15 @@ class BinarySearchTree {
       if (currentNode.left) traverse(currentNode.left); // Recursively traverse the left subtree
       results.push(currentNode.value); // Push the value of the current node
       if (currentNode.right) traverse(currentNode.right); // Recursively traverse the right subtree
-    })(this.root) // Inital call with the tree root
+    })(this.root) // Initial call with the tree root
 
     return results;
   }
-  //* Breath First Search (BFS)
-  //* The BFS algorithm starts at the root node and explores all the nodes at the current level
-  //* before moving on to the next level.
-  // Retrieves the data according to its inherent sequence(accessing elements in the tree in the order they were added)
+  // * Breadth-First Search (BFS)
+  // - The BFS algorithm starts at the root node and explores all nodes 
+  //   at the current level before moving on to the next level.
+  // - It retrieves data according to its inherent sequence, 
+  //   accessing elements in the tree in the order they were added.
   BFS() {
     if (this.isEmpty()) return []; // Return an empty array if the tree is empty
     let currentNode = this.root; // Start with the root node
