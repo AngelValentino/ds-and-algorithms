@@ -885,40 +885,42 @@ class BinarySearchTree {
     }
   }
   // Delete helper function
-  deleteNode(root, value) {
-    // If the root is null return null (base case)
-    if (root === null) return root;
+  deleteNode(currentRoot, value) {
+    // If the currentRoot is null return currentRoot (base case)
+    if (currentRoot === null) return currentRoot;
 
-    // If the value to be deleted is less than the root value, recursively delete from the left subtree
-    if (value < root.value) {
-      root.left = this.deleteNode(root.left, value);
+    // If the value to be deleted is less than the currentRoot value, recursively delete from the left subtree
+    if (value < currentRoot.value) {
+      currentRoot.left = this.deleteNode(currentRoot.left, value);
     } 
-    // If the value to be deleted is greater than the root value, recursively delete from the right subtree
-    else if (value > root.value) {
-      root.right = this.deleteNode(root.right, value);
+    // If the value to be deleted is greater than the currentRoot value, recursively delete from the right subtree
+    else if (value > currentRoot.value) {
+      currentRoot.right = this.deleteNode(currentRoot.right, value);
     } 
-    // If the root value matches the value to be deleted.
+    // currentRoot value matches the value to be deleted
     else {
       // Case 1: Node to be deleted has no children (leaf node), return null
-      if (!root.left && !root.right) {
+      if (!currentRoot.left && !currentRoot.right) {
         return null;
       }
       // Case 2: Node to be deleted has no left child, return its right child
-      if (!root.left) {
-        return root.right;
+      if (!currentRoot.left) {
+        return currentRoot.right;
       } 
       // Case 3: Node to be deleted has no right child, return its left child
-      else if (!root.right) {
-        return root.left;
+      else if (!currentRoot.right) {
+        return currentRoot.left;
       }
       // Case 4: Node to be deleted has both left and right children
-      // Find the minimum value in the right subtree (successor), replace current node's value with it,
-      // and recursively delete the successor node from the right subtree
-      root.value = this.min(root.right);
-      root.right = this.deleteNode(root.right, root.value);
+      else {
+        // Find the minimum value in the right subtree (inorder successor), replace currentNode value with it
+        currentRoot.value = this.min(currentRoot.right);
+        // Recursively delete the inorder successor node from the right subtree
+        currentRoot.right = this.deleteNode(currentRoot.right, currentRoot.value);
+      }
     }
-    // Return the updated root after deletion or traversal
-    return root;
+    // Return the updated currentRoot after deletion or traversal
+    return currentRoot;
   }
   // Deletes a node with the specified value from the tree
   delete(value) {

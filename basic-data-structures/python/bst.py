@@ -147,26 +147,61 @@ class BinarySearchTree:
 
         return results
         
-    def min(self):
-        current_node = self.root
-        
-        while current_node.left is not None:
+    def min(self, current_root = None):
+        if current_root is None:
+            current_root = self.root
+            
+        while current_root.left is not None:
             # Recursively search for the minimum value in the left subtree
-            current_node = current_node.left
-        
-        return current_node.value
+            current_root = current_root.left
+    
+        return current_root.value
 
-    def max(self):
-        current_node = self.root
-        
-        while current_node.right is not None:
+    def max(self, current_root = None):
+        if current_root is None:
+            current_root = self.root
+            
+        while current_root.right is not None:
             # Recursively search for the maximum value in the right subtree
-            current_node = current_node.right
+            current_root = current_root.right
+            
+        return current_root.value
+
+    def __delete_node(self, current_root, value):
+        # If the current_root is None, return current_root(base case)
+        if current_root is None:
+            return current_root
+
+        # If the value to be deleted is less than the current_root value, recursively delete from the left subtree
+        if value < current_root.value:
+            current_root.left = self.__delete_node(current_root.left, value)
+        # If the value to be deleted is greater than the current_root value, recursively delete from the right subtree
+        elif value > current_root.value:
+            current_root.right = self.__delete_node(current_root.right, value)
+        # currentRoot value matches the value to be deleted
+        else:
+            # Case 1: Node to be deleted has no children (leaf node), return None
+            if current_root.left is None and current_root.right is None:
+                return None
+            # Case 2: Node to be deleted has no left child, return its right child
+            elif current_root.left is None:
+                return current_root.right
+            # Case 3: Node to be deleted has no right child, return its left child
+            elif current_root.right is None:
+                return current_root.left
+            # Case 4: Node to be deleted has both left and right children
+            else:
+                # Find the minimum value in the right subtree (inorder successor), replace current_node value with it
+                current_root.value = self.min(current_root.right)
+                # Recursively delete the inorder successor node from the right subtree
+                current_root.right = self.__delete_node(current_root.right, current_root.value)
         
-        return current_node.value
+        # Return the updated current_root after deletion or traversal
+        return current_root
 
     def delete(self, value):
-        pass
+        # Deletes a node with the specified value from the tree
+        self.root = self.__delete_node(self.root, value)
 
 
 # Create a BinarySearchTree instance
@@ -177,26 +212,59 @@ bst.insert(10)
 bst.insert(5)
 bst.insert(15)
 bst.insert(3)
+bst.insert(4)
 bst.insert(7)
+bst.insert(6)
 bst.insert(13)
 bst.insert(18)
 
+
+print("BFS:", bst.BFS())
 # Test includes method (checking if a value exists in the tree)
-print(bst.includes(7))   # Expected output: True
-print(bst.includes(20))  # Expected output: False
+print("BST includes 7?", bst.includes(7))   # Expected output: True
+print("BST includes 20?", bst.includes(20))  # Expected output: False
+
+print()
 
 # Test DFS pre-order traversal
 print("DFS Pre-order:", bst.DFS_pre_order())  # Expected output: [10, 5, 3, 7, 15, 13, 18]
-
 # Test DFS post-order traversal
 print("DFS Post-order:", bst.DFS_post_order())  # Expected output: [3, 7, 5, 13, 18, 15, 10]
-
 # Test DFS in-order traversal
 print("DFS In-order:", bst.DFS_in_order())  # Expected output: [3, 5, 7, 10, 13, 15, 18]
-
 # Test BFS traversal
 print("BFS:", bst.BFS())  # Expected output: [10, 5, 15, 3, 7, 13, 18]
+
+print()
 
 # Test min and max methods
 print("Min value:", bst.min())  # Expected output: 3 (the smallest value in the tree)
 print("Max value:", bst.max())  # Expected output: 18 (the largest value in the tree)
+
+print()
+
+# Test DFS in-order traversal before deletion
+print("DFS In-order before deletion:", bst.DFS_in_order())  # Expected output: [3, 4, 5, 6, 7, 10, 13, 15, 18]
+
+# Test delete method for various cases
+# Case 1: Deleting a leaf node (18)
+bst.delete(18)
+print("DFS In-order after deleting 18 (leaf):", bst.DFS_in_order())  # Expected output: [3, 4, 5, 6, 7, 10, 13, 15]
+
+# Case 2: Deleting a node with one left child (has a left child 6)
+bst.delete(7)
+print("DFS In-order after deleting 7 (one child):", bst.DFS_in_order())  # Expected output: [3, 4, 5, 6, 10, 13, 15]
+
+# Case 3: Deleting a node with one right child (3 has a right child 4)
+bst.delete(3)
+print("DFS In-order after deleting 3 (one child):", bst.DFS_in_order())  # Expected output: [4, 5, 6, 10, 13, 15]
+
+# Case 4: Deleting a node with two children (10 has left child 5 and right child 15)
+bst.delete(10)
+print("DFS In-order after deleting 10 (two children):", bst.DFS_in_order())  # Expected output: [4, 5, 6, 13, 15]
+
+# Case 5: Test deleting a non-existent node (100)
+bst.delete(100)
+print("DFS In-order after trying to delete 100 (non-existent):", bst.DFS_in_order())  # Expected output: [4, 5, 6, 13, 15]
+
+print("BFS:", bst.BFS())
