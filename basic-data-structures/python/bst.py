@@ -1,3 +1,25 @@
+
+#? Tree
+    # The Tree Data Structure is a non-linear data structure in which a collection of elements 
+    # known as nodes are connected to each other via edges such that there exists exactly one 
+    # path between any two nodes.
+    
+    #* Trees, such as Binary Search Trees (BSTs), are used in various applications, including:
+        # - Databases for efficient searching
+        # - File systems for organizing files
+        # - Network routing algorithms
+        # - The Document Object Model (DOM) in web development, which is a type of tree structure.
+
+#? Binary Tree
+    # A Binary Tree is a hierarchical data structure in which each node has at most two children, 
+    # referred to as the left child and the right child.
+
+#? Binary Search Tree (BST)
+    # A Binary Search Tree (BST) is a data structure used for organizing and storing data in a sorted manner. 
+    # Each node in a BST has at most two children, a left child and a right child. 
+    # The left child contains values less than the parent node, while the right child contains values greater than 
+    # the parent node. This hierarchical structure allows for efficient searching, insertion, and deletion operations.
+
 class Node:
     def __init__(self, value):
         self.value = value
@@ -31,6 +53,12 @@ class BinarySearchTree:
                 # Keep searching from the right pointer node as new root
                 self.__insert_node(current_root.right, new_node)
 
+    #* Time complexity 
+        # (Balanced tree): O(log n) logarithmic
+        # (Skewed Tree): O(n) linear
+    #* Space complexity
+        # (Balanced tree): O(log n) logarithmic
+        # (Skewed Tree): O(n) linear
     def insert(self, value):
         new_node = Node(value)
 
@@ -41,6 +69,14 @@ class BinarySearchTree:
         else:
             self.__insert_node(self.root, new_node)
 
+    #* Time complexity 
+        # (Balanced tree)
+            # Best case: Ω(1) linear
+            # Worst case: O(log n) logarithmic
+        # (Skewed Tree)
+            # Best case: Ω(1) linear
+            # Worst case: O(n) constant
+    #* Space complexity - O(1) constant
     def includes(self, value):
         current_node = self.root
 
@@ -58,10 +94,14 @@ class BinarySearchTree:
         
         return False
     
-    # * Depth First Search (DFS)
+    #* Depth First Search (DFS)
     # - The DFS algorithm starts at the root node and explores as far as possible 
     #   along each branch before backtracking.
-    #?  - - -
+    #* Time complexity for DFS methods - O(n) linear
+        # It must visit each node at least once
+    #* Space complexity for DFS methods - O(n) linear 
+        # It returns the result array containing n elements
+    #? - - -
     # - Performs a pre-order traversal starting from the given root node.
     # - Visits each node's value in a top-down manner: current root -> left subtree -> right subtree.
     # - Useful for creating a copy of a tree (serialization).
@@ -122,7 +162,12 @@ class BinarySearchTree:
 
         return results
 
-    # * Breadth-First Search (BFS)
+    #* Breadth-First Search (BFS)
+    #* Time complexity - O(n) linear
+        # It must visit each node at least once
+    #* Space complexity - O(n) linear 
+        # It returns the result array containing n elements
+    #? - - -
     # - The BFS algorithm starts at the root node and explores all nodes 
     #   at the current level before moving on to the next level.
     # - It retrieves data according to its inherent sequence, 
@@ -146,7 +191,15 @@ class BinarySearchTree:
                 queue.append(current_node.right)
 
         return results
-        
+    
+    #* Time complexity for min() and max() methods
+        # (Balanced tree)
+            # Best case: Ω(1) linear
+            # Worst case: O(log n) logarithmic
+        # (Skewed Tree)
+            # Best case: Ω(1) linear
+            # Worst case: O(n) constant
+    #* Space complexity for min() and max() methods - O(1) constant
     def min(self, current_root = None):
         if current_root is None:
             current_root = self.root
@@ -156,7 +209,7 @@ class BinarySearchTree:
             current_root = current_root.left
     
         return current_root.value
-
+    
     def max(self, current_root = None):
         if current_root is None:
             current_root = self.root
@@ -199,6 +252,12 @@ class BinarySearchTree:
         # Return the updated current_root after deletion or traversal
         return current_root
 
+    #* Time complexity 
+        # (Balanced tree): O(log n) logarithmic
+        # (Skewed Tree): O(n) constant
+    #* Space complexity
+        # (Balanced tree): O(log n) logarithmic
+        # (Skewed Tree): O(n) constant
     def delete(self, value):
         # Deletes a node with the specified value from the tree
         self.root = self.__delete_node(self.root, value)
@@ -217,7 +276,6 @@ bst.insert(7)
 bst.insert(6)
 bst.insert(13)
 bst.insert(18)
-
 
 print("BFS:", bst.BFS())
 # Test includes method (checking if a value exists in the tree)

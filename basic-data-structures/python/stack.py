@@ -1,3 +1,14 @@
+
+#? Last In First Out (LIFO)
+    # The Stack operates on a Last In, First Out (LIFO) principle,
+    # where the most recently added element is the first to be removed.
+    # This is similar to a stack of books, plates, or pancakes.
+
+    #* Stacks are commonly used in various applications such as:
+        # - Undo/redo features
+        # - The JavaScript call stack
+        # - Browser history management
+
 class Stack:
     def __init__(self):
         self.items = []
@@ -8,8 +19,8 @@ class Stack:
     def is_empty(self):
         return len(self.items) == 0
     
-    # Time complexity - O(n) linear
-    # Space complexity - O(1) constant
+    #* Time complexity - O(n) linear
+    #* Space complexity - O(1) constant
     def print_stack(self):
         if self.is_empty():
             print("Stack is empty")
@@ -17,23 +28,23 @@ class Stack:
             for item in reversed(self.items):
                 print(item)
 
-    # Time complexity - O(1) constant
-    # Space complexity - O(1) constant
+    #* Time complexity - O(1) constant
+    #* Space complexity - O(1) constant
     # Adds an element to the top of the stack and returns the new stack size
     def push(self, element):
         self.items.append(element)
         return self.get_size()
 
-    # Time complexity - O(1) constant
-    # Space complexity - O(1) constant
+    #* Time complexity - O(1) constant
+    #* Space complexity - O(1) constant
     # Removes the element from the top of the stack and returns it
     def pop(self):
         if not self.is_empty():
             return self.items.pop()
         return None  # Return None if stack is empty
 
-    # Time complexity - O(1) constant
-    # Space complexity - O(1) constant
+    #* Time complexity - O(1) constant
+    #* Space complexity - O(1) constant
     # Returns the element on top of the stack without removing it
     def peek(self):
         if not self.is_empty():
