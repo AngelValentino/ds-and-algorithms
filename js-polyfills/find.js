@@ -1,0 +1,11 @@
+Array.prototype.customFind = function(callback, thisArg) {
+  if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function');
+  
+  for (let i = 0; i < this.length; i++) {
+    if (callback.call(thisArg, this[i], i, this)) {
+      return this[i];
+    }
+  }
+
+  return undefined;
+}
