@@ -42,14 +42,14 @@ function generateRandomNumberBetween(min, max) {
 
 //* O(n)
 //* Space - O(1)
-function shuffle() {
-  for (let i = this.length - 1; i > 0; i--) {
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
     // Generate a random index between 0 and i
     const randomIndex = Math.floor(Math.random() * (i + 1));
     // Swap variables using array destructuring
-    [this[i], this[randomIndex]] = [this[randomIndex], this[i]];
+    [arr[i], arr[randomIndex]] = [arr[randomIndex], arr[i]];
   }
-  return this;
+  return arr;
 }
 
 //? END OF FISHER-YATES SHUFFLE 
