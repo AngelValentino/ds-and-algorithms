@@ -115,24 +115,7 @@ function insertionSort(arr) {
 
 /* We divide the array into two sub arrays until there's only one, 
 after that we start sorting the subarrays until we have the final 
-sorted array.
-Input array arr[] = [4,0,6,2,5,1,7,3]
-                           /  \
-                          /    \
-                  [4,0,6,2] and [5,1,7,3]
-                     / \           / \
-                    /   \         /   \
-                 [4,0] [6,2]    [5,1] [7,3] 
-                   |     |        |     |
-                   |     |        |     |
-                 [0,4] [2,6]    [1,5] [3,7]
-                   \     /        \     /                        
-                    \   /          \   /
-                  [0,2,4,6]      [1,3,5,7]
-                      \             /
-                       \           / 
-                     [0,1,2,3,4,5,6,7]
-*/
+sorted array. */
 
 function merge(leftArr, rightArr, arr) {
   const leftSize = leftArr.length;
