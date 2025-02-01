@@ -135,29 +135,36 @@ Input array arr[] = [4,0,6,2,5,1,7,3]
 */
 
 function merge(leftArr, rightArr, arr) {
-  const leftSize = Math.floor(arr.length / 2);
-  const rightSize = arr.length - leftSize;
+  const leftSize = leftArr.length;
+  const rightSize = rightArr.length;
+  // Initialize indices for the merged array (i), left array (l), and right array (r)
   let i = 0; l = 0; r = 0;
 
-  // Merging conditions
+  // Merge the arrays until we reach the end of one of them
   while(l < leftSize && r < rightSize) {
+    // Compare the current element of left_arr with the current element of right_arr
     if (leftArr[l] < rightArr[r]) {
+      // If left_arr[l] is smaller, place it in the merged array (arr)
       arr[i] = leftArr[l];
-      i++;
       l++;
     }
     else {
+      // If right_arr[r] is smaller (or equal), place it in the merged array (arr)
       arr[i] = rightArr[r];
-      i++;
       r++;
     }
+    // Move the index of the merged array forward to the next position
+    i++;
   }
-  // If there's an element remaining
+
+  // If there are any remaining elements in the left array, add them to the merged array
   while(l < leftSize) {
     arr[i] = leftArr[l];
     i++;
     l++;
   }
+
+  // If there are any remaining elements in the right array, add them to the merged array
   while(r < rightSize) {
     arr[i] = rightArr[r];
     i++;
@@ -167,9 +174,10 @@ function merge(leftArr, rightArr, arr) {
 
 function mergeSort(arr) {
   const length = arr.length;
+  // If the array has 1 or fewer elements, it's already sorted
   if (length <= 1) return;
 
-  const middle = Math.floor(length / 2);
+  const middleIndex = Math.floor(length / 2);
   const leftArr = [];
   const rightArr = [];
 
@@ -177,18 +185,20 @@ function mergeSort(arr) {
   let j = 0; // right array
 
   for (; i < length; i++) {
-    if (i < middle) {
+    if (i < middleIndex) {
+      // Slice the left half of the array
       leftArr[i] = arr[i];
     } 
     else {
+      // Slice the right half of the array
       rightArr[j] = arr[i];
       j++;
     }
   }
 
-  mergeSort(leftArr);
-  mergeSort(rightArr);
-  merge(leftArr, rightArr, arr);
+  mergeSort(leftArr); // Recursively sort the left half
+  mergeSort(rightArr); // Recursively sort the right half
+  merge(leftArr, rightArr, arr); // Merge the two sorted halves back into the original array
   return arr;
 }
 

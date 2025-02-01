@@ -1,3 +1,6 @@
+# We repeatedly find the smallest (or largest) element in the unsorted 
+# part of the array and swap it with the first unsorted element. This 
+# process is repeated until the entire array is sorted.
 
 #* Time Complexity
     # Ω(n^2) Best case
@@ -5,6 +8,7 @@
     # O(n^2) Worst case
 #* Space Complexity - O(1)
 #* Unstable sort
+
 def selection_sort(arr):
     size = len(arr)
 

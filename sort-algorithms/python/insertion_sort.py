@@ -1,3 +1,6 @@
+# We take one element at a time from the unsorted part of the array 
+# and insert it into its correct position in the sorted part. This 
+# process is repeated until the entire array is sorted.
 
 #* Time Complexity
     # Ω(n) Best case => if the array is already sorted
@@ -5,6 +8,7 @@
     # O(n^2) Worst case
 #* Space Complexity - O(1)
 #* Stable sort
+
 def insertion_sort(elements):
     for i in range(1, len(elements)):
         temp = elements[i]

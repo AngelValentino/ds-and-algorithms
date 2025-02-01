@@ -1,3 +1,6 @@
+# We repeatedly compare adjacent elements in the array and swap them if 
+# they are in the wrong order. This process is repeated for each element 
+# in the array until no more swaps are needed, resulting in a sorted array.
 
 #* Time Complexity
     # Ω(n) Best case => if the array is already sorted
@@ -5,6 +8,7 @@
     # O(n^2) Worst case
 #* Space Complexity - O(1)
 #* Stable sort
+
 def bubble_sort(elements):
     size = len(elements)
 
