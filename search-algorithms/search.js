@@ -97,52 +97,52 @@ performance, and work as intended. It guesses where the target should be in
 the array and narrows the serach in each iteration. */ 
 
 function interpolationSearch(arr, target) {
-	let start = 0;
-	let end = arr.length - 1;
+  let start = 0;
+  let end = arr.length - 1;
 
-	while (start <= end && target >= arr[start] && target <= arr[end]) {
-		if (start === end) {
-			if (arr[start] === target) return start;
-			return -1;
-		}
+  while (start <= end && target >= arr[start] && target <= arr[end]) {
+    if (start === end) {
+      if (arr[start] === target) return start;
+      return -1;
+    }
 
     // Calculate estimate index position
-		let pos = start + Math.floor(((end - start) / (arr[end] - arr[start])) * (target - arr[start]));
+    let pos = start + Math.floor(((end - start) / (arr[end] - arr[start])) * (target - arr[start]));
 
-		if (arr[pos] === target) {
-			return pos;
-		}
+    if (arr[pos] === target) {
+      return pos;
+    }
 
-		// Adjusting search boundaries and narrowing the search area
-		if (arr[pos] < target) {
-			start = pos + 1;
-		} 
+    // Adjusting search boundaries and narrowing the search area
+    if (arr[pos] < target) {
+      start = pos + 1;
+    } 
     else {
-			end = pos - 1;
-		}
-	}
+      end = pos - 1;
+    }
+  }
 
-	return -1;
+  return -1;
 }
 
 //* Space Complexity - O(log n) Recursive callstack
 
 function interpolationSearchRecursive(arr, target, start = 0, end = arr.length - 1) {
-	if (start > end || target < arr[start] || target > arr[end]) {
-		return -1;
-	}
+  if (start > end || target < arr[start] || target > arr[end]) {
+    return -1;
+  }
 
-	let pos = start + Math.floor(((end - start) / (arr[end] - arr[start])) * (target - arr[start]));
+  let pos = start + Math.floor(((end - start) / (arr[end] - arr[start])) * (target - arr[start]));
 
-	if (arr[pos] === target) {
-		return pos;
-	} 
+  if (arr[pos] === target) {
+    return pos;
+  } 
   else if (arr[pos] < target) {
-		return interpolationSearchRecursive(arr, target, pos + 1, end);
-	} 
+    return interpolationSearchRecursive(arr, target, pos + 1, end);
+  } 
   else {
-		return interpolationSearchRecursive(arr, target, start, pos - 1);
-	}
+    return interpolationSearchRecursive(arr, target, start, pos - 1);
+  }
 }
 
 //? END OF INTERPOLATION SEARCH
